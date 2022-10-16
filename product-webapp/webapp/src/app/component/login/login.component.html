@@ -1,0 +1,34 @@
+
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+
+	 <body>
+		 <div class="container" id="container">
+			 
+			 <div class="overlay-container">
+				  <div class="overlay"> 
+					 <div class="overlay-panel overlay-right">
+						 <img src="https://s16126.pcdn.co/blog/wp-content/uploads/sites/3/2017/02/travel-3.jpg">
+					 </div>
+				  </div> 
+	 
+			 </div>
+			 <div class="form-container log-in-container">
+				 <form [formGroup]="loginForm" >
+					 <h1 style="font-weight:bolder;color:rgb(60, 59, 59);">Login</h1>
+					 <div class="social-container">
+						 <a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
+						 <a href="#" class="social"><i class="fab fa fa fa-envelope fa-2x"></i></a>
+					 </div>
+				<a href="#"><h3 style="color:hotpink">Create New Account</h3></a>
+					 
+					 <input type="email" placeholder="Email" formControlName="email"/>
+					
+					 <input type="password" placeholder="Password" formControlName="password"  />
+					
+					 <a href="#">Forgot your password?</a>
+					 <button (click)="login()">Log In</button>
+				 </form>
+			 </div>
+	 
+		 </div>
+	 
