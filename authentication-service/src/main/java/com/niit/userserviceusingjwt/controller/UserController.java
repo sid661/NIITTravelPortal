@@ -1,6 +1,9 @@
 package com.niit.userserviceusingjwt.controller;
 
+import com.niit.userserviceusingjwt.exception.ServiceProviderAlreadyExist;
+import com.niit.userserviceusingjwt.exception.UserAlreadyExistException;
 import com.niit.userserviceusingjwt.exception.UserNotFoundException;
+import com.niit.userserviceusingjwt.model.ServiceProvider;
 import com.niit.userserviceusingjwt.model.User;
 import com.niit.userserviceusingjwt.service.EmailService;
 import com.niit.userserviceusingjwt.service.SecurityTokenGenerator;
@@ -28,30 +31,37 @@ public class UserController {
         this.securityTokenGenerator = securityTokenGenerator;
     }
     @PostMapping("/login")
-    public ResponseEntity loginUser(@RequestBody User user)throws UserNotFoundException{
+    public ResponseEntity loginUser(@RequestBody User user) throws UserNotFoundException, ServiceProviderAlreadyExist {
         System.out.println("");
         Map<String,String> map=null;
         try{
             User user1=userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+            ServiceProvider serviceProvider=userService.findByServiceEmailAndPassword(user.getEmail(), user.getPassword());
             if(user1.getEmail().equals(user.getEmail())){
+                map=securityTokenGenerator.generateToken(user);
+            } else if (serviceProvider.getEmail().equals(user.getEmail())) {
                 map=securityTokenGenerator.generateToken(user);
             }
             responseEntity=new ResponseEntity<>(map, HttpStatus.OK);
         }catch (UserNotFoundException e)
         {
             throw e;
-        }catch (Exception e)
+        }catch (ServiceProviderAlreadyExist e)
+        {
+            throw e;
+        }
+        catch (Exception e)
         {
             responseEntity=new ResponseEntity<>("Try after Sometime!!",HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }
-    @PostMapping("/register")
-    public ResponseEntity saveUser(@RequestBody User user){
-        User userCreated=userService.saveUser(user);
-       String status= service.sendSimpleEmail(user);
-        return responseEntity=new ResponseEntity<>(status,HttpStatus.CREATED);
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity saveUser(@RequestBody User user) throws UserAlreadyExistException {
+//        User userCreated=userService.saveUser(user);
+//       String status= service.sendSimpleEmail(user);
+//        return responseEntity=new ResponseEntity<>(status,HttpStatus.CREATED);
+//    }
     @GetMapping("/api/v1/userService/users")
     public ResponseEntity getAllUser(HttpServletRequest request)
     {

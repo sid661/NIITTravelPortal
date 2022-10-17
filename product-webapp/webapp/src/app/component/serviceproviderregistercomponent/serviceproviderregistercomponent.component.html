@@ -1,0 +1,206 @@
+<div style="width:800px; margin:0 auto;">
+    <h1>Register</h1>
+    
+    <form [formGroup]="Registerform"  (ngSubmit)="fun1()" class="example-form" >
+        <mat-form-field class="example-full-width" appearance="fill" >
+    
+            <mat-label>Name</mat-label>
+            <input type="text" matInput formControlName="name"  placeholder="Enter Email">
+            <mat-error *ngIf="Registerform.controls['name'].hasError('name')">
+              Name is required
+
+             </mat-error>
+          
+        </mat-form-field>
+        <br>
+        <br>
+    
+        <mat-form-field class="example-full-width" appearance="fill" >
+    
+            <mat-label>Email</mat-label>
+            <input type="text" matInput formControlName="email"  placeholder="Enter Email">
+            <mat-error *ngIf="Registerform.controls['email'].hasError('email')">
+              Check Email Format
+
+             </mat-error>
+          
+        </mat-form-field>
+      
+    <br>
+      <br>
+    
+      <mat-form-field class="example-full-width" appearance="fill" >
+    
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password"  placeholder="Enter Password">
+        <mat-error *ngIf="Registerform.controls['password'].hasError('required')">
+          Password is Required
+         </mat-error>
+         <mat-error *ngIf="Registerform.controls['password'].hasError('minLength')">
+           Minimum length is 6
+          </mat-error>
+          <mat-error *ngIf="Registerform.controls['password'].hasError('maxLength')">
+           Minimum length is 15
+          </mat-error>
+        
+          
+    </mat-form-field>
+    
+    <br>
+     <br>
+    
+    <mat-form-field class="example-full-width" appearance="fill" >
+    
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formControlName="confirmpassword"  placeholder="Confirm Password">
+        <mat-error *ngIf="Registerform.controls['confirmpassword'].hasError('required')">
+         Confirm Password is Required
+         </mat-error>
+         <mat-error *ngIf="Registerform.controls['confirmpassword'].hasError('myError1')">
+          Password Should Match 
+          </mat-error>
+           
+          
+    </mat-form-field>
+    
+    <br>
+      <br>
+      <mat-form-field class="example-full-width" appearance="fill" >
+    
+        <mat-label>PhoneNo</mat-label>
+        <input type="number" matInput formControlName="phoneNo"  placeholder="Enter PhoneNo">
+        <mat-error *ngIf="Registerform.controls['phoneNo'].hasError('maxLength')">
+          PhoneNo should be 10 digits
+
+         </mat-error>
+         <mat-error *ngIf="Registerform.controls['phoneNo'].hasError('required')">
+            PhoneNo is Required
+            </mat-error>
+     
+        </mat-form-field>
+        <br>
+      <br>
+
+
+      <mat-form-field class="example-full-width" appearance="fill" >
+    
+        <mat-label>GST</mat-label>
+        <input type="text" matInput formControlName="gst"  placeholder="Enter GST">
+        <mat-error *ngIf="Registerform.controls['gst'].hasError('maxLength')">
+          GST should be 7 places
+
+         </mat-error>
+         <mat-error *ngIf="Registerform.controls['gst'].hasError('required')">
+            GST is Required
+            </mat-error>
+     
+        </mat-form-field>
+
+      <br>
+      <br>
+      <mat-form-field class="example-full-width" appearance="fill" >
+    
+        <mat-label>AccountNo</mat-label>
+        <input type="number" matInput formControlName="accountNo"  placeholder="Enter AccountNo">
+        <mat-error *ngIf="Registerform.controls['accountNo'].hasError('maxLength')">
+          AccountNo should be 10 digits
+
+         </mat-error>
+         <mat-error *ngIf="Registerform.controls['accountNo'].hasError('required')">
+            AccountNo is Required
+            </mat-error>
+     
+        </mat-form-field>
+        <br>
+        <br>
+
+        <mat-form-field class="example-full-width" appearance="fill" >
+    
+          <mat-label>CIN</mat-label>
+          <input type="text" matInput formControlName="cin"  placeholder="Enter CIN">
+          <mat-error *ngIf="Registerform.controls['cin'].hasError('maxLength')">
+           Invalid CIN 
+  
+           </mat-error>
+           <mat-error *ngIf="Registerform.controls['cin'].hasError('required')">
+              cin is Required
+              </mat-error>
+       
+          </mat-form-field>
+          <br>
+          <br>
+          <div formGroupName="address">
+            Address
+         
+          <br>
+          <br>
+   
+          <mat-form-field class="example-full-width" appearance="fill" >
+    
+            <mat-label>Street Name</mat-label>
+            <input type="text" matInput formControlName="streetname"  placeholder="Enter streetname">
+            
+             <mat-error *ngIf="Registerform.controls['address'].hasError('required')">
+                Streetname is Required
+                </mat-error>
+         
+            </mat-form-field>
+            <br>
+          <br>
+          <mat-form-field class="example-full-width" appearance="fill" >
+    
+            <mat-label>State</mat-label>
+            <input type="text" matInput formControlName="state"  placeholder="Enter state">
+            
+             <mat-error *ngIf="Registerform.controls['address'].hasError('required')">
+                State is Required
+                </mat-error>
+         
+            </mat-form-field>
+            <br>
+          <br>
+          <mat-form-field class="example-full-width" appearance="fill" >
+    
+            <mat-label>City</mat-label>
+            <input type="text" matInput formControlName="city"  placeholder="Enter City">
+            
+             <mat-error *ngIf="Registerform.controls['address'].hasError('required')">
+                City is Required
+                </mat-error>
+         
+            </mat-form-field>
+            <br>
+          <br>
+          <mat-form-field class="example-full-width" appearance="fill" >
+    
+            <mat-label>Pincode</mat-label>
+            <input type="number" matInput formControlName="pincode"  placeholder="Enter Pincode">
+            <mat-error *ngIf="Registerform.controls['address'].hasError('maxLength')">
+              Invalid PIN
+     
+              </mat-error>
+            
+             <mat-error *ngIf="Registerform.controls['address'].hasError('required')">
+                Pincode is Required
+                </mat-error>
+         
+            </mat-form-field>
+
+
+        
+        </div>
+      <button mat-button color="primary" value="SAVE"  [disabled]="Registerform.invalid">Register</button>
+    
+      <!-- <button mat-button color="primary" type="button" (click)="redirect()">Login</button> -->
+    
+    <!-- <input type="submit" value="SAVE"  [disabled]="Registerform.invalid" > -->
+ 
+    </form>
+    
+    <!-- <div [hidden]="accesstatus" style="color:red">
+    
+      Username Already Exists
+      
+      </div> -->
+    
+    </div>

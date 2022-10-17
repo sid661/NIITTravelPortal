@@ -23,11 +23,11 @@ login()
 {
   this.user.email=this.loginForm.value.email;
   this.user.password=this.loginForm.value.password;
-  this.loginService.login(this.user).subscribe((x)=>{
+  this.loginService.login(this.user).subscribe((x:any)=>{
     console.log(x);
     this.loginForm.reset();
   },
-  error=>
+  ()=>
   {
     console.log("invalid credentails");
     
