@@ -1,0 +1,74 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar>Select Filters</mat-toolbar>
+      <mat-nav-list>
+        <div [formGroup]="cabFilterForm">
+            <div *ngFor="let group of cabArray|keyvalue">
+            <div *ngFor="let cab in group.value;let i=index">
+        <mat-card class="result" >
+          <mat-card-content>
+            <h2 class="example-h2">CAB TYPE</h2>
+            
+            <section class="example-section">
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" formControlName="hatchback" value="HATCHBACK" id="cabType1"  >
+                {{cab.cabType}}
+              </mat-checkbox>
+              <BR>
+              
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+        <mat-card-content>
+          <h2 class="example-h2">FUEL TYPE</h2>
+      
+          <section class="example-section">
+            <mat-checkbox class="example-margin">
+              {{cab.fuelType}}
+            </mat-checkbox><BR>
+           
+          </section>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="result">
+        <mat-card-content>
+          <h2 class="example-h2">CAB MODEL</h2>
+      
+          <section class="example-section">
+            <mat-checkbox class="example-margin">
+             {{cab.model}}
+            </mat-checkbox><BR>
+            
+          </section>
+        <button type="submit" (click)="filterCab()">APPLY FILTER</button>
+        <button type="submit" (click)="reset()">Reset</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    </div>
+        </div>
+    
+        <!-- <a mat-list-item href="#">Link 1</a>
+        <a mat-list-item href="#">Link 2</a>
+        <a mat-list-item href="#">Link 3</a> -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span>cabService1</span>
+      </mat-toolbar>
+      <app-cab [cabArray]="filterCabArray"></app-cab>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

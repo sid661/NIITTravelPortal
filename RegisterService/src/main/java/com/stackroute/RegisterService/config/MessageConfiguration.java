@@ -18,7 +18,7 @@ public class MessageConfiguration
 {
     private String exchangeName = "userxchange";
     private String queueName = "userqueue";
-    private String serviceProviderQueue="serviceProviderQueue";
+   // private String serviceProviderQueue="serviceProviderQueue";
     @Bean(name="directExchangeUser")
     public DirectExchange directExchange()
     {

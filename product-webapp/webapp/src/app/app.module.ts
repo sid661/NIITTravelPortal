@@ -15,6 +15,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { SidenavComponent } from './component/sidenav/sidenav.component';
+import { CabComponent } from './component/cab/cab.component';
+import {MatCardModule} from '@angular/material/card';
+
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { PlacesComponent } from './component/places/places.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +30,9 @@ import { MatListModule } from '@angular/material/list';
     LoginComponent,
     ServiceproviderregistercomponentComponent,
     RegistercomponentComponent,
+    SidenavComponent,
+    CabComponent,
+    PlacesComponent,
  
   ],
   imports: [
@@ -29,10 +40,13 @@ import { MatListModule } from '@angular/material/list';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatCardModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatListModule ,
     MatIconModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule

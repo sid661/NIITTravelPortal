@@ -32,9 +32,10 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity loginUser(@RequestBody User user) throws UserNotFoundException, ServiceProviderAlreadyExist {
-        System.out.println("");
+
         Map<String,String> map=null;
         try{
+
             User user1=userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
             ServiceProvider serviceProvider=userService.findByServiceEmailAndPassword(user.getEmail(), user.getPassword());
             if(user1.getEmail().equals(user.getEmail())){

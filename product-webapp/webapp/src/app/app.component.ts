@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'webapp';
-  Login=new FormGroup({})
+  Login=new UntypedFormGroup({})
 
   login()
   {

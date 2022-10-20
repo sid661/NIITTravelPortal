@@ -1,0 +1,38 @@
+<div *ngFor="let cab of cabArray">
+    <mat-card style="margin:20px;margin-left:10px">
+        <img mat-card-md-image src="https://th.bing.com/th/id/R.82b0c7b556f61a6286965845ecd4200f?rik=VY%2fvq4lXcOhnTw&riu=http%3a%2f%2fs1.cdn.autoevolution.com%2fimages%2fnews%2fgallery%2fhow-many-types-of-hybrid-cars-are-there_23.jpeg&ehk=x3woxarrCBX2D7PJaI8oqwMhzKC%2fbpnogCcBwmGV5aw%3d&risl=&pid=ImgRaw&r=0"  align="left">
+          <mat-card-title style="margin-left:140px ;">{{cab.model}}</mat-card-title>
+          <ul style="margin-left:140px" >
+            <li>AC</li>
+            <li>5 seater</li>
+          </ul>
+          <mat-card-subtitle style="margin-left:140px; font-weight: bolder;color: black;">
+           <h3> Compact Car </h3>
+          </mat-card-subtitle>
+          <mat-list >
+            <div style="display: inline-flex; ">
+            <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/location_blue.png" height="20px" style="margin-left: 150px;">
+            <h4 style="margin-left: 20px;">Price per Km</h4>
+            <h4 style="margin-left: 90px;"> Rs {{cab.pricePerKm}}/km</h4>
+          </div>
+          <br>
+            <div style="display: inline-flex; ">
+            <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/fuel_blue.png" height="20px" style="margin-left: 150px;">
+            <h4 style="margin-left: 20px;">Fuel Type</h4>
+            <h4 style="margin-left: 110px;">{{cab.fuelType}}</h4>
+          </div>
+          <br>
+            <div style="display: inline-flex; ; ">
+            <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/cancelInfo.png" height="20px" style="margin-left: 150px;">
+            <h4 style="margin-left: 20px;">Cancellation</h4>
+            <h4 style="margin-left: 90px;">Before 6 hour from departure </h4>
+          </div>
+          </mat-list>
+          <mat-card-actions align="end">
+            <button style="border-radius: 150px; background-color: lightblue;">BOOK NOW</button>
+          </mat-card-actions>
+        </mat-card>
+        <br>
+      </div>
+    
+        

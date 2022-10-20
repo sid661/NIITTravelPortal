@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -11,9 +11,9 @@ import { LoginService } from 'src/app/service/login.service';
 export class LoginComponent implements OnInit {
 
   constructor(private loginService:LoginService) { }
-  loginForm=new FormGroup({
-    email:new FormControl(""),
-    password:new FormControl("")
+  loginForm=new UntypedFormGroup({
+    email:new UntypedFormControl(""),
+    password:new UntypedFormControl("")
 })
 user:User=new User();
 
