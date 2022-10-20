@@ -23,6 +23,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PlacesComponent } from './component/places/places.component';
+import { HotelComponent } from './component/hotel/hotel.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { PlacesComponent } from './component/places/places.component';
     SidenavComponent,
     CabComponent,
     PlacesComponent,
+    HotelComponent,
  
   ],
   imports: [

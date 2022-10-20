@@ -1,0 +1,185 @@
+<div style="width:800px; margin:0 auto;">
+    <h1>Register Hotel</h1>
+    
+    <form [formGroup]="RegisterformHotel"  (ngSubmit)="saveHotel()" class="example-form" >
+      
+        <mat-form-field class="example-full-width" appearance="fill" >
+           <mat-label>Hotel Name</mat-label>
+            <input type="text" matInput formControlName="hotelName"  placeholder="Enter Hotel Name">
+            <mat-error *ngIf="RegisterformHotel.controls['hotelName'].hasError('hotelName')">
+             Hotel Name is required
+             </mat-error>        
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>Hotel Category</mat-label>
+             <input type="text" matInput formControlName="hotelCategory"  placeholder="Enter Hotel Category">
+             <mat-error *ngIf="RegisterformHotel.controls['hotelCategory'].hasError('hotelCategory')">
+              Hotel Category is required
+              </mat-error>        
+         </mat-form-field>
+
+         <br>
+         <br>
+         <div formArrayName="propertyRules">
+         <button mat-button-color="primary" type="button" (click)="addRules()">Add Rules</button>
+         <br>
+         <br>
+         
+         <mat-form-field class="example-full-width" appearance="fill" *ngFor="let rules of propertyRulesControls;let i=index">
+          
+            <mat-label>Property Rules</mat-label>
+             <input type="text" matInput [formControlName]="i"  placeholder="Enter Property Rule">
+             <!-- <mat-error *ngIf="RegisterformHotel.controls['propertyRules'].hasError('propertyRules')">
+              Propert Rules is required
+              </mat-error>         -->
+         </mat-form-field>
+         <br>
+         <br>
+        </div>
+        <div formGroupName="overview">
+            Overview
+            <br>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label>Hotel Category</mat-label>
+                 <textarea rows="3" cols="4"  matInput formControlName="description"  placeholder="Hotel Description"></textarea>
+                        
+             </mat-form-field>
+             <br>
+            <br>
+           
+            <div formArrayName="image">
+                <button mat-button-color="primary" type="button" (click)="addImages()">Add Images</button>
+                <br>
+                <br>
+                
+                <mat-form-field class="example-full-width" appearance="fill" *ngFor="let images of imageControls;let i=index">
+                 
+                   <mat-label>Image</mat-label>
+                    <input type="text" matInput [formControlName]="i"  placeholder="Enter Image">
+                    <!-- <mat-error *ngIf="RegisterformHotel.controls['propertyRules'].hasError('propertyRules')">
+                     Propert Rules is required
+                     </mat-error>         -->
+                </mat-form-field>
+                <br>
+                <br>
+               </div>
+
+
+
+
+        </div>
+        <br>
+        <br>
+        <div formGroupName="amenities">
+           Amenities 
+           <br>
+           <br>
+           <mat-form-field class="example-full-width" appearance="fill" >
+            <mat-label>Safety and Hygiene</mat-label>
+            <input type="text" matInput formControlName="safetyandhygiene"  placeholder="Safety and Hygiene">       
+          <mat-error *ngIf="RegisterformHotel.controls['amenities'].hasError('required')">
+                Safety and Hygiene is Required
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label>Basic Facilities</mat-label>
+                <input type="text" matInput formControlName="basicfacilities"  placeholder="Basic Facilities">       
+              <mat-error *ngIf="RegisterformHotel.controls['amenities'].hasError('required')">
+                    Basic Facilities is Required
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill" >
+                    <mat-label> Family and Kids</mat-label>
+                    <input type="text" matInput formControlName="familyandkids"  placeholder="familyandkids">       
+                  <mat-error *ngIf="RegisterformHotel.controls['amenities'].hasError('required')">
+                    family and kids is Required
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill" >
+                    <mat-label> Food and Drinks</mat-label>
+                    <input type="text" matInput formControlName="foodanddrinks"  placeholder="foodanddrinks">       
+                  <mat-error *ngIf="RegisterformHotel.controls['amenities'].hasError('required')">
+                    Food and Drinks is Required
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <br>
+            
+
+
+        </div>
+        <div formGroupName="address">
+            Address
+            <br>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label> Street Name</mat-label>
+                <input type="text" matInput formControlName="streetname"  placeholder="streetname">       
+              <mat-error *ngIf="RegisterformHotel.controls['address'].hasError('required')">
+               Street Name is Required
+                    </mat-error>
+                </mat-form-field>
+                <br>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label> Landmark</mat-label>
+                <input type="text" matInput formControlName="landmark"  placeholder="Landmark">       
+              <mat-error *ngIf="RegisterformHotel.controls['address'].hasError('required')">
+               Landmark is Required
+                    </mat-error>
+                </mat-form-field>
+                <br>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill" >
+                <mat-label> City</mat-label>
+                <input type="text" matInput formControlName="city"  placeholder="City">       
+              <mat-error *ngIf="RegisterformHotel.controls['address'].hasError('required')">
+              ity is Required
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill" >
+                    <mat-label> State</mat-label>
+                    <input type="text" matInput formControlName="state"  placeholder="State">       
+                  <mat-error *ngIf="RegisterformHotel.controls['address'].hasError('required')">
+                 State is Required
+                        </mat-error>
+                    </mat-form-field>
+                
+
+            
+        </div>
+        <br>
+        <br>
+        <!-- <div formArrayName="room">
+            <button mat-button-color="primary" type="button" (click)="addRoom()">Add Room</button>
+         <br>
+         <br>
+
+        </div> -->
+
+
+    
+         <br>
+         <br>
+      <button mat-button color="primary" value="SAVE"  [disabled]="RegisterformHotel.invalid">Register</button>
+    
+      <!-- <button mat-button color="primary" type="button" (click)="redirect()">Login</button> -->
+    
+    <!-- <input type="submit" value="SAVE"  [disabled]="Registerform.invalid" > -->
+    
+    </form>
+    
+ 
+    
+    </div>
