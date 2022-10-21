@@ -21,9 +21,28 @@ import {MatCardModule} from '@angular/material/card';
 
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { PlacesComponent } from './component/places/places.component';
 
+import { PlacesComponent } from './component/places/places.component';
+import { CabsComponent } from './component/cabs/cabs.component'
+import { HolidaypackagesComponent } from'./component/holidaypackages/holidaypackages.component'
+import { ExploreComponent } from './component/explore/explore.component';
+import { LandingpageComponent } from './component/landingpage/landingpage.component';
+import { HotelsComponent } from './component/hotels/hotels.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { Navbar2Component } from './component/navbar2/navbar2.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { RollerComponent } from './component/roller/roller.component';
+import { Roller2Component } from './component/roller2/roller2.component';
+import { FooterComponent } from './component/footer/footer.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +52,17 @@ import { PlacesComponent } from './component/places/places.component';
     SidenavComponent,
     CabComponent,
     PlacesComponent,
+    CabsComponent,
+    HolidaypackagesComponent,
+    ExploreComponent,
+    RollerComponent,
+    Roller2Component,
+    FooterComponent,
+    LandingpageComponent,
+    Navbar2Component,
+    NavbarComponent,
+    HotelsComponent
+
  
   ],
   imports: [
@@ -49,7 +79,13 @@ import { PlacesComponent } from './component/places/places.component';
     MatCheckboxModule,
     MatSidenavModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule,
+    MatTableModule,
+    MatDialogModule,
+    FormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule
 
    
   ],
