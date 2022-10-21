@@ -18,18 +18,11 @@ import { MatListModule } from '@angular/material/list';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { CabComponent } from './component/cab/cab.component';
 import {MatCardModule} from '@angular/material/card';
-
+import { HotelComponent } from './component/hotel/hotel.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { PlacesComponent } from './component/places/places.component';
-import { CabsComponent } from './component/cabs/cabs.component'
-import { HolidaypackagesComponent } from'./component/holidaypackages/holidaypackages.component'
-import { ExploreComponent } from './component/explore/explore.component';
-import { LandingpageComponent } from './component/landingpage/landingpage.component';
-import { HotelsComponent } from './component/hotels/hotels.component';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table';
 
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -43,26 +36,32 @@ import { RollerComponent } from './component/roller/roller.component';
 import { Roller2Component } from './component/roller2/roller2.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { LandingpageComponent } from './component/landingpage/landingpage.component';
+import { HolidaypackagesComponent } from './component/holidaypackages/holidaypackages.component';
+import { CabsComponent } from './component/cabs/cabs.component';
+import { ExploreComponent } from './component/explore/explore.component';
+import { HotelsComponent } from './component/hotels/hotels.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    HotelsComponent,
+    CabsComponent,
+    ExploreComponent,
+    HolidaypackagesComponent,
     LoginComponent,
     ServiceproviderregistercomponentComponent,
     RegistercomponentComponent,
     SidenavComponent,
     CabComponent,
     PlacesComponent,
-    CabsComponent,
-    HolidaypackagesComponent,
-    ExploreComponent,
+    Navbar2Component,
     RollerComponent,
     Roller2Component,
     FooterComponent,
-    LandingpageComponent,
-    Navbar2Component,
     NavbarComponent,
-    HotelsComponent
-
+    HotelComponent,
+    LandingpageComponent
  
   ],
   imports: [
@@ -80,12 +79,11 @@ import { NavbarComponent } from './component/navbar/navbar.component';
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
-    MatTabsModule,
-    MatTableModule,
     MatDialogModule,
     FormsModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+   
 
    
   ],

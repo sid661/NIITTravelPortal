@@ -32,6 +32,7 @@
         <module>RegisterService</module>
         <module>cab-service</module>
         <module>information-service</module>
+        <module>HotelService</module>
     </modules>
 
     <dependencies>
