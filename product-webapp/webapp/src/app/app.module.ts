@@ -18,11 +18,13 @@ import { MatListModule } from '@angular/material/list';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { CabComponent } from './component/cab/cab.component';
 import {MatCardModule} from '@angular/material/card';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PlacesComponent } from './component/places/places.component';
+import { PackageComponent } from './component/package/package.component';
+import { AbsComponent } from './component/abs/abs.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { PlacesComponent } from './component/places/places.component';
     SidenavComponent,
     CabComponent,
     PlacesComponent,
+    PackageComponent,
+    AbsComponent,
  
   ],
   imports: [
@@ -49,7 +53,8 @@ import { PlacesComponent } from './component/places/places.component';
     MatCheckboxModule,
     MatSidenavModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FlexLayoutModule
 
    
   ],
