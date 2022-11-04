@@ -1,4 +1,4 @@
-<div>
+ <div>
 
     <mat-card class="example-form"  [formGroup]="RegisterformHotel" enctype="multipart/form-data">
         <div><h1>Hotel Registration Form</h1></div>
@@ -14,7 +14,7 @@
         <div>
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Hotel Name</mat-label>
-                <input  matInput placeholder="Hotel Name" class`="inputs" formControlName="hotelName">
+                <input  matInput placeholder="Hotel Name" class="inputs" formControlName="hotelName">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width" appearance="fill">
@@ -69,7 +69,7 @@
                         <mat-option value="yes">Yes</mat-option> 
                         <mat-option value="no">No</mat-option> 
                       </mat-select>
-                     <!-- <input type="text" matInput formControlName="safetyandhygiene"  placeholder="Safety and Hygiene">        -->
+                 
                      </mat-form-field>
                      &nbsp;
                      &nbsp;
@@ -152,7 +152,7 @@
            <div class="file-upload">
       <div class="file-select">
         <div class="file-select-button" id="fileName">Image</div>
-        <!-- <div class="file-select-name" id="noFile">No file chosen...</div> -->
+       
         <input type="file" name="SelectImage" (change)="onSelectFile($event)" id="chooseFile">
       </div>{{imageName}}
     </div>
@@ -167,6 +167,10 @@
             <button mat-raised-button class="cancel-button" >Cancel</button>
         </div>
         </mat-stepper>
-    <!-- </form> -->
+  
     </mat-card>
-    </div>
+    </div> 
+
+
+
+

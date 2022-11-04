@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormGroup, Validators,FormArray, FormBuilder } from '@angular/forms';
-import { group } from 'console';
+import { FormControl, FormGroup,  Validators,FormArray, FormBuilder } from '@angular/forms';
 import { Filehandle } from 'src/app/model/filehandle';
 import { HotelService } from 'src/app/service/hotel.service';
 

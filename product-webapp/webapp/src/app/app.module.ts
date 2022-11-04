@@ -62,6 +62,8 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatMenuModule} from '@angular/material/menu';
+import { RoomComponent } from './component/room/room.component';
+import { ReviewComponent } from './component/review/review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +89,9 @@ import {MatMenuModule} from '@angular/material/menu';
     ViewhotelComponent,
     ImageComponent,
     RatingComponent,
-    PackageRegistrationComponent
+    PackageRegistrationComponent,
+    RoomComponent,
+    ReviewComponent
  
   ],
   imports: [
