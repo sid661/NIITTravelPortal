@@ -15,6 +15,7 @@
     <description>Travel Buddy Project</description>
     <packaging>pom</packaging>
 
+
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -33,6 +34,7 @@
         <module>cab-service</module>
         <module>information-service</module>
         <module>HotelService</module>
+        <module>Package-Service</module>
     </modules>
 
     <dependencies>
@@ -92,6 +94,7 @@
                         </goals>
                     </execution>
                 </executions>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -7,7 +7,11 @@ import java.util.List;
 
 public interface HotelRepository extends MongoRepository<Hotel,String>
 {
-    public List<Hotel> findByEmail(String email);
-    public Hotel findByHotelName(String hotelName);
+    List<Hotel> findByEmail(String email);
+     Hotel findByHotelName(String hotelName);
+    List<Hotel> findByAddressCity(String city);
+
+    List<Hotel> findByReviewRating(int rating);
+    List<Hotel> findByRoomPrice(int price);
 
 }

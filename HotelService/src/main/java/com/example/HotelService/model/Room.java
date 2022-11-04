@@ -10,12 +10,12 @@ import java.util.List;
 @ToString
 public class Room
 {
-    private String roomtype;
-    private int noOfBeds;
-    private List<String> images;
-    private int price;
-    private String roomavailable;
-  //  private int totalNoOfRoom;
+    private String roomtype;//drop down
+    private int noOfBeds;//drop down
+    private byte[] images;//upload
+    private int price;//input
+    //private int roomavailable;//input field
+    private int totalNoOfRoom;//input field
 
 
 

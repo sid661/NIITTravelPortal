@@ -12,6 +12,6 @@ import java.util.List;
 public class Overview
 {
 private String description;
-private List<String> image;
+private byte[] image;
 
 }

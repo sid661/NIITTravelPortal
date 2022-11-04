@@ -1,0 +1,18 @@
+server:
+  port: 8072
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/niittraveluserdb
+  application:
+    name: PACKAGE-SERVICE
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"

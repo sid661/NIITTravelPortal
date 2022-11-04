@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormGroup, Validators,FormArray } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormGroup, Validators,FormArray, FormBuilder } from '@angular/forms';
 import { group } from 'console';
+import { Filehandle } from 'src/app/model/filehandle';
 import { HotelService } from 'src/app/service/hotel.service';
 
 @Component({
@@ -9,68 +10,94 @@ import { HotelService } from 'src/app/service/hotel.service';
   styleUrls: ['./hotel.component.css']
 })
 export class HotelComponent implements OnInit {
-  RegisterformHotel:UntypedFormGroup
-  constructor(private hotelservice:HotelService) 
+ 
+ 
+  RegisterformHotel:FormGroup;
+  constructor(private hotelservice:HotelService,private formbuilder: FormBuilder) 
   { 
-    this.RegisterformHotel=new FormGroup({
+    this.RegisterformHotel=this.formbuilder.group({
       hotelName:new FormControl('',[Validators.required]),
       hotelCategory:new FormControl('',[Validators.required]),
-      propertyRules:new FormArray([]),
+      propertyRules:this.formbuilder.array([]),
       overview:new FormGroup({
-        description:new FormControl('',Validators.required),
-        image:new FormArray([])
-
+        description:new FormControl('',[]),
+       
       }),
       amenities:new FormGroup({
-        safetyandhygiene:new FormControl('',[Validators.required]),
-        basicfacilities:new FormControl('',[Validators.required]),
-        familyandkids:new FormControl('',[Validators.required]),
-        foodanddrinks:new FormControl('',[Validators.required])
+        safetyandhygiene:new FormControl('',[]),
+        basicfacilities:new FormControl('',[]),
+        familyandkids:new FormControl('',[]),
+        foodanddrinks:new FormControl('',[])
 
       }),
       address:new FormGroup({
-        streetname:new FormControl('',[Validators.required]),
-        landmark:new FormControl('',[Validators.required]),
-        city:new FormControl('',[Validators.required]),
-        state:new FormControl('',[Validators.required])
+        streetname:new FormControl('',[]),
+        landmark:new FormControl('',[]),
+        city:new FormControl('',[]),
+        state:new FormControl('',[])
 
       }),
-      room:new FormArray([])
+      
 
     })
   }
  
+
+  imageName:any;
+
   addRules()
   {
-   const control=new FormControl('',[Validators.required]);
+   const control=new FormControl('',[]);
    (<FormArray>this.RegisterformHotel.get('propertyRules')).push(control)
   }
-  addImages()
-  {
-    const control=new FormControl('',[Validators.required]);
-    (<FormArray>this.RegisterformHotel.get('overview')?.get('image')).push(control)
+  get add() {
+    return this.RegisterformHotel.get('propertyRules') as FormArray;
   }
-  get imageControls()
-  {
-    return (<FormArray>this.RegisterformHotel.get('overview')?.get('image')).controls
-  }
+
   get propertyRulesControls()
   {
     return (<FormArray>this.RegisterformHotel.get('propertyRules')).controls
   }
 
-  saveHotel()
-  {
-    const  regData = this.RegisterformHotel.value;
-    this.hotelservice.saveHotel(regData).subscribe(() => {
-      alert("successfully registerd")
-      
-    
-     },(error: any) => {
-      
-       console.log(error)
-     });
+  
+
+  
+file:any;
+
+  Removeitem(index: any) {
+    this.items = this.RegisterformHotel.get("propertyRules") as FormArray;
+    this.items.removeAt(index)
   }
+
+  imageData: Filehandle[] = [];
+  image: Filehandle[] = [];
+  public userFile: any = File;
+
+  items!: FormArray;
+
+
+  onSelectFile(event: any) {
+    const f = event.target.files[0];
+    this.imageName=f.name;
+    console.log("image", f.name);
+    this.userFile = f;
+  }
+
+  data0: any;
+  saveData() {
+    console.log(this.RegisterformHotel.get('propertyRules'));
+    const u = this.RegisterformHotel.value;
+    console.log("Value of u ", u);
+    var formData = new FormData();
+    formData.append('details', JSON.stringify(u));
+    formData.append('file', this.userFile);
+    this.hotelservice.saveHotel(formData).subscribe((response: any) => {
+      console.log(response);
+    })
+  }
+  
+
+ 
 
   ngOnInit(): void {
   }

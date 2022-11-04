@@ -5,6 +5,7 @@ import com.niit.userserviceusingjwt.exception.UserAlreadyExistException;
 import com.niit.userserviceusingjwt.exception.UserNotFoundException;
 import com.niit.userserviceusingjwt.model.ServiceProvider;
 import com.niit.userserviceusingjwt.model.User;
+import com.niit.userserviceusingjwt.rabbitMq.UserDto;
 import com.niit.userserviceusingjwt.service.EmailService;
 import com.niit.userserviceusingjwt.service.SecurityTokenGenerator;
 import com.niit.userserviceusingjwt.service.UserService;
@@ -31,27 +32,25 @@ public class UserController {
         this.securityTokenGenerator = securityTokenGenerator;
     }
     @PostMapping("/login")
-    public ResponseEntity loginUser(@RequestBody User user) throws UserNotFoundException, ServiceProviderAlreadyExist {
-
-        Map<String,String> map=null;
+    public ResponseEntity loginUser(@RequestBody UserDto userDto) throws UserNotFoundException, ServiceProviderAlreadyExist {
         try{
-
-            User user1=userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
-            ServiceProvider serviceProvider=userService.findByServiceEmailAndPassword(user.getEmail(), user.getPassword());
-            if(user1.getEmail().equals(user.getEmail())){
-                map=securityTokenGenerator.generateToken(user);
-            } else if (serviceProvider.getEmail().equals(user.getEmail())) {
-                map=securityTokenGenerator.generateToken(user);
+            System.out.println("called");
+        Map<String,String> map=null;
+        if(userDto.getRole().toString().equals("USER")) {
+            User user1=userService.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
+            if(user1.getEmail().equals(userDto.getEmail())){
+                map=securityTokenGenerator.generateToken(userDto);
             }
-            responseEntity=new ResponseEntity<>(map, HttpStatus.OK);
-        }catch (UserNotFoundException e)
-        {
-            throw e;
-        }catch (ServiceProviderAlreadyExist e)
-        {
-            throw e;
+
+        }else if(userDto.getRole().toString().equals("SERVICEPROVIDER")) {
+            ServiceProvider serviceProvider=userService.findByServiceEmailAndPassword(userDto.getEmail(), userDto.getPassword());
+            if (serviceProvider.getEmail().equals(serviceProvider.getEmail())) {
+                map=securityTokenGenerator.generateToken(userDto);
+            }
         }
-        catch (Exception e)
+
+            responseEntity=new ResponseEntity<>(map, HttpStatus.OK);
+        } catch (Exception e)
         {
             responseEntity=new ResponseEntity<>("Try after Sometime!!",HttpStatus.INTERNAL_SERVER_ERROR);
         }

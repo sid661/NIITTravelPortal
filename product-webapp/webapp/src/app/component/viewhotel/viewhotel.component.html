@@ -1,0 +1,162 @@
+<div class="cabcontainer">
+  <div fxLayout="row">
+    <div fxFlex="20%">
+      <mat-toolbar class="filtercontainer">Apply Filters</mat-toolbar>
+      <mat-nav-list>
+
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">HOTEL CATEGORY</h2>
+
+            <section class="example-section">
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+                5-Star
+              </mat-checkbox>
+              <BR>
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+                4-Star
+              </mat-checkbox>
+              <BR>
+              <mat-checkbox class="example-margin">
+                3-Star
+              </mat-checkbox><BR>
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+                2-Star
+              </mat-checkbox><br>
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+                1-Star
+              </mat-checkbox>
+              <BR>
+              <mat-checkbox class="example-margin">
+                VILLA
+              </mat-checkbox><BR>
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" id="cabType1">
+                Cottage
+              </mat-checkbox>
+              <BR>
+
+
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">Price Per Night</h2>
+
+            <section class="example-section">
+              <mat-checkbox class="example-margin">
+                0-1500
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                1500-2500
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                2500-4000
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                4000-Above
+              </mat-checkbox><BR>
+
+
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">Rating</h2>
+
+            <section class="example-section">
+              <mat-checkbox class="example-margin">
+                *****
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                ****
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                ***
+              </mat-checkbox><BR>
+
+            </section>
+            <button type="submit" class="button">APPLY FILTER</button>
+            <!-- <button type="submit">Reset</button> -->
+            <mat-icon class="home-icon">autorenew</mat-icon>
+          </mat-card-content>
+        </mat-card>
+
+
+
+        <!-- <a mat-list-item href="#">Link 1</a>
+          <a mat-list-item href="#">Link 2</a>
+          <a mat-lis mst-item href="#">Link 3</a> -->
+      </mat-nav-list>
+
+    </div>
+    <div fxLayout="column">
+      <h1 class="text">Showing Properties of {{city}} <span style="font-weight: 500;font-size:19px"> ({{result}} Results)</span></h1>
+      <div fxLayout="column" style="margin-top: -11px;">
+        <mat-card *ngFor="let hotel of hotelArray" class="cardcontainer">
+
+          <div fxLayout="row">
+            <app-image fxFlex="30%" [image]="hotel.overview.image"></app-image>
+
+            <div fxFlex="55%">
+              <div fxLayout="row">
+                <h3 class="ratingclass">{{getRating}}</h3>
+                <h4 style="margin-top: 25px; margin-left:10px; font-weight: 500;"> Overall Rating ({{length}} RATINGS)
+                </h4>
+              </div>
+              <div fxLayout="row" class="first">
+
+                <mat-card-title class="hotelName">{{hotel.hotelName}}</mat-card-title>
+                <span class="category">{{hotel.hotelCategory}} </span>
+              </div>
+
+              <mat-card-subtitle style="margin-left:0px;font-size: 15px; font-weight:500;color: rgb(32, 114, 165);">
+                {{hotel.address.city}}
+              </mat-card-subtitle>
+              <mat-list>
+                <p style="font-weight: 600;font-size:16px;color:dodgerblue">Foods And Drinks Included
+                  {{hotel.amenities.foodanddrinks}}</p>
+
+
+              </mat-list>
+              <div class="pannel">
+                <mat-accordion style="background-color:transparent; border-style: none;">
+                  <mat-expansion-panel hideToggle style="background-color:transparent;">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title style="font-weight: 800;font-size: 18px;">
+                        <mat-icon> location_on</mat-icon> <span style="margin-left:15px ">Location</span>
+                      </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <div style="font-weight: 800;font-size: 16px;">
+                      <p>City : {{hotel.address.city}}</p>
+                      <p>State : {{hotel.address.state}}</p>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+              <!-- <mat-card-actions >
+                <button style="border-radius: 150px; background-color: lightblue;">BOOK NOW</button>
+              </mat-card-actions> -->
+            </div>
+            <div fxLayout="row">
+              <hr style="height: 110%;margin-top:-14px;width: 1px;line-gap-override: 20;">
+              <div fxLayout="column">
+                <span class="price">
+                   <app-rating [rating]="hotel"></app-rating></span>
+                <span
+                  style="text-align:center;font-size: 14px;margin-top: 15px;color:darkgray; font-weight: 500;">Prices
+                  Per Night</span>
+                  <mat-card-actions>
+                    <button class="button1">BOOK NOW</button>
+                  </mat-card-actions>
+              </div>
+              
+            </div>
+          </div>
+
+        </mat-card>
+
+      </div>
+    </div>

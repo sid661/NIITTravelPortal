@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/cab/")
 @CrossOrigin
+
 public class CabController {
     @Autowired
     private CabService service;

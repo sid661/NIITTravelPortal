@@ -10,8 +10,8 @@ import java.util.Date;
 @ToString
 public class Reservation
 {
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private int roomId;
     private int guestId;
     private int price;

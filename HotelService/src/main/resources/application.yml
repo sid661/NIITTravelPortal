@@ -1,7 +1,10 @@
 server:
-  port: 8082
+  port: 8084
   error:
-    include: always
+    include-stacktrace: never
+
+
+
 spring:
   data:
     mongodb:

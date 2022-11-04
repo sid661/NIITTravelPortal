@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* You can add global styles to this file, and also import other style files */
+body {
+    /* background-image: linear-gradient(to right, #DECBA4, #3E5151); */
+   
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

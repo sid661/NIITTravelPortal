@@ -1,34 +1,93 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+<div fxLayout="row" class="register-container">
+	<div fxFlex="50%" class="hello">
+		<div class="text">Welcome to NIIT Travel Portel
+			<h4 style="margin-left: 15%;font-size:69%">Know more about your city</h4>
+		</div>
+	</div>
 
-	 <body>
-		 <div class="container" id="container">
-			 
-			 <div class="overlay-container">
-				  <div class="overlay"> 
-					 <div class="overlay-panel overlay-right">
-						 <img src="https://s16126.pcdn.co/blog/wp-content/uploads/sites/3/2017/02/travel-3.jpg">
-					 </div>
-				  </div> 
-	 
-			 </div>
-			 <div class="form-container log-in-container">
-				 <form [formGroup]="loginForm" >
-					 <h1 style="font-weight:bolder;color:rgb(60, 59, 59);">Login</h1>
-					 <div class="social-container">
-						 <a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
-						 <a href="#" class="social"><i class="fab fa fa fa-envelope fa-2x"></i></a>
-					 </div>
-				<a href="#"><h3 style="color:hotpink">Create New Account</h3></a>
-					 
-					 <input type="email" placeholder="Email" formControlName="email"/>
-					
-					 <input type="password" placeholder="Password" formControlName="password"  />
-					
-					 <a href="#">Forgot your password?</a>
-					 <button (click)="login()">Log In</button>
-				 </form>
-			 </div>
-	 
-		 </div>
-	 
+	<mat-card fxFlex="50%" class="register-card" fxLayout="column" fxLayoutGap="2.5%">
+
+		<div fxLayout="row">
+			<div fxFlex="36%"></div>
+			<div fxflex="20%" style="font-weight: bolder; font-size:170%; margin-top:20px">Login YourSelf</div>
+		</div>
+		<div fxLayout="row">
+			<div fxFlex="42%"></div>
+			<div fxFlex="30%">
+				<img src="https://cdn4.iconfinder.com/data/icons/internet-37/48/65-512.png" height="50px" width="50px">
+			</div>
+
+		</div>
+		<div fxLayout="row">
+			<div fxFlex="39%"></div>
+			<div fxFlex="26%" class="social-container" fxLayout="row">
+				<a href="#" class="social"><i class="fa fa-facebook-square fa-4x"></i></a>
+				<a href="#" class="social" style="margin-left: 32px;"><i class="fab fa fa fa-envelope fa-4x"></i></a>
+			</div>
+
+		</div>
+
+			<div  [formGroup]="loginForm" fxLayou="column">
+				<div fxFlex="40%"></div>
+				<div fxFlex="60%">
+			<mat-radio-group  fxLayout="row" fxLayoutGap="5%" formControlName="userRole">
+
+				<mat-radio-button value="USER" [checked]='true'>New User</mat-radio-button>
+				<mat-radio-button value="SERVICEPROVIDER">Service Provider</mat-radio-button>
+
+			</mat-radio-group>
+
+		</div>
+			<div fxLayout="column" style="margin-top: 40px;margin-left:-500px ;width:300px">
+
+			<mat-form-field appearance="outline">
+				<mat-label>Email</mat-label>
+				<input matInput formControlName="email" placeholder="Enter Email">
+				<mat-error *ngIf="loginForm.controls['email'].hasError('email')">Email is required
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Password</mat-label>
+				<input type="password" matInput formControlName="password" placeholder="Enter Password">
+				<mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
+				<mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+					Password is Required
+				</mat-error>
+				<mat-error *ngIf="loginForm.controls['password'].hasError('minLength')">
+					Minimum length is 6
+				</mat-error>
+				<mat-error *ngIf="loginForm.controls['password'].hasError('maxLength')">
+					Minimum length is 15
+				</mat-error>
+			</mat-form-field>
+		</div>
+		</div>
+			<div fxLayout="row">
+				<div fxFlex="40%"></div>
+
+				<button fxFlex="25%" mat-raised-button color="primary" [disabled]="loginForm.invalid"
+					(click)="login()">Login</button>
+				</div>
+
+
+		
+		<div fxLayout="row">
+			<div fxFlex="20% "></div>
+			<div fxFlex="57%">
+				Don't have an account! <a class="text2" href="register">Create New
+					One</a>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+	</mat-card>
+</div>

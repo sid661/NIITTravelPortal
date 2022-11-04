@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public class Amenities
 {
+    //check box
     private String safetyandhygiene;
     private String basicfacilities;
     private String familyandkids;

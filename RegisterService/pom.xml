@@ -52,6 +52,16 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${project.basedir}/src/main/resources/</directory>
+				<targetPath>${project.build.directory}/config/</targetPath>
+				<includes>
+					<include>application.properties</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 </project>

@@ -14,8 +14,8 @@ import java.util.List;
 public class Hotel
 {
     @Id
-private String hotelName;
-private String hotelCategory;
+private String hotelName;///
+private String hotelCategory;//
 private String email;
 private List<String> propertyRules;
 private Overview overview;
@@ -24,4 +24,5 @@ private Address address;
 private List<Room> room;
 private List<Review> review;
 private Reservation reservation;
+
 }

@@ -1,0 +1,248 @@
+<div style="margin-top:30px ;">
+    <div fxFlex="30%" class="hello">hello</div>
+    <mat-card fxFlex="70%" class="create-registration" fxLayout="column" [formGroup]="packageRegistrationForm">
+        <mat-stepper orientation="horizontal" fxFlex="100%">
+            <mat-step>
+                <ng-template matStepLabel>Package Registration</ng-template>
+                <ng-template matStepContent>
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Agency Name</mat-label>
+                            <input matInput placeholder="Agency Name" class="inputs" formControlName="agencyName">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Destination</mat-label>
+                            <input type="text" matInput placeholder="Destination" class="inputs"
+                                formControlName="destination">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Choose an option</mat-label>
+                            <mat-select formControlName="tourType">
+                                <mat-option value="Solo">Solo</mat-option>
+                                <mat-option value="Honeymoon">Honeymoon</mat-option>
+                                <mat-option value="Family">Family</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" style="margin-top:10px" maxLength="1">
+                            <mat-label>Number of Nights</mat-label>
+                            <input type="number" max="7" min="2" matInput placeholder="Number of nights" class="inputs"
+                                formControlName="noOfNights">
+                            <mat-hint>Duration Date between 2Night to 7Night</mat-hint>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Pick Up location</mat-label>
+                            <input type="text" matInput placeholder="Pick Up location" class="inputs"
+                                formControlName="pickPoint">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Drop Location</mat-label>
+                            <input type="text" matInput placeholder="Drop  location" class="inputs"
+                                formControlName="dropPoint">
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button matStepperNext
+                        style="margin-left:750px; width:100px; background-color:#65c7f7;">Next</button>
+                </ng-template>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Cities Added in Package</ng-template>
+                <ng-template matStepContent>
+                    <div formArrayName="citiesAddedInPackage">
+                        <div *ngFor="let x of add.controls;let i=index" [formGroupName]="i">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <mat-form-field appearance="outline">
+                                                <input type="text" matInput placeholder="Enter City"
+                                                    formControlName="city">
+                                            </mat-form-field>
+                                        </td>
+                                        <td><button mat-icon-button (click)="Removeitem(i)">
+                                                <mat-icon>delete</mat-icon>
+                                            </button></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <a mat-stroked-button color="primary" (click)="addNewRow()">Add City (+)</a>
+                        </div>
+                    </div>
+                    <div formArrayName="transferHotel">
+                        <div *ngFor="let x of add1.controls;let i=index" [formGroupName]="i">
+                            <table>
+                                <tbody style="display: flex;">
+                                    <tr>
+                                        <td>
+                                            <mat-form-field appearance="outline">
+                                                <input type="text" matInput placeholder="Enter Transfer Hotel Name"
+                                                    formControlName="hotel">
+                                            </mat-form-field>
+                                        </td>
+
+                                    </tr><button mat-icon-button style="margin-left: 30px;" (click)="Removeitem1(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <a mat-stroked-button color="primary" (click)="addNewRow1()">Add Hotel (+)</a>
+                    </div>
+
+                    <div formArrayName="placesToVisit">
+                        <div *ngFor="let x of add2.controls;let k=index" [formGroupName]="k">
+                            <table>
+                                <tbody style="display: flex;">
+                                    <tr>
+                                        <td>
+                                            <mat-form-field appearance="outline">
+                                                <input type="text" matInput placeholder="Places to visit"
+                                                    formControlName="place">
+                                            </mat-form-field>
+                                        </td>
+
+                                    </tr><button mat-icon-button style="margin-left: 30px;" (click)="Removeitem2(k)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <a mat-stroked-button color="primary" (click)="addNewRow2()">Add Place (+)</a>
+                        </div>
+
+                        <div formArrayName="activities">
+                            <div *ngFor="let x of add3.controls;let j=index" [formGroupName]="j">
+                                <table>
+                                    <tbody style="display: flex;">
+                                        <tr>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <input type="text" matInput placeholder="Enter Activities"
+                                                        formControlName="activity">
+                                                </mat-form-field>
+                                            </td>
+
+                                        </tr><button mat-icon-button style="margin-left: 30px;"
+                                            (click)="Removeitem3(j)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <a mat-stroked-button color="primary" (click)="addNewRow3()">Add Activity (+)</a>
+                            </div>
+
+                        </div>
+                            </div>
+                        <div fxLayout="row" fxLayoutGap="80%" style="margin-top: 20px;">
+                            <button mat-raised-button matStepperPrevious
+                                style="width: 100px;Background-color: #65c7f7;">Back</button>
+                            <button mat-raised-button matStepperNext
+                                style="width: 100px;Background-color: #65c7f7;">Next</button>
+                        </div>
+                </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Image Upload</ng-template>
+                <ng-template matStepContent>
+                    <div class="file-upload">
+                        <div class="file-select">
+
+                            <input type="file" name="chooseFile" (change)="onSelectFile($event)" id="chooseFile">
+                        </div>{{imageName}}
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="80%" style="margin-top: 20px;">
+                    <button mat-button matStepperPrevious  style="width: 100px;Background-color: #65c7f7;">Back</button>
+                    <button mat-button matStepperNext style="width: 100px;Background-color: #65c7f7;">Next</button>
+                </div>
+                </ng-template>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Travellers Details</ng-template>
+                <ng-template matStepContent>
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Number of Travellers</mat-label>
+                            <input type="text" max="4" min="1" matInput placeholder="Number of Travellers"
+                                class="inputs" formControlName="noOfTravellers">
+                            <mat-hint>Maximum 4 Allowed</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Cost Per Person</mat-label>
+                            <input type="number" matInput placeholder="Cost Per Person" class="inputs"
+                                formControlName="costPerPerson">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Food Provided</mat-label>
+                            <mat-select formControlName="food">
+                                <mat-option value="Yes">Yes</mat-option>
+
+                                <mat-option value="No">No</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="80%"> 
+                    <button mat-button matStepperPrevious style="width: 100px;Background-color: #65c7f7;">Back</button>
+                    <button mat-button matStepperNext style="width: 100px;Background-color: #65c7f7;">Next</button>
+                </div>
+                </ng-template>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Others*</ng-template>
+                <div fxLayout="column">
+                    <div formArrayName="transport">
+                        <div *ngFor="let x of add4.controls;let i=index" [formGroupName]="i">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <mat-form-field appearance="outline">
+                                                <input type="text" matInput placeholder="Enter Transport"
+                                                    formControlName="mode">
+                                            </mat-form-field>
+                                        </td>
+
+                                    </tr><button mat-icon-button style="margin-left: 30px;" (click)="Removeitem4(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <a mat-stroked-button color="primary" (click)="addNewRow4()">Add transport (+)</a>
+                        </div>
+                    </div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tour Guide</mat-label>
+                        <mat-select formControlName="tourGuide">
+                            <mat-option value="Yes">Yes</mat-option>
+
+                            <mat-option value="No">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutGap="80%">
+                    <button mat-button matStepperPrevious style="width: 100px;Background-color: #65c7f7;">Back</button>
+
+                    <button mat-raised-button type="submit" style="width: 100px;Background-color: #65c7f7;" (click)="saveData()">Save</button>
+                </div>
+                </div>
+            </mat-step>
+        </mat-stepper>
+
+    </mat-card>
+
+</div>

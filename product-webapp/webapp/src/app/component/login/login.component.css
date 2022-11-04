@@ -3,6 +3,10 @@
 * {
 	box-sizing: border-box;
 }
+.text2{
+	font-size: 20px;
+	color: blueviolet;
+}
 
 body {
 	background: #f3e0e2;
@@ -14,6 +18,11 @@ body {
 	height: 100vh;
 	margin: -20px 0 50px;
 }
+/* .mat-radio-button ~ .mat-radio-button {
+	margin-left: 0x;
+	display: flexbox;
+	margin-bottom: 50px;
+  } */
 
 h1 {
 	font-weight: bold;
@@ -51,8 +60,8 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
-
-form {
+/* 
+.loginform {
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -61,17 +70,17 @@ form {
 	padding: 0 50px;
 	height: 100%;
 	text-align: center;
-}
+} */ */
 
-input {
+/* input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
-}
+} */
 
-.container {
+ .container {
 	background-color: #fff;
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -138,8 +147,15 @@ input {
 }
 
 
+
 .social-container {
 	margin: 50px 0;
+}
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
 }
 
 .social-container a {
@@ -151,4 +167,31 @@ input {
 	margin: 0 5px;
 	height: 40px;
 	width: 40px;
+} 
+
+.register-container{
+    margin-top: 30px;
+    margin-right: 15px;
+    margin-left: 15px;
+	background-color:rgb(192, 182, 202);
+  
+    
 }
+.register-card {
+    /* height: 700px; */
+    background-color:rgba(255, 255, 255, 0.84);
+}
+
+.text{
+    margin-top: 150px;
+    margin-left:280px;
+    color:rgb(157, 48, 70);
+    font-weight: bolder;
+    font-size: larger;
+
+}
+
+
+
+
+ 

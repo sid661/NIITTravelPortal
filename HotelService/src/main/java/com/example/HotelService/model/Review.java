@@ -11,9 +11,9 @@ import java.util.Date;
 public class Review
 {
     private  String subject;
-    private String rating;
+    private int rating;
     private String username;
-    private Date date;
+    private String date;
     private String description;
 
 

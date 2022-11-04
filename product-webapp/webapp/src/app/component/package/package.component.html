@@ -1,38 +1,115 @@
-<mat-card style="margin:20px;margin-left:10px;border-radius:10px">
-    
-    <img mat-card-2xl-image style="border-radius: 10px;" src="https://cdn.pixabay.com/photo/2015/07/29/22/56/taj-mahal-866692__340.jpg"  align="left">
-  
-      <mat-card-title style="margin-left:300px ;"><mat-icon style="color: rgb(255, 0, 0);"> edit_location</mat-icon><u>Sunrise Taj Mahal Trip from Delhi all Inclusive</u></mat-card-title>
-      
-      <h4> <mat-card-subtitle style="margin-left:550px">By Driver India Private Tours</mat-card-subtitle></h4>
-      <ul style="margin-left:300px" >
-        <img mat-card-xsm-image  style="margin-left:20px"src="https://static.vecteezy.com/system/resources/thumbnails/003/355/389/small/five-5-star-rank-sign-illustration-free-vector.jpg" height="20px" > 
-        <mat-card-subtitle style="margin-left:210px">1,312    REVIEWS</mat-card-subtitle>
-        <div  style="margin-left:220px;">
-            
-          <mat-card-subtitle >
-            <div>Make a tour to Agra easy and stress-free with round-trip private transportation and a dedicated guide. Make your own schedule for pickup and drop-off at your New Delhi hotel; move at your own pace while exploring the landmarks in Agra. Lunch at a top Agra restaurant and entry fees to sites visited are included in the tour price.</div>
-          </mat-card-subtitle>
-         from<h1> <b>₹10,877.63</b> </h1>
-        <h4 style="margin-top: -20px;">per adult (price varies by group size)</h4>
-  
-        <mat-icon>query_builder</mat-icon>
-        <h4 style="margin-top:-25px; margin-left:30px;">Duration:11–12 hours
-           </h4>
-           <mat-icon>alarm</mat-icon>
-        <h4 style="margin-top:-25px; margin-left:30px;">Start time: Check availability
-           </h4>
-           <mat-icon>perm_device_information</mat-icon>
-        <h4 style="margin-top:-25px; margin-left:30px;">Ticket type:Mobile
-           </h4>
-           <mat-icon>language</mat-icon>
-        <h4 style="margin-top:-25px; margin-left:30px;">German, English, Italian, French, Spanish
-           </h4>
+<div class="placescontainer">
+  <div fxLayout="column" fxLayoutGap="2%">
+    <div fxFlex="20%">
+      <mat-nav-list fxLayout="row">
+        <mat-card fxFlex="22%">
+          <mat-card-content>
+            <h2 class="example-h2">SEARCH THIS PAGE</h2>
+          </mat-card-content>
+          <section class="example-section">
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Search By Activity">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </section>
+        </mat-card>
+        <mat-card class="result" fxFlex="22%">
+          <mat-card-content>
+            <h2 class="example-h2">Budget</h2>
+            <section class="example-section">
+              <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result" fxFlex="22%">
+          <mat-card-content>
+            <h2 class="example-h2">DURATION</h2>
+            <section class="example-section">
+              <ng5-slider [(value)]="minDate" [(highValue)]="maxDate" [options]="nights"></ng5-slider>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">Hotel Category</h2>
+            <section class="example-section">
+              <mat-checkbox class="example-margin">
+                3-★
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                4-★
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                5-★
+              </mat-checkbox><BR>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card fxFlex="22%">
+          <mat-card-content>
+            <section>
+              <h2 style="text-align: center;">Filters</h2>
+              <mat-form-field appearance="outline" style="margin-top:-20px">
+                  
+                <mat-label style="font-size: 19px;font-weight:500">Filter Option</mat-label>
+                <mat-select >
+                  <mat-option value="phightolow">Price High-low</mat-option>
+                  <mat-option value="plowtohigh" >Price Low-High</mat-option>
+                  <mat-option value="dhightolow">Duration High-low</mat-option>
+                  <mat-option value="lowtohigh">Duration low-high</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+            </section>
+          </mat-card-content>
+        </mat-card>
+      </mat-nav-list>
     </div>
-        <mat-card-actions align="end">
-            <button mat-button style="border-radius: 10px; background-color: yellow;border: 1px solid black;"><b>Check availability</b></button>
-        </mat-card-actions>
-        </ul>
-  </mat-card>
-  
-        <br> 
+    <div fxLayout="column">
+      <div class="text4">Showing Results of Package in {{city}}<span style="font-weight: 500;font-size:19px"> (
+          {{result}} Results)</span></div>
+      <div fxLayout="row">
+        <div fxFlex="20%">Hello</div>
+        <div fxFlex="80%" fxLayout="column" style="width: 70%;">
+          <mat-card *ngFor="let package of packageArray" class="cardcontainer" fxLayoutGap="0%" fxFlex="100%">
+            <div fxLayout="row">
+              <div fxFlex="30%">
+                <app-image [image]="package.images"></app-image>
+              </div>
+              <div fxFlex="70%">
+                <mat-card-title class="model">{{package.agencyName}}</mat-card-title>
+                <div class="text2" fxLayout="row">
+                  <li style="list-style: none;">{{package.tourType}} Package</li>
+
+                </div>
+                <mat-card-subtitle>
+                </mat-card-subtitle>
+                <mat-list>
+                  <div style="display: inline-flex; ">
+                   
+                    <h4 style="margin-left: 20px;" class="text">Cost Per Person</h4>
+                    <h4 style="margin-left: 52px;" class="text1"> Rs {{package.costPerPerson}}</h4>
+                  </div>
+                  <br>
+                  <div style="display: inline-flex; ">
+                    
+                    <h4 style="margin-left: 20px;" class="text">Duration</h4>
+                    <h4 style="margin-left: 112px;" class="text1">{{package.noOfNights}} Nights</h4>
+                  </div>
+                  <br>
+                  <div style="display: inline-flex; ; ">
+                    
+                    <h4 style="margin-left: 20px;" class="text">Cancellation</h4>
+                    <h4 style="margin-left: 87px;" class="text1">Before 3 days from Travelling </h4>
+                  </div>
+                </mat-list>
+                <mat-card-actions >
+                  <button class="button1">BOOK NOW</button>
+                </mat-card-actions>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>

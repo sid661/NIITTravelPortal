@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Rounded } from '@coreui/angular/lib/utilities/rounded.type';
 import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -10,22 +12,35 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService:LoginService) { }
-  loginForm=new UntypedFormGroup({
-    email:new UntypedFormControl(""),
-    password:new UntypedFormControl("")
+  constructor(private loginService:LoginService,private router:Router) { }
+  loginForm=new FormGroup({
+    email:new FormControl(""),
+    password:new FormControl(""),
+    userRole:new FormControl("USER", [Validators.required]),
 })
 user:User=new User();
 
   ngOnInit(): void {
   }
+
+
+
+
+    
+  
 login()
 {
-  this.user.email=this.loginForm.value.email;
-  this.user.password=this.loginForm.value.password;
-  this.loginService.login(this.user).subscribe((x:any)=>{
-    console.log(x);
-    this.loginForm.reset();
+  console.log("value ", this.loginForm);
+
+  
+  this.user.role=this.loginForm.value.userRole!;
+  this.user.email=this.loginForm.value.email!;
+  this.user.password=this.loginForm.value.password!;
+  this.loginService.generateToken(this.user).subscribe((x:any)=>{
+    console.log("token login ",x.token);
+    console.log("role",x.role)
+          this.loginService.loginUser(x.token, this.user.email,x.role);
+          this.router.navigate(['']);
   },
   ()=>
   {

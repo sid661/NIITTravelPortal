@@ -1,0 +1,146 @@
+<div fxLayout="row" class="register-container">
+    <div fxFlex="50%" class="hello">
+        <div class="text">Welcome to NIIT Travel Portel
+            <h4 style="margin-left: 15%;font-size:69%">Know more about your city</h4>
+        </div>
+    </div>
+
+    <mat-card fxFlex="50%" class="register-card">
+        <div fxLayout="column" fxLayoutGap="2%">
+            <div fxLayout="row">
+                <div fxFlex="40%"></div>
+                <div fxflex="30%" style="font-weight: bolder; font-size:larger">Register YourSelf</div>
+                <div></div>
+            </div>
+
+            <mat-tab-group mat-align-tabs="center" fxFlex="100%">
+                <mat-tab label="Guest User" fxFlex="50%" [formGroup]="registerForm" fxLayoutGap="5%">
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" placeholder="Enter Name">
+                            <mat-error *ngIf="registerForm.controls['name'].hasError('name')">Name is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" placeholder="Enter Email">
+                            <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Email is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput formControlName="password" placeholder="Enter Password">
+                            <mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
+                            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+                                Password is Required
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['password'].hasError('minLength')">
+                                Minimum length is 6
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['password'].hasError('maxLength')">
+                                Minimum length is 15
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input type="password" matInput formControlName="confirmpassword"
+                                placeholder="Confirm Password">
+                            <mat-error *ngIf="registerForm.controls['confirmpassword'].hasError('required')">
+                                Confirm Password is Required
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['confirmpassword'].hasError('myError1')">
+                                Password Should Match
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>PhoneNo</mat-label>
+                            <input type="number" matInput formControlName="phoneNo" placeholder="Enter PhoneNo">
+                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('maxLength')">
+                                PhoneNo should be 10 digits
+
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('required')">
+                                PhoneNo is Required
+                            </mat-error>
+                        </mat-form-field>
+                        <div fxLayoutGap="%">
+                            <mat-checkbox formControlName="premiumMember">Do you want to become a Premium Member
+                            </mat-checkbox>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlex="40%"></div>
+                            <div fxFlex="25%">
+                                <button mat-raised-button color="primary" [disabled]="registerForm.invalid"
+                                    (click)="register()">Register</button>
+                            </div>
+
+                            <div></div>
+                        </div>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Service Provider" [formGroup]="serviceregisterForm" fxLayoutGap="5%">
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" placeholder="Enter Name">
+                            <mat-error *ngIf="registerForm.controls['name'].hasError('name')">Name is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" placeholder="Enter Email">
+                            <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Email is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput formControlName="password" placeholder="Enter Password">
+                            <mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
+                            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+                                Password is Required
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['password'].hasError('minLength')">
+                                Minimum length is 6
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['password'].hasError('maxLength')">
+                                Minimum length is 15
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>GST NUMBER</mat-label>
+                            <input type="text" matInput placeholder="Enter GST NUMBER" formArrayName="gst">
+
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>PhoneNo</mat-label>
+                            <input type="number" matInput formControlName="phoneNo" placeholder="Enter PhoneNo" formControlName="phoneNo">
+                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('maxLength')">
+                                PhoneNo should be 10 digits
+
+                            </mat-error>
+                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('required')">
+                                PhoneNo is Required
+                            </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="40%"></div>
+                        <div fxFlex="25%">
+                            <button mat-raised-button color="primary" 
+                                (click)=" serviceregister()">Register</button>
+                        </div>
+                        <div></div>
+                    </div>
+                </mat-tab>
+
+            </mat-tab-group>
+        </div>
+    </mat-card>
+</div>

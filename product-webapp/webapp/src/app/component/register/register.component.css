@@ -1,0 +1,31 @@
+.register-container{
+    margin-top: 0px;
+    margin-right: 15px;
+    margin-left: 15px;
+    background-image: url("https://www.iabtravel.com/wp-content/uploads/2017/07/VENICE-SUB-REGION.jpg") ;
+    font-size: large;
+    background-size: 950px 750px;
+    
+}
+.register-card {
+    /* height: 700px; */
+    background-color:rgba(255, 255, 255, 0.84);
+}
+
+.text{
+    margin-top: 150px;
+    margin-left: 300px;
+    color:rgb(157, 48, 70);
+    font-weight: bolder;
+    font-size: larger;
+
+}
+mat-label{
+    font-weight:480;
+}
+label{
+    font-weight:480;
+}
+
+
+

@@ -9,16 +9,16 @@ export class CabService {
 
   constructor(private http:HttpClient) { }
 
-  url= "http://localhost:8087/api/cab/findCab/cabType?data="
+ // url= "http://localhost:8087/api/cab/findCab/cabType?data="
   findCab()
     {
-      return this.http.get<Cab[]>("http://localhost:8087/api/cab/findCab/Delhi");
+      return this.http.get<Cab[]>("http://localhost:8083/api/cab/findCab/Delhi");
 
     }
 
     getFilterData(data:string)
     {
-      console.log(this.url+data);
+      //console.log(this.url+data);
       
       
       return this.http.get<Cab[]>("http://localhost:8087/api/cab/findCab/cabType?data="+data);

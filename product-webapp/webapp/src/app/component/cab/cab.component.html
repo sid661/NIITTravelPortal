@@ -1,38 +1,123 @@
-<div *ngFor="let cab of cabArray">
-    <mat-card style="margin:20px;margin-left:10px">
-        <img mat-card-md-image src="https://th.bing.com/th/id/R.82b0c7b556f61a6286965845ecd4200f?rik=VY%2fvq4lXcOhnTw&riu=http%3a%2f%2fs1.cdn.autoevolution.com%2fimages%2fnews%2fgallery%2fhow-many-types-of-hybrid-cars-are-there_23.jpeg&ehk=x3woxarrCBX2D7PJaI8oqwMhzKC%2fbpnogCcBwmGV5aw%3d&risl=&pid=ImgRaw&r=0"  align="left">
-          <mat-card-title style="margin-left:140px ;">{{cab.model}}</mat-card-title>
-          <ul style="margin-left:140px" >
-            <li>AC</li>
-            <li>5 seater</li>
-          </ul>
-          <mat-card-subtitle style="margin-left:140px; font-weight: bolder;color: black;">
-           <h3> Compact Car </h3>
+<div class="cabcontainer">
+  <div fxLayout="row">
+    <div fxFlex="20%">
+      <mat-toolbar class="filtercontainer">Apply Filters</mat-toolbar>
+      <mat-nav-list>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">CAB TYPE</h2>
+            <section class="example-section">
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+                SUV
+              </mat-checkbox>
+              <BR>
+              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+                SEDAN
+              </mat-checkbox>
+              <BR>
+              <mat-checkbox class="example-margin">
+                HATCHBACK
+              </mat-checkbox><BR>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">FUEL TYPE</h2>
+
+            <section class="example-section">
+              <mat-checkbox class="example-margin">
+                PETROL
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                DIESEL
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                CNG
+              </mat-checkbox><BR>
+             
+
+
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result">
+          <mat-card-content>
+            <h2 class="example-h2">MODEL</h2>
+
+            <section class="example-section">
+              <mat-checkbox class="example-margin">
+                ERTIGA
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                XYLO
+              </mat-checkbox><BR>
+              <mat-checkbox class="example-margin">
+                INDICA
+              </mat-checkbox><BR>
+
+            </section>
+            <button type="submit" class="button">APPLY FILTER</button>
+            <!-- <button type="submit">Reset</button> -->
+            <mat-icon class="home-icon">autorenew</mat-icon>
+          </mat-card-content>
+        </mat-card>
+
+
+
+        <!-- <a mat-list-item href="#">Link 1</a>
+          <a mat-list-item href="#">Link 2</a>
+          <a mat-lis mst-item href="#">Link 3</a> -->
+      </mat-nav-list>
+
+    </div>
+    <div fxLayout="column" >
+    <div class="text4">Showing Results of Cab in City {{city}}<span style="font-weight: 500;font-size:19px">  ( {{result}} Results)</span></div>
+    <div fxLayout="column"  style="width: 70%;"  >
+      
+        <mat-card *ngFor="let cab of cabArray"  class="cardcontainer" fxLayoutGap="0%" >
+          <img mat-card-md-image
+            src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/Cab_Images/sedan_new.png"
+            align="left">
+          <mat-card-title  class="model">{{cab.model}}</mat-card-title>
+          <div class="text2"  fxLayout="row">
+            <li style="list-style: none;">{{cab.cabType}}</li>
+            <li style="margin-left: 20px;">AC</li>
+            <li style="margin-left: 20px;">5 Seater</li>
+          </div>
+          <mat-card-subtitle>
+            <!-- <h3 style="margin-left: 240px;"> {{cab.cabType}} </h3> -->
           </mat-card-subtitle>
-          <mat-list >
+          <mat-list>
+           
             <div style="display: inline-flex; ">
-            <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/location_blue.png" height="20px" style="margin-left: 150px;">
-            <h4 style="margin-left: 20px;">Price per Km</h4>
-            <h4 style="margin-left: 90px;"> Rs {{cab.pricePerKm}}/km</h4>
-          </div>
-          <br>
+         
+              <img mat-card-xsm-image  src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/location_blue.png" height="20px"
+              style="margin-left: 40px;" >
+              <h4 style="margin-left: 20px;" class="text">Price per Km</h4>
+              <h4 style="margin-left: 85px;" class="text1" > Rs {{cab.pricePerKm}}/km</h4>
+            </div>
+            <br>
             <div style="display: inline-flex; ">
-            <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/fuel_blue.png" height="20px" style="margin-left: 150px;">
-            <h4 style="margin-left: 20px;">Fuel Type</h4>
-            <h4 style="margin-left: 110px;">{{cab.fuelType}}</h4>
-          </div>
-          <br>
+              <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/fuel_blue.png" height="20px"
+                style="margin-left: 150px;">
+              <h4 style="margin-left: 20px;" class="text">Fuel Type</h4>
+              <h4 style="margin-left: 112px;" class="text1">{{cab.fuelType}}</h4>
+            </div>
+            <br>
             <div style="display: inline-flex; ; ">
-            <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/cancelInfo.png" height="20px" style="margin-left: 150px;">
-            <h4 style="margin-left: 20px;">Cancellation</h4>
-            <h4 style="margin-left: 90px;">Before 6 hour from departure </h4>
-          </div>
+              <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/cancelInfo.png" height="20px"
+                style="margin-left: 150px;">
+              <h4 style="margin-left: 20px;" class="text">Cancellation</h4>
+              <h4 style="margin-left: 87px;" class="text1">Before 6 hour from departure </h4>
+            </div>
           </mat-list>
           <mat-card-actions align="end">
-            <button style="border-radius: 150px; background-color: lightblue;">BOOK NOW</button>
+            <button class="button1">BOOK NOW</button>
           </mat-card-actions>
         </mat-card>
-        <br>
-      </div>
-    
-        
+      
+      
+    </div>
+  </div>
+</div>

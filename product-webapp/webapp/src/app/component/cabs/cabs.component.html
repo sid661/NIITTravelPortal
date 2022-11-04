@@ -1,0 +1,51 @@
+<div class="cabSearch">
+  <form >
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button class="radio1"  value="1">One Way Round</mat-radio-button>
+      <mat-radio-button class="radio2" value="2">Round Trip</mat-radio-button>
+      <mat-radio-button class="radio3" value="2">Hourly Rentel</mat-radio-button>
+    </mat-radio-group>
+    
+    <div class="text-input">
+      <input type="text" id="input1" placeholder="              PLEASE ENTER YOUR JOURNEY POINT">
+      <label for="input1">START POINT</label>
+    </div>
+    <div class="text-input2">
+      <input type="text" id="input2" placeholder="              PLEASE ENTER YOUR DESTINATION">
+      <label for="input2">DESTINATION</label>
+    </div>
+    <div fxLayout="row" fxLayoutGap="3%" class="conatiner">
+      <mat-form-field appearance="outline" >
+        <mat-label style="font-size: 18px;font-weight:600">PickUp Date</mat-label>
+        <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500 ;" [matDatepicker]="dp" [formControl]="date">
+        
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline"  color="primary">
+        <mat-label  style="font-size: 18px;font-weight:600">Drop Date</mat-label>
+        <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500" [matDatepicker]="picker1" [formControl]="date">
+        
+        <mat-datepicker-toggle   matSuffix [for]="picker1"></mat-datepicker-toggle>
+
+        <mat-datepicker #picker1 ></mat-datepicker>
+      </mat-form-field>
+       
+      <input [ngxTimepicker]="picker" placeholder="Select Time  HH::MM" style="color:black" class="time1" >
+      <ngx-material-timepicker #picker> select the time</ngx-material-timepicker>
+    
+
+    </div>
+    
+   
+      </form>
+  <div class="button1">
+    <button mat-stroked-button style="margin-left: 420px; margin-top: 4px; 
+background-image: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+    font-size: 27px; color: white; width: 230px; border-radius: 30px;height: 55px;
+    " (click)="search()">SEARCH</button>
+  </div>
+ 
+</div>
+
