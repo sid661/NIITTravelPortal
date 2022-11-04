@@ -3,6 +3,7 @@ package com.stackroute.informationservice.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -10,9 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 public class Place {
-    private String city,place,description,thingToDo;
+
+    private  String place;
+    private String city,description,thingToDo;
     private byte[] image;
     private String[] howToReach,nearByPlaces;
 
 
+    public boolean isEmpty() {
+        return false;
+    }
 }
