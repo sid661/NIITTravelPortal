@@ -76,7 +76,7 @@ export class ViewhotelComponent implements OnInit {
 
 filtered:boolean=false;
 pricefiltered:boolean=false;
-ratingfilterd:boolean=true;
+ratingfilterd:boolean=false;
 
 
   applyfilter()
@@ -85,6 +85,7 @@ ratingfilterd:boolean=true;
     this.filtered=false;
     this.filterHotel=this.hotelArray;
     this.pricefiltered=false;
+    this.ratingfilterd=false;
     
     
     if(this.star5checked)
@@ -535,7 +536,7 @@ ratingfilterd:boolean=true;
      
       for(let i=0;i<this.filterHotel.length;i++)
       {
-        console.log(this.filterHotel[i]);
+       
         
         let totalrating=0;
         let avgrating=0;
@@ -556,7 +557,7 @@ ratingfilterd:boolean=true;
     }
     if(this.checked4rating)
     {
-      console.log("inisde another method");
+   
      
       let tempratingfileter:Hotel[]=[];
       if(this.ratingfilterd)
@@ -567,7 +568,7 @@ ratingfilterd:boolean=true;
      
       for(let i=0;i<this.filterHotel.length;i++)
       {
-        console.log(this.filterHotel[i]);
+      
         
         let totalrating=0;
         let avgrating=0;
@@ -588,7 +589,7 @@ ratingfilterd:boolean=true;
     }
     if(this.checked3rating)
     {
-      console.log("inisde another method");
+     
         
       let tempratingfileter:Hotel[]=[];
       if(this.ratingfilterd)
@@ -598,7 +599,7 @@ ratingfilterd:boolean=true;
      
       for(let i=0;i<this.filterHotel.length;i++)
       {
-        console.log(this.filterHotel[i]);
+        
         
         let totalrating=0;
         let avgrating=0;
@@ -623,22 +624,7 @@ ratingfilterd:boolean=true;
       this.filterHotel=this.hotelArray;
     }
 
-  }
-  
-  
- 
-  
-  
-  
- 
-  
-
-
-
-
-
-  
-  
+  } 
  
   
 }
