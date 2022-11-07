@@ -14,4 +14,9 @@ public interface HotelRepository extends MongoRepository<Hotel,String>
     List<Hotel> findByReviewRating(int rating);
     List<Hotel> findByRoomPrice(int price);
 
+    List<Hotel> findByHotelCategoryAndRoomPriceAndReviewRating(String category,int price,int rating);
+    List<Hotel> findByRoomPriceAndReviewRating(int price,int rating);
+    List<Hotel> findByHotelCategoryAndReviewRating(String category,int rating);
+    List<Hotel> findByHotelCategoryAndRoomPrice(String category,int price);
+
 }

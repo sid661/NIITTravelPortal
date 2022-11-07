@@ -48,6 +48,7 @@ export class HotelsComponent implements OnInit {
   }
   search()
   {
+    console.log(this.searchform.value.city!)
     localStorage.setItem("city",this.searchform.value.city!)
     this.router.navigate(['viewhotel'])
   }

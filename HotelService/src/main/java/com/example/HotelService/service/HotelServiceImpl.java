@@ -3,6 +3,7 @@ package com.example.HotelService.service;
 import com.example.HotelService.config.Producer;
 import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
+import com.example.HotelService.model.FilterClass;
 import com.example.HotelService.model.Hotel;
 import com.example.HotelService.model.Review;
 import com.example.HotelService.model.Room;
@@ -426,6 +427,8 @@ public class HotelServiceImpl implements HotelService
         return hotelRepository.findByAddressCity(cityName);
     }
 
+
+
     @Override
     public List<Hotel> findByReviewRating(int rating) {
         List<Hotel> hotels=new ArrayList<>();
@@ -444,5 +447,25 @@ public class HotelServiceImpl implements HotelService
     @Override
     public List<Hotel> findByRoomPrice(int price) {
         return hotelRepository.findByRoomPrice(price);
+    }
+
+    @Override
+    public List<Hotel> findByHotelCategoryAndRoomPriceAndReviewRating(String category, int price, int rating) {
+        return hotelRepository.findByHotelCategoryAndRoomPriceAndReviewRating(category, price, rating);
+    }
+
+    @Override
+    public List<Hotel> findByRoomPriceAndReviewRating(int price, int rating) {
+        return null;
+    }
+
+    @Override
+    public List<Hotel> findByHotelCategoryAndReviewRating(String category, int rating) {
+        return null;
+    }
+
+    @Override
+    public List<Hotel> findByHotelCategoryAndRoomPrice(String category, int price) {
+        return null;
     }
 }

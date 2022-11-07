@@ -2,10 +2,7 @@ package com.example.HotelService.controller;
 
 import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
-import com.example.HotelService.model.Hotel;
-import com.example.HotelService.model.Overview;
-import com.example.HotelService.model.Review;
-import com.example.HotelService.model.Room;
+import com.example.HotelService.model.*;
 import com.example.HotelService.service.HotelService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -252,5 +249,10 @@ public class HotelController
         return responseEntity = new ResponseEntity<>(hotelService.findByRoomPrice(price),HttpStatus.OK);
     }
 
+    @GetMapping("filter")
+    ResponseEntity<Hotel> filter(@RequestBody FilterClass filterClass){
+        System.out.println(filterClass);
+        return responseEntity= new ResponseEntity(hotelService.findByHotelCategoryAndRoomPriceAndReviewRating(filterClass.getHotelCategory(),filterClass.getPrice(),filterClass.getRating()),HttpStatus.OK);
+    }
 
 }
