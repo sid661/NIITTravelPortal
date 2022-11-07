@@ -7,16 +7,291 @@ import { CabService } from 'src/app/service/cab.service';
   templateUrl: './cab.component.html',
   styleUrls: ['./cab.component.css']
 })
-export class CabComponent implements OnInit {
+export class CabComponent implements OnInit 
+{
+  checksuv:boolean=false;
+  checksedan:boolean=false;
+  checkhatchback:boolean=false;
+  checkpetrol:boolean=false;
+  checkdiesel:boolean=false;
+  checkcng:boolean=false;
+  checkertiga:boolean=false;
+  checkxylo:boolean=false;
+  checkindica:boolean=false;
+  cabtyprchecked:boolean=false;
+  fueltypechecked:boolean=false;
+  modelchecked:boolean=false;
+
+
+
+  filter()
+  {
+   
+  
+  this.cabtyprchecked=false;
+  this.fueltypechecked=false;
+  this.modelchecked=false;
+    this.filtercabArray=[];
+    if(this.checksuv)
+    {
+      for(let i=0;i<this.cabArray.length;i++)
+      {
+        if(this.cabArray[i].cabType=="SUV")
+        {
+         this.filtercabArray.push(this.cabArray[i])
+         this.cabtyprchecked=true;
+        }
+      }
+    }
+    if(this.checksedan)
+    {
+      
+        for(let i=0;i<this.cabArray.length;i++)
+        {
+          if(this.cabArray[i].cabType=="SEDAN")
+          {
+            this.filtercabArray.push(this.cabArray[i])
+            this.cabtyprchecked=true;
+          }
+        }
+      
+    }
+    if(this.checkhatchback)
+    {
+      for(let i=0;i<this.cabArray.length;i++)
+      {
+        if(this.cabArray[i].cabType=="HATCHBACK")
+        {
+          this.filtercabArray.push(this.cabArray[i])
+          this.cabtyprchecked=true;
+        }
+      }
+    }
+    if(this.checkpetrol)
+    {
+      if(this.cabtyprchecked)
+      {
+        let tempfuelcheck:Cab[]=[];
+        for(let i=0;i<this.filtercabArray.length;i++)
+        {
+          if(this.filtercabArray[i].fuelType=="PETROL")
+          {
+            tempfuelcheck.push(this.filtercabArray[i])
+            this.fueltypechecked=true;
+          }
+        }
+        this.filtercabArray=tempfuelcheck;
+      }
+      else
+    {
+      for(let k=0;k<this.cabArray.length;k++)
+        {
+          if(this.cabArray[k].fuelType=="PETROL")
+          {
+            this.filtercabArray.push(this.cabArray[k])
+            this.fueltypechecked=true;
+          }
+        }
+    }
+    }
+    if(this.checkdiesel)
+    {
+      if(this.cabtyprchecked)
+      {
+        let tempfuelcheck:Cab[]=[];
+        if(this.fueltypechecked)
+        {
+           
+        }
+        else
+        {
+        for(let i=0;i<this.filtercabArray.length;i++)
+        {
+          if(this.filtercabArray[i].fuelType=="DIESEL")
+          {
+            tempfuelcheck.push(this.filtercabArray[i])
+            this.fueltypechecked=true;
+          }
+        }
+
+        this.filtercabArray=tempfuelcheck;
+      }
+      }
+      else
+      {
+        for(let k=0;k<this.cabArray.length;k++)
+        {
+          if(this.cabArray[k].fuelType=="DIESEL")
+          {
+            this.filtercabArray.push(this.cabArray[k])
+            this.fueltypechecked=true;
+          }
+        }
+
+      }
+    }
+    if(this.checkcng)
+    {
+      if(this.cabtyprchecked)
+      {
+        let tempfuelcheck:Cab[]=[];
+        if(this.fueltypechecked)
+        {
+           
+        }
+        else
+        {
+        for(let i=0;i<this.filtercabArray.length;i++)
+        {
+          if(this.filtercabArray[i].fuelType=="CNG")
+          {
+            tempfuelcheck.push(this.filtercabArray[i])
+            this.fueltypechecked=true;
+          }
+        }
+
+        this.filtercabArray=tempfuelcheck;
+      }
+      }
+      else
+      {
+        for(let k=0;k<this.cabArray.length;k++)
+        {
+          if(this.cabArray[k].fuelType=="CNG")
+          {
+            this.filtercabArray.push(this.cabArray[k])
+            this.fueltypechecked=true;
+          }
+        }
+
+      }
+    }
+    if(this.checkertiga)
+    {
+      if(this.cabtyprchecked || this.fueltypechecked)
+      {
+       let tempmodelcheck:Cab[]=[];
+       if(this.modelchecked)
+       {
+
+       }
+       else
+       {
+        for(let i=0;i<this.filtercabArray.length;i++)
+        {
+          if(this.filtercabArray[i].model=="ERTIGA")
+          {
+            tempmodelcheck.push(this.filtercabArray[i])
+            this.modelchecked=true;
+          }
+        }
+
+        this.filtercabArray=tempmodelcheck;
+       }
+      }
+      else
+      {
+        for(let k=0;k<this.cabArray.length;k++)
+        {
+          if(this.cabArray[k].model=="ERTIGA")
+          {
+            this.filtercabArray.push(this.cabArray[k])
+            this.modelchecked=true;
+          }
+        }
+      }
+    }
+    if(this.checkxylo)
+    {
+      if(this.cabtyprchecked || this.fueltypechecked)
+      {
+       let tempmodelcheck:Cab[]=[];
+       if(this.modelchecked)
+       {
+
+       }
+       else
+       {
+        for(let i=0;i<this.filtercabArray.length;i++)
+        {
+          if(this.filtercabArray[i].model=="XYLO")
+          {
+            tempmodelcheck.push(this.filtercabArray[i])
+            this.modelchecked=true;
+          }
+        }
+
+        this.filtercabArray=tempmodelcheck;
+       }
+      }
+      else
+      {
+        for(let k=0;k<this.cabArray.length;k++)
+        {
+          if(this.cabArray[k].model=="XYLO")
+          {
+            this.filtercabArray.push(this.cabArray[k])
+            this.modelchecked=true;
+          }
+        }
+      }
+    }
+    if(this.checkindica)
+    {
+      if(this.cabtyprchecked || this.fueltypechecked)
+      {
+       let tempmodelcheck:Cab[]=[];
+       if(this.modelchecked)
+       {
+
+       }
+       else
+       {
+        for(let i=0;i<this.filtercabArray.length;i++)
+        {
+          if(this.filtercabArray[i].model=="INDICA")
+          {
+            tempmodelcheck.push(this.filtercabArray[i])
+            this.modelchecked=true;
+          }
+        }
+
+        this.filtercabArray=tempmodelcheck;
+       }
+      }
+      else
+      {
+        for(let k=0;k<this.cabArray.length;k++)
+        {
+          if(this.cabArray[k].model=="INDICA")
+          {
+            this.filtercabArray.push(this.cabArray[k])
+            this.modelchecked=true;
+          }
+        }
+      }
+    }
+    if( !(this.checkdiesel || this.checkpetrol || this.checkcng || this.checkhatchback || this.checksedan||this.checksuv|| this.checkertiga||this.checkindica||this.checkxylo ))
+    {
+      this.filtercabArray=this.cabArray;
+    }
+    
+    this.result=this.filtercabArray.length;
+
+  }
+
+
  @Input() cabArray:Cab[]=[];
  city:any
  result:any
+ filtercabArray:Cab[]=[];
   constructor(private cabService:CabService) { }
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   ngOnInit(): void {
     this.cabService.findCab().subscribe(x => {
       console.log(x)
       this.cabArray = x;
+      this.filtercabArray=this.cabArray;
       this.result=this.cabArray.length;
       console.log(x);
       x.forEach(y=>{

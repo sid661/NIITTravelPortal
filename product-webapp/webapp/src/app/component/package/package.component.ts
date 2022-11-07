@@ -47,6 +47,7 @@ export class PackageComponent implements OnInit {
   }
   constructor(private service:RegisterserviceService) { }
 packageArray:any=[]
+filterpackageArray:any=[];
 city:string="Delhi"
 length:any
 result:any
@@ -58,6 +59,7 @@ bufferValue = 75;
     this.service.getPackage().subscribe(x=>{
  console.log(x);
  this.packageArray=x;
+ this.filterpackageArray=this.packageArray;
  this.result=this.packageArray.length;
  
 //  this.city=x.forEach((element:any )=> {
@@ -65,5 +67,153 @@ bufferValue = 75;
 //  });
     })
   }
+  
+  sort(sort:any)
+  {
+   if(sort=="phightolow")
+   {
+    for(let i=0;i<this.filterpackageArray.length;i++)
+    {
+      for(let j=1; j < this.filterpackageArray.length-i; j++)
+      {
+
+        if(this.filterpackageArray[j-1].costPerPerson < this.filterpackageArray[j].costPerPerson){  
+               
+              let temp = this.filterpackageArray[j-1];  
+               this.filterpackageArray[j-1] = this.filterpackageArray[j];  
+               this.filterpackageArray[j] = temp;  
+       }  
+        
+     }  
+   }
+    
+   
+  }
+  if(sort=="plowtohigh")
+  {
+    for(let i=0;i<this.filterpackageArray.length;i++)
+    {
+      for(let j=1; j < this.filterpackageArray.length-i; j++)
+      {
+
+        if(this.filterpackageArray[j-1].costPerPerson > this.filterpackageArray[j].costPerPerson){  
+               
+              let temp = this.filterpackageArray[j-1];  
+               this.filterpackageArray[j-1] = this.filterpackageArray[j];  
+               this.filterpackageArray[j] = temp;  
+       }  
+        
+     }  
+   }
+  }
+  if(sort=="dhightolow")
+  {
+    for(let i=0;i<this.filterpackageArray.length;i++)
+    {
+      for(let j=1; j < this.filterpackageArray.length-i; j++)
+      {
+
+        if(this.filterpackageArray[j-1].noOfNights < this.filterpackageArray[j].noOfNights){  
+               
+              let temp = this.filterpackageArray[j-1];  
+               this.filterpackageArray[j-1] = this.filterpackageArray[j];  
+               this.filterpackageArray[j] = temp;  
+       }  
+        
+     }  
+   }
+  }
+  if(sort=="lowtohigh")
+  {
+    for(let i=0;i<this.filterpackageArray.length;i++)
+    {
+      for(let j=1; j < this.filterpackageArray.length-i; j++)
+      {
+
+        if(this.filterpackageArray[j-1].noOfNights > this.filterpackageArray[j].noOfNights){  
+               
+              let temp = this.filterpackageArray[j-1];  
+               this.filterpackageArray[j-1] = this.filterpackageArray[j];  
+               this.filterpackageArray[j] = temp;  
+       }  
+        
+     }  
+   }
+  }
+
+}
+nightsa(slider:any)
+{
+  this.filterpackageArray=[];
+  if(slider==2)
+  {
+    this.filterpackageArray=[];
+    for(let i=0;i<this.packageArray.length;i++)
+    {
+      if(this.packageArray[i].noOfNights==2)
+      {
+        this.filterpackageArray.push(this.packageArray[i])
+      }
+    }
+  }
+  if(slider==3)
+  {
+    this.filterpackageArray=[];
+    for(let i=0;i<this.packageArray.length;i++)
+    {
+      if(this.packageArray[i].noOfNights==3)
+      {
+        this.filterpackageArray.push(this.packageArray[i])
+      }
+    }
+  }
+  if(slider==4)
+  {
+    this.filterpackageArray=[];
+    for(let i=0;i<this.packageArray.length;i++)
+    {
+      if(this.packageArray[i].noOfNights==4)
+      {
+        this.filterpackageArray.push(this.packageArray[i])
+      }
+    }
+  }
+  if(slider==5)
+  {
+    this.filterpackageArray=[];
+    for(let i=0;i<this.packageArray.length;i++)
+    {
+      if(this.packageArray[i].noOfNights==5)
+      {
+        this.filterpackageArray.push(this.packageArray[i])
+      }
+    }
+  }
+  if(slider==6)
+  {
+    this.filterpackageArray=[];
+    for(let i=0;i<this.packageArray.length;i++)
+    {
+      if(this.packageArray[i].noOfNights==6)
+      {
+        this.filterpackageArray.push(this.packageArray[i])
+      }
+    }
+  }
+  if(slider==7)
+  {
+    this.filterpackageArray=[];
+    for(let i=0;i<this.packageArray.length;i++)
+    {
+      if(this.packageArray[i].noOfNights==7)
+      {
+        this.filterpackageArray.push(this.packageArray[i])
+      }
+    }
+  }
+console.log(slider);
+
+this.result=this.filterpackageArray.length;
+}
 
 }

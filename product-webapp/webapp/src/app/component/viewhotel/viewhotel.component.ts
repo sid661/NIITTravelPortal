@@ -617,8 +617,30 @@ ratingfilterd:boolean=true;
       }
       this.filterHotel=tempratingfileter;
     }
+    this.result=this.filterHotel.length
+    if(!(this.star5checked||this.star4checked||this.star3checked||this.star2checked||this.star1checked||this.villachecked||this.cottagechecked ||this.checked1k ||this.checked2k|| this.checked3k||this.checked4k||this.checked5rating||this.checked4rating||this.checked3rating))
+    {
+      this.filterHotel=this.hotelArray;
+    }
 
   }
+  
+  
+ 
+  
+  
+  
+ 
+  
+
+
+
+
+
+  
+  
+ 
+  
 }
 
 
