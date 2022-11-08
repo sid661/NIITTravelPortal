@@ -16,7 +16,7 @@ export class EdithotelComponent implements OnInit {
       email:new FormControl('',[]),
       hotelName:new FormControl('',[Validators.required]),
       hotelCategory:new FormControl('',[Validators.required]),
-        propertyRules:new  FormArray([]),
+        propertyRules:new  FormControl('',[]),
       overview:new FormGroup({
         description:new FormControl('',),
          image:new FormControl('',[])
@@ -93,7 +93,7 @@ allhoteldetails:any;
       email: this.allhoteldetails.email,
       hotelName: this.allhoteldetails.hotelName,
       hotelCategory:this.allhoteldetails.hotelCategory,
-       propertyRules:this.fb.array(this.allhoteldetails.propertyRules.map((r: any)=>this.fb.group(r))),
+       propertyRules:this.allhoteldetails.propertyRules,
       overview:{
         description:this.allhoteldetails.overview.description,
          image:this.allhoteldetails.overview.image
@@ -127,6 +127,9 @@ allhoteldetails:any;
   saveHotel()
   {
     const  regData = this.RegisterformHotel.value;
+    var formData = new FormData();
+    formData.append('details', JSON.stringify(regData));
+    formData.append('file', this.userFile);
     this.hotelservice.updateHotel(regData).subscribe(() => {
       alert("successfully Changed")
       
@@ -146,17 +149,7 @@ allhoteldetails:any;
   }
 
   data0: any;
-  saveData() {
-    console.log(this.RegisterformHotel.get('propertyRules'));
-    const u = this.RegisterformHotel.value;
-    console.log("Value of u ", u);
-    var formData = new FormData();
-    formData.append('details', JSON.stringify(u));
-    formData.append('file', this.userFile);
-    this.hotelservice.saveHotel(formData).subscribe((response: any) => {
-      console.log(response);
-    })
-  }
+  
   
   Removeitem(index: any) {
     this.items = this.RegisterformHotel.get("propertyRules") as FormArray;

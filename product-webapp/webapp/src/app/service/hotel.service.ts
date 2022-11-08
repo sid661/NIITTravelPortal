@@ -37,7 +37,7 @@ export class HotelService
   }
   updateHotel(data:any)
   {
-    return this.http.put("http://localhost:8084/hotelservice/updatehoteldetails/HotelPalace",data)
+    return this.http.put("http://localhost:8084/hotelservice/updatehoteldetails/HotelHArry",data)
   }
   getHotel()
   {

@@ -21,14 +21,17 @@
                 <mat-label>Hotel Category</mat-label>
                 <mat-select matNativeControl formControlName="hotelCategory">
                     <mat-option >None</mat-option>
+                    <mat-option value="1star">One Star</mat-option>
+                    <mat-option value="2star">Two Star</mat-option>
+                    <mat-option value="3star">Three Star</mat-option>
                     <mat-option value="Family">Family</mat-option> 
-                    <mat-option value="Suite">Suite</mat-option> 
+                    <mat-option value="villa">Villa</mat-option> 
                     <mat-option value="Resort">Resort</mat-option> 
                     <mat-option value="Conference">Conference</mat-option> 
                   </mat-select>
             </mat-form-field>
     
-            <div>
+            <!-- <div>
                 <h1>Property Rules</h1>
             
     
@@ -47,7 +50,7 @@
                     <br>
                     <br>
                    </div>
-                   </div>
+                   </div> -->
     
             <div formGroupName="overview">
                 
@@ -161,7 +164,7 @@
             <br>
             <br>
          
-            <button mat-raised-button type="submit" color="primary" (click)="saveData()">Save Hotel</button>
+            <button mat-raised-button type="submit" color="primary" (click)="saveHotel()">Save Hotel</button>
             <br>
             <br>
             <button mat-raised-button class="cancel-button" >Cancel</button>
