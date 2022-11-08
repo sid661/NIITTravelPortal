@@ -2,6 +2,7 @@ package com.example.HotelService.controller;
 
 import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
+import com.example.HotelService.exception.RoomNotFoundException;
 import com.example.HotelService.model.*;
 import com.example.HotelService.service.HotelService;
 import com.google.gson.Gson;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServlet;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -253,6 +256,50 @@ public class HotelController
     ResponseEntity<Hotel> filter(@RequestBody FilterClass filterClass){
         System.out.println(filterClass);
         return responseEntity= new ResponseEntity(hotelService.findByHotelCategoryAndRoomPriceAndReviewRating(filterClass.getHotelCategory(),filterClass.getPrice(),filterClass.getRating()),HttpStatus.OK);
+    }
+    @PostMapping("makereservation/{hotelName}/{roomid}")
+    ResponseEntity<?> makeReservation(@RequestBody Reservation reservation,@PathVariable String hotelName,@PathVariable int roomid) throws HotelNotFoundException, RoomNotFoundException
+    {
+        try
+        {
+          return  responseEntity=new ResponseEntity(hotelService.makeReservation(hotelName,roomid,reservation),HttpStatus.OK);
+        }
+        catch (HotelNotFoundException hotelNotFoundException)
+        {
+            System.out.println("Not found the Hotel");
+            responseEntity=new ResponseEntity<>(hotelNotFoundException,HttpStatus.NOT_FOUND);
+        }
+        catch (RoomNotFoundException roomNotFoundException)
+        {
+            System.out.println("Not found the Room");
+            responseEntity=new ResponseEntity<>(roomNotFoundException,HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            responseEntity=new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @GetMapping("getallrooms/{hotelName}")
+    public ResponseEntity<?> getAllRooms(@PathVariable String hotelName) throws HotelNotFoundException
+    {
+        try
+        {
+            responseEntity=new ResponseEntity<>(hotelService.getAllRooms(hotelName),HttpStatus.OK);
+        }
+        catch (HotelNotFoundException hotelNotFoundException)
+        {
+            System.out.println("Not found the Hotel");
+            responseEntity=new ResponseEntity<>(hotelNotFoundException,HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            responseEntity=new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+
     }
 
 }

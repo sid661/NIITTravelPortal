@@ -12,9 +12,7 @@ public class Reservation
 {
     private String startDate;
     private String endDate;
-    private int roomId;
-    private int guestId;
-    private int price;
+
 
 
 

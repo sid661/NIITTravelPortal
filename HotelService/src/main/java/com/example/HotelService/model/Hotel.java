@@ -23,6 +23,6 @@ private Amenities amenities;
 private Address address;
 private List<Room> room;
 private List<Review> review;
-private Reservation reservation;
+
 
 }
