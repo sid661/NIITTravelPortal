@@ -596,6 +596,8 @@ ratingfilterd:boolean=false;
       {
         tempratingfileter=this.filterHotel;
       }
+      
+      
      
       for(let i=0;i<this.filterHotel.length;i++)
       {
@@ -616,6 +618,8 @@ ratingfilterd:boolean=false;
        }
       
       }
+      console.log(tempratingfileter);
+      
       this.filterHotel=tempratingfileter;
     }
     this.result=this.filterHotel.length

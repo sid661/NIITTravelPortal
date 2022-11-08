@@ -64,6 +64,9 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatMenuModule} from '@angular/material/menu';
 import { RoomComponent } from './component/room/room.component';
 import { ReviewComponent } from './component/review/review.component';
+import { EdithotelComponent } from './component/edithotel/edithotel.component';
+import { MakereservationhotelComponent } from './component/makereservationhotel/makereservationhotel.component';
+import { BookroomComponent } from './component/bookroom/bookroom.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +94,10 @@ import { ReviewComponent } from './component/review/review.component';
     RatingComponent,
     PackageRegistrationComponent,
     RoomComponent,
-    ReviewComponent
+    ReviewComponent,
+    EdithotelComponent,
+    MakereservationhotelComponent,
+    BookroomComponent
  
   ],
   imports: [

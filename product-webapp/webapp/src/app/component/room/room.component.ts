@@ -17,7 +17,8 @@ export class RoomComponent implements OnInit {
       roomtype:new FormControl('',[Validators.required]),
       noOfBeds:new FormControl('',[Validators.required]),
       price:new FormControl('',[Validators.required]),
-      roomavailable:new FormControl('',[Validators.required])
+      
+      roomid:new FormControl('',[])
         
 
     })
@@ -35,19 +36,32 @@ export class RoomComponent implements OnInit {
     this.userFile = f;
   }
 
-  saveData() {
+  saveData() 
+  {
     
-    const u = this.RegisterRoom.value;
-    console.log("Value of u ", u);
+
+    let totalrooms=this.allhoteldetails.room.length;
+    let data={
+      "roomid":totalrooms+1,
+      "roomtype":this.RegisterRoom.value.roomtype,
+      "noOfBeds":this.RegisterRoom.value.noOfBeds,
+      "price":this.RegisterRoom.value.price
+     }
+    
+    
     var formData = new FormData();
-    formData.append('details', JSON.stringify(u));
+    formData.append('details', JSON.stringify(data));
     formData.append('file', this.userFile);
     this.hotelservice.saveRoom(formData).subscribe((response: any) => {
       console.log(response);
     })
   }
-
-  ngOnInit(): void {
-  }
+ allhoteldetails:any;
+  ngOnInit(): void 
+  {
+    this.hotelservice.getHotel().subscribe((subscriber)=>{
+      this.allhoteldetails=subscriber;
+  })
+}
 
 }

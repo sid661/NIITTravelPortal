@@ -33,7 +33,19 @@ export class HotelService
   }
   saveRoom(room:any)
   {
-    return this.http.post("http://localhost:8082/hotelservice/addroom/Imperial",room)
+    return this.http.post("http://localhost:8084/hotelservice/addroom/HotelHarry",room)
+  }
+  updateHotel(data:any)
+  {
+    return this.http.put("http://localhost:8084/hotelservice/updatehoteldetails/HotelPalace",data)
+  }
+  getHotel()
+  {
+    return this.http.get("http://localhost:8084/hotelservice/gethotelbyname/HotelHarry")
+  }
+  getAllRooms()
+  {
+    return this.http.get("http://localhost:8084/hotelservice/getallrooms/HotelHarry")
   }
 
   constructor(private http:HttpClient) { }
