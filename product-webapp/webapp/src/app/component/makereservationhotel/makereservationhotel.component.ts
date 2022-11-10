@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HotelService } from 'src/app/service/hotel.service';
 
 @Component({
@@ -8,12 +9,19 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class MakereservationhotelComponent implements OnInit {
 
-  constructor(private hotelservice:HotelService) { }
+  constructor(private hotelservice:HotelService,private router:Router ) { }
 result=0;
 Rooms:any;
+isvalid:boolean=false;
 availablerooms:any[]=[];
 filterrooms:any[]=[];
-
+allhoteldetails:any;
+amenities:any;
+bookRoom(roomid:any)
+{
+  this.hotelservice.roomid=roomid;
+  this.router.navigate(['bookroom'])
+}
   ngOnInit(): void 
   {
     let today : Date = new Date();
@@ -46,6 +54,10 @@ filterrooms:any[]=[];
 
     this.filterrooms=this.availablerooms;
     this.result=this.availablerooms.length;
+  })
+  this.hotelservice.getHotel().subscribe((subscriber)=>{
+    this.allhoteldetails=subscriber
+    this.amenities=this.allhoteldetails.amenities;
   })
   }
   checked1k:boolean=false;
@@ -111,5 +123,13 @@ filterrooms:any[]=[];
    } 
    this.result=this.filterrooms.length;
   }
+
+
+
+
+  // tiles = [
+  //   {text: 'One', cols: 1, rows: 1, color: '#142A5C'}
+   
+  // ];
 
 }

@@ -1,20 +1,93 @@
+/* .cabcontainer{
+    margin-top: 300px;
+   
+    
+}
+.example-margin
+{
+   font-size: 19px;
+   margin-block: 3px;   
+}
+.result{
+    background-color: whitesmoke;
+    margin-top: -5px;
+}
+.text{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top:0px;
+}
+.basic-container
+{
+    width: 78%;
+    background-color: rgb(165, 165, 165,0.3);
+   max-height: 100vh;
+    margin-left: 310px;
+    margin-top: -357px;
+    display: block;
+
+    
+}
+.example-card{
+    width: 100%;
+    background-color:transparent;
+    margin-top: 100px;
+    
+}
+.main{
+width:800px;
+
+
+}
+.card
+{
+    width: 800px;
+    background-color: red;
+}
+.card_content{
+    width: 100%;
+    background-color: green;
+}
+.action{
+    background-color: pink;
+} */
+.vl {
+    border-left: 2px solid gray;
+    height: 336px;
+    position: absolute;
+    left: 80%;
+    margin-left: -3px;
+    top: 0;
+  }
+  .v2 {
+    border-left: 2px solid gray;
+    height: 336px;
+    position: absolute;
+    left: 40%;
+    margin-left: -3px;
+    top: 0;
+  }
+
 .cabcontainer{
     margin-top: 230px;
+    
     
 }
 .cardcontainer:hover{
    
     border: 1.5px solid #21618C ;
-    background:rgb(133, 193, 233,0.4);
+    background:rgba(122, 186, 229, 0.4);
 }
 .cardcontainer{
+
     margin-top: 13px;
     margin-left:5px;
-    background-color:aliceblue;
+    background-color:white;
     border-radius: 5px;
     border: solid 1px gray;
-    width: 1035px;
-    height: 325x;
+    width: 1135px;
+    height: 425x;
    
 }
 /* .hotelName{
@@ -60,16 +133,22 @@ font-size: 30px;
     font-size: 30px;
 }
 .filtercontainer{
-    width: 100px;
+    width: 250px;
     margin-top: -18px;
     background-color: white;
     font-weight: 600;
     font-size: 25px;
     margin-left:30px;
+    
 
 
 
 }
+.column
+{
+    z-index: 0;
+}
+
 /* .mat-form-field + .mat-form-field {
     margin-left: 8px;
     width: 30%;
@@ -122,8 +201,25 @@ background-image: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
     width: 50px;
     height: 50px;
    margin-left: 10px;
-   margin-top:17px;
+   margin-top:0px;
    position: absolute;
 }
+.roomtype
+{
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.image
+{
+    
+        height: 280px;
+        width: 400px;
+        border-radius: 10px;
+        
+    
+}
+
 
 
