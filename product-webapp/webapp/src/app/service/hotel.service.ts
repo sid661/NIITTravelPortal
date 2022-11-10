@@ -10,10 +10,12 @@ export class HotelService
 
   saveHotelUrl="http://localhost:8084/hotelservice/registerhotel/joelraj97@gmail.com";
   saveReviewUrl="http://localhost:8082/hotelservice/addreview/Palace";
-  ​
-  ​
+
     username="harry";
-  ​
+ hotelName:string="";
+ roomid=0;
+
+
     saveREview(data:any)
     {
       console.log(data);
@@ -33,19 +35,23 @@ export class HotelService
   }
   saveRoom(room:any)
   {
-    return this.http.post("http://localhost:8084/hotelservice/addroom/HotelHarry",room)
+    return this.http.post("http://localhost:8084/hotelservice/addroom/"+this.hotelName,room)
   }
   updateHotel(data:any)
   {
-    return this.http.put("http://localhost:8084/hotelservice/updatehoteldetails/HotelHArry",data)
+    return this.http.put("http://localhost:8084/hotelservice/updatehoteldetails/"+this.hotelName,data)
   }
   getHotel()
   {
-    return this.http.get("http://localhost:8084/hotelservice/gethotelbyname/HotelHarry")
+    return this.http.get("http://localhost:8084/hotelservice/gethotelbyname/"+this.hotelName)
   }
   getAllRooms()
   {
-    return this.http.get("http://localhost:8084/hotelservice/getallrooms/HotelHarry")
+    return this.http.get("http://localhost:8084/hotelservice/getallrooms/"+this.hotelName)
+  }
+  bookroom(data:any)
+  {
+   return this.http.post("http://localhost:8084/hotelservice/makereservation/"+this.hotelName+"/"+this.roomid,data)
   }
 
   constructor(private http:HttpClient) { }
