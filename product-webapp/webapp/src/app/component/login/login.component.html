@@ -1,46 +1,49 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
 <div fxLayout="row" class="register-container">
-	<div fxFlex="50%" class="hello">
-		<div class="text">Welcome to NIIT Travel Portel
-			<h4 style="margin-left: 15%;font-size:69%">Know more about your city</h4>
-		</div>
+	
+	<div fxFlex="40%" class="hello" style="border:1px solid black ;">
+	
+		
 	</div>
 
-	<mat-card fxFlex="50%" class="register-card" fxLayout="column" fxLayoutGap="2.5%">
-
-		<div fxLayout="row">
+	<mat-card fxFlex="50%" class="register-card" style="border:1px solid black ; " fxLayout="column">
+		<div>
+		<div fxLayout="row" (click)="route()">
 			<div fxFlex="36%"></div>
-			<div fxflex="20%" style="font-weight: bolder; font-size:170%; margin-top:20px">Login YourSelf</div>
+			<div fxflex="20%" style="font-weight: bolder; font-size:50px; margin-top:30px">Login</div>
+				<img src="../assets/2022-10-33.png" height="77px" >
 		</div>
 		<div fxLayout="row">
-			<div fxFlex="42%"></div>
-			<div fxFlex="30%">
+			<div fxFlex="36%"></div>
+			<div fxFlex="30%" style="margin-top:20px ;">
 				<img src="https://cdn4.iconfinder.com/data/icons/internet-37/48/65-512.png" height="50px" width="50px">
 			</div>
 
 		</div>
-		<div fxLayout="row">
+		<div fxLayout="row" style="margin-top:8px ;">
 			<div fxFlex="39%"></div>
-			<div fxFlex="26%" class="social-container" fxLayout="row">
-				<a href="#" class="social"><i class="fa fa-facebook-square fa-4x"></i></a>
-				<a href="#" class="social" style="margin-left: 32px;"><i class="fab fa fa fa-envelope fa-4x"></i></a>
+			<div fxFlex="26%"  fxLayout="row">
+				<i class="fa fa-facebook-square fa-4x" onclick="FBlogin()">Fb</i>
+				<i class="fab fa fa fa-envelope fa-4x" style="margin-left: 15px;"></i>
+				<script src="src/app/login.js"></script>
 			</div>
 
 		</div>
 
 			<div  [formGroup]="loginForm" fxLayou="column">
-				<div fxFlex="40%"></div>
+				<div fxFlex="33%"></div>
 				<div fxFlex="60%">
 			<mat-radio-group  fxLayout="row" fxLayoutGap="5%" formControlName="userRole">
 
-				<mat-radio-button value="USER" [checked]='true'>New User</mat-radio-button>
+				<mat-radio-button value="USER" [checked]='true'>User</mat-radio-button>
 				<mat-radio-button value="SERVICEPROVIDER">Service Provider</mat-radio-button>
 
 			</mat-radio-group>
 
 		</div>
-			<div fxLayout="column" style="margin-top: 40px;margin-left:-500px ;width:300px">
+			<div fxLayout="column" style="margin-top: 40px;margin-left:-510px ;width:500px">
 
 			<mat-form-field appearance="outline">
 				<mat-label>Email</mat-label>
@@ -52,7 +55,7 @@
 			<mat-form-field appearance="outline">
 				<mat-label>Password</mat-label>
 				<input type="password" matInput formControlName="password" placeholder="Enter Password">
-				<mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
+			
 				<mat-error *ngIf="loginForm.controls['password'].hasError('required')">
 					Password is Required
 				</mat-error>
@@ -65,27 +68,27 @@
 			</mat-form-field>
 		</div>
 		</div>
-			<div fxLayout="row">
-				<div fxFlex="40%"></div>
+			<div fxLayout="column">
+				<div fxFlex="36%" (click)="open()">Forgot Password</div>
 
-				<button fxFlex="25%" mat-raised-button color="primary" [disabled]="loginForm.invalid"
+				<button style="width: 200px;margin-left:200px;" mat-raised-button color="primary" [disabled]="loginForm.invalid"
 					(click)="login()">Login</button>
 				</div>
 
 
-		
-		<div fxLayout="row">
+		 
+		<div fxLayout="row" style="margin-top:17px ;">
 			<div fxFlex="20% "></div>
-			<div fxFlex="57%">
-				Don't have an account! <a class="text2" href="register">Create New
-					One</a>
+			<div fxFlex="57%" style="font-size: 18px;">
+				Don't have an account! <a class="text2"  style="font-size: 22px;color: blueviolet;" href="register">Create 
+					Account</a>
 			</div>
 
 		</div>
 
 
 
-
+	</div>
 
 
 

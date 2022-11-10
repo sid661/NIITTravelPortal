@@ -1,10 +1,14 @@
 body {
+ 
   background: #fbfbfd;
+  margin-top: 100px;
+  
  
 }
 
 .new_footer_area {
-  background: #fbfbfd;
+  background: hsl(240, 33%, 99%);
+  margin-top: 140px;
 }
 
 

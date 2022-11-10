@@ -10,16 +10,21 @@ export class LoginService {
 
   constructor(private http:HttpClient,private router:Router) { }
 
-  loginUrl="http://localhost:8081";
+  loginUrl="http://localhost:9000/user/login";
 
-  // login(data:User)
-  // {
-  //   return this.http.post(this.loginUrl,data);
-  // }
+  
 
   generateToken(credentials:User){
-    return this.http.post(`${this.loginUrl}/login`,credentials)
+    console.log("credentials",credentials);
+    
+    return this.http.post(this.loginUrl,credentials)
   
+  }
+
+  forgot(data:any)
+  {
+    console.log(data)
+    return this.http.post("http://localhost:9000/user/forgot-password",data);
   }
 
   // for login user

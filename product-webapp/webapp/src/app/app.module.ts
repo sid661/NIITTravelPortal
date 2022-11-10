@@ -29,7 +29,7 @@ import { PlacesComponent } from './component/places/places.component';
 
 
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -46,7 +46,7 @@ import { CabsComponent } from './component/cabs/cabs.component';
 import { ExploreComponent } from './component/explore/explore.component';
 import { HotelsComponent } from './component/hotels/hotels.component';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -62,6 +62,25 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatMenuModule} from '@angular/material/menu';
+import { RoomRegistrationComponent } from './component/room-registration/room-registration.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
+import { ViewServiceComponent } from './component/view-service/view-service.component';
+import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
+import { InformationComponent } from './component/information/information.component';
+import { ResturantComponent } from './component/resturant/resturant.component';
+import { CabRegistrationComponent } from './component/cab-registration/cab-registration.component';
+import { BookroomComponent } from './component/bookroom/bookroom.component';
+import { EdithotelComponent } from './component/edithotel/edithotel.component';
+
+import { LayoutModule } from '@angular/cdk/layout';
+import { MakereservationComponent } from './component/makereservation/makereservation.component';
+import { ReviewComponent } from './component/review/review.component';
+import { Navbar3Component } from './navbar3/navbar3.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +106,22 @@ import {MatMenuModule} from '@angular/material/menu';
     ViewhotelComponent,
     ImageComponent,
     RatingComponent,
-    PackageRegistrationComponent
+    PackageRegistrationComponent,
+    RoomRegistrationComponent,
+  
+    ViewServiceComponent,
+        HotelDetailComponent,
+        InformationComponent,
+        ResturantComponent,
+        CabRegistrationComponent,
+        BookroomComponent,
+        EdithotelComponent,
+        MakereservationComponent,
+        ReviewComponent,
+        Navbar3Component,
+        ForgotPasswordComponent,
+    
+    
  
   ],
   imports: [
@@ -96,6 +130,7 @@ import {MatMenuModule} from '@angular/material/menu';
     ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
+    SocialLoginModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -104,10 +139,12 @@ import {MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     Ng5SliderModule,
     NgxMaterialTimepickerModule,
     MatRadioModule,
     MatSelectModule,
+    MatButtonToggleModule,
     MatProgressBarModule,
     MatSidenavModule,
     MatButtonModule,
@@ -119,13 +156,29 @@ import {MatMenuModule} from '@angular/material/menu';
     MatNativeDateModule,
     MatDatepickerModule,
     FlexLayoutModule,
-    MatMenuModule
+    MatMenuModule,
+    LayoutModule,
+  
 
    
 
    
   ],
-  providers: [],
+//   providers:[{
+//     provide: 'SocialAuthServiceConfig',
+//     useValue: {
+//       autoLogin: false,
+//       providers: [
+//         {
+//           id: GoogleLoginProvider.PROVIDER_ID,
+//           provider: new GoogleLoginProvider(
+//             '202101362455-uvcalo58ivtrr77ofeio9j48le1o9hc3.apps.googleusercontent.com'
+//           ),
+//         },
+//       ],
+//     } as SocialAuthServiceConfig,
+//   },
+// ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

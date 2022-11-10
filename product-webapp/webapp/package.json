@@ -10,6 +10,8 @@
   },
   "private": true,
   "dependencies": {
+    "@abacritt/angularx-social-login": "^1.2.5",
+    "@agm/core": "^3.0.0-beta.0",
     "@angular-eslint/schematics": "^14.1.2",
     "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.2.2",
@@ -24,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@coreui/angular": "^4.2.9",
+    "angularx-social-login": "^4.1.0",
     "moment": "^2.29.4",
     "ng5-slider": "^1.2.6",
     "ngx-material-timepicker": "^5.5.3",

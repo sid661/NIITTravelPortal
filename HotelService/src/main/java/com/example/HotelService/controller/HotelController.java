@@ -2,26 +2,29 @@ package com.example.HotelService.controller;
 
 import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
-import com.example.HotelService.model.Hotel;
-import com.example.HotelService.model.Overview;
-import com.example.HotelService.model.Review;
-import com.example.HotelService.model.Room;
+import com.example.HotelService.model.*;
+import com.example.HotelService.repository.HotelRepository;
 import com.example.HotelService.service.HotelService;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
+import java.util.List;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/hotelservice/")
+@RequestMapping("/hotel/")
 public class HotelController
 {
     private ResponseEntity responseEntity;
     private HotelService hotelService;
-    Gson gson=new Gson();
+
+    @Autowired
+    HotelRepository hotelRep;
 
     @Autowired
     public HotelController(HotelService hotelService)
@@ -34,8 +37,9 @@ public class HotelController
     {
         try
         {
-            Hotel hotel=gson.fromJson(details,Hotel.class);
+//            Hotel hotel=gson.fromJson(details,Hotel.class);
             //Hotel hotel=new Hotel();
+            Hotel hotel=new ObjectMapper().readValue(details,Hotel.class);
 
             responseEntity = new ResponseEntity<>(hotelService.registerHotelDetails(hotel,email,file.getBytes()), HttpStatus.OK);
 
@@ -52,25 +56,11 @@ public class HotelController
         }
         return responseEntity;
     }
-
-    /*  @PostMapping("registerhotel/{email}")
-      public ResponseEntity<?> saveHotel(@RequestBody Hotel hotel,@PathVariable String email) throws HotelAlreadyExistsException
-      {
-          try
-          {
-              hotelService.registerHotel(hotel,email);
-              responseEntity=new ResponseEntity<>(hotel, HttpStatus.CREATED);
-          }
-          catch (HotelAlreadyExistsException hotelAlreadyExistsException)
-          {
-              responseEntity=new ResponseEntity<>(hotelAlreadyExistsException,HttpStatus.CONFLICT);
-          }
-          catch (Exception e)
-          {
-              responseEntity=new ResponseEntity<>(e,HttpStatus.INTERNAL_SERVER_ERROR);
-          }
-          return responseEntity;
-      }*/
+    @GetMapping("/search/{hotelName}")
+    public ResponseEntity<?> findRestaurant(@PathVariable String hotelName, Principal principal) {
+        List<Hotel> myList = hotelRep.findByHotelNameContaining(hotelName);
+        return responseEntity = new ResponseEntity(myList, HttpStatus.OK);
+    }
         @GetMapping("hotelbycity/{city}")
     public ResponseEntity<?>  getHotelsByCity(@PathVariable String city) throws HotelNotFoundException
     {
@@ -141,6 +131,7 @@ public class HotelController
     @GetMapping("gethotelbyname/{hotelName}")
     public ResponseEntity<?> gethotelByName(@PathVariable String hotelName) throws HotelNotFoundException
     {
+        System.out.println("hello"+hotelName);
         try
         {
             responseEntity=new ResponseEntity<>(hotelService.getHotelByHotelName(hotelName),HttpStatus.OK);
@@ -223,7 +214,7 @@ public class HotelController
     {
         try
         {
-            Room room=gson.fromJson(details,Room.class);
+            Room room=new ObjectMapper().readValue(details,Room.class);
             responseEntity = new ResponseEntity<>(hotelService.addRoom(hotelName,room,file.getBytes()), HttpStatus.CREATED);
             ;
         }
@@ -251,6 +242,10 @@ public class HotelController
     ResponseEntity<Hotel> findByprice(@PathVariable int price){
         return responseEntity = new ResponseEntity<>(hotelService.findByRoomPrice(price),HttpStatus.OK);
     }
-
+    @GetMapping("filter")
+    ResponseEntity<Hotel> filter(@RequestBody FilterData filterData){
+        return responseEntity= new ResponseEntity(hotelService.findByHotelCategoryAndRoomPriceAndReviewRating
+                (filterData.getHotelCategory(),filterData.getPrice(),filterData.getRating()),HttpStatus.OK);
+    }
 
 }

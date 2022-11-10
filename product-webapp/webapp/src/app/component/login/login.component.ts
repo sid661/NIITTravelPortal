@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Rounded } from '@coreui/angular/lib/utilities/rounded.type';
+
 import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/service/login.service';
-
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+declare var FB:any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +14,7 @@ import { LoginService } from 'src/app/service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService:LoginService,private router:Router) { }
+  constructor(private loginService:LoginService,private router:Router,private dialog:MatDialog) { }
   loginForm=new FormGroup({
     email:new FormControl(""),
     password:new FormControl(""),
@@ -23,10 +25,18 @@ user:User=new User();
   ngOnInit(): void {
   }
 
+  f()
+  {
+    new FB();
+  }
 
-
-
-    
+  route(){
+    this.router.navigate(['']);
+  }
+  signInWithGoogle()
+  {
+    //this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
   
 login()
 {
@@ -44,10 +54,20 @@ login()
   },
   ()=>
   {
-    console.log("invalid credentails");
+    alert("invalid credentails");
     
   }
   )
 }
+
+open()
+{ 
+  this.dialog.open(ForgotPasswordComponent,{
+    width: '500px',
+    height: '300px'
+  });
+
+}
+
 
 }

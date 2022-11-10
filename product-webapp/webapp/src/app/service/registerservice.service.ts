@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class RegisterserviceService {
 
-  registerUser="http://localhost:8080/registerservice/registeruser";
-registerServiceProviderUrl="http://localhost:8080/registerservice/registerserviceprovider";
+  registerUser="http://localhost:9000/register/registeruser";
+registerServiceProviderUrl="http://localhost:9000/register/registerserviceprovider";
   constructor(private httpClient: HttpClient) { }
   register(data: any)
 {
@@ -21,15 +21,7 @@ serviceregister(data: any)
   return this.httpClient.post(this.registerServiceProviderUrl,data);
 }
 
-savePackage(data:any)
-{
-  return this.httpClient.post("http://localhost:8072/Package/save",data)
-}
 
-getPackage()
-{
-  return this.httpClient.get("http://localhost:8072/Package/showAll")
-}
 
 registerServiceProvider(data:any)
 {

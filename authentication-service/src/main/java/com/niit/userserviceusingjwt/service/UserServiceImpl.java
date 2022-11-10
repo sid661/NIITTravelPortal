@@ -54,6 +54,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User  getUser(String email) {
+        return userRepository.findById(email).get();
+
+    }
+
+    @Override
+    public ServiceProvider getProvider(String email) {
+        return repository.findById(email).get();
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

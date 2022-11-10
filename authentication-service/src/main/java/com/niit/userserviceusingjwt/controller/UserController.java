@@ -1,12 +1,11 @@
 package com.niit.userserviceusingjwt.controller;
 
 import com.niit.userserviceusingjwt.exception.ServiceProviderAlreadyExist;
-import com.niit.userserviceusingjwt.exception.UserAlreadyExistException;
 import com.niit.userserviceusingjwt.exception.UserNotFoundException;
 import com.niit.userserviceusingjwt.model.ServiceProvider;
 import com.niit.userserviceusingjwt.model.User;
+import com.niit.userserviceusingjwt.rabbitMq.Producer;
 import com.niit.userserviceusingjwt.rabbitMq.UserDto;
-import com.niit.userserviceusingjwt.service.EmailService;
 import com.niit.userserviceusingjwt.service.SecurityTokenGenerator;
 import com.niit.userserviceusingjwt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 @RestController
-@CrossOrigin
+@RequestMapping("/user")
 public class UserController {
 
     private ResponseEntity responseEntity;
     private UserService userService;
     private SecurityTokenGenerator securityTokenGenerator;
+
     @Autowired
-    private EmailService service;
+    Producer producer;
+
     @Autowired
     public UserController(UserService userService, SecurityTokenGenerator securityTokenGenerator) {
         this.userService = userService;
@@ -52,7 +53,7 @@ public class UserController {
             responseEntity=new ResponseEntity<>(map, HttpStatus.OK);
         } catch (Exception e)
         {
-            responseEntity=new ResponseEntity<>("Try after Sometime!!",HttpStatus.INTERNAL_SERVER_ERROR);
+            responseEntity=new ResponseEntity<>("Try after Sometime!!",HttpStatus.NOT_FOUND);
         }
         return responseEntity;
     }
@@ -68,5 +69,27 @@ public class UserController {
         List<User> list=userService.getAllUsers();
         responseEntity=new ResponseEntity<>(list,HttpStatus.FOUND);
         return responseEntity;
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> getPassword(@RequestBody UserDto userDto) throws UserNotFoundException{
+        try {
+            System.out.println("called");
+            if (userDto.getRole().toString().equals("USER")) {
+                producer.sendMessageToRabbitMqServer(userDto.getEmail());
+                responseEntity = new ResponseEntity(userService.getUser(userDto.getEmail()), HttpStatus.OK);
+                return responseEntity;
+            } else if((userDto.getRole().toString().equals("SERVICEPROVIDER"))) {
+
+                responseEntity = new ResponseEntity(userService.getProvider(userDto.getEmail()), HttpStatus.OK);
+                producer.sendMessageToRabbitMqServer(userDto.getEmail());
+                return responseEntity;
+            }
+        }
+        catch (Exception e)
+        {
+          return   responseEntity=new ResponseEntity("Error!!! Try after sometime",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    return responseEntity;
     }
 }

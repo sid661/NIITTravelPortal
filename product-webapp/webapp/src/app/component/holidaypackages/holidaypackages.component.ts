@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,13 +10,17 @@ import { Router } from '@angular/router';
 export class HolidaypackagesComponent implements OnInit {
 
   constructor(private router:Router) { }
-
+  packagesearch=new FormGroup({
+    package:new FormControl("")
+  })
   ngOnInit(): void {
   }
 
   search()
   {
-    this.router.navigate(['package'])
+    console.log("package",this.packagesearch.value.package);
+    
+    this.router.navigate(['package/',this.packagesearch.value.package])
 
   }
 

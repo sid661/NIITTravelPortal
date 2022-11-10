@@ -1,82 +1,38 @@
-<!-- <mat-tab-group mat-align-tabs="center" fxFlex="100%" class="placescontainer">
-  <mat-tab label="Guest User" fxFlex="50%"  fxLayoutGap="5%">
-<div *ngFor="let place of placeArray" >
-    <mat-card style="margin:20px;margin-left:10px">
-        <img  [src]="retrieveImage" height="200px" width="200px" align="left">
-          <mat-card-title style="margin-left:140px ;">{{place.place}}</mat-card-title>
-          
-          <mat-card-subtitle style="margin-left:140px; font-weight: bolder;color: black;">
-           <h3>{{place.city}} </h3>
-          </mat-card-subtitle>
-          <mat-list >
-            <div style="display: inline-flex; ">
-            
-            
-            <h4 style="margin-left: 90px;"> Rs {{place.description}}/km</h4>
-          </div>
-          <br>
-            <div style="display: inline-flex; ">
-          
-          </div>
-          <br>
-            <div style="display: inline-flex; ; ">
-            
-            <h4 style="margin-left: 20px;">Cancellation</h4>
-            <h4 style="margin-left: 90px;">Before 6 hour from departure </h4>
-          </div>
-          </mat-list>
-          <mat-card-actions align="end">
-            <button style="border-radius: 150px; background-color: lightblue;">BOOK NOW</button>
-          </mat-card-actions>
-        </mat-card>
-        <br>
-      </div> -->
-    
-        
-
-         
- <div class="placescontainer">
-<mat-card style="margin:20px;margin-left:10px;border-radius:10px" >
-    
-  <img mat-card-2xl-image style="border-radius: 10px;" src="https://cdn.pixabay.com/photo/2015/07/29/22/56/taj-mahal-866692__340.jpg"  align="left">
-
-    <mat-card-title style="margin-left:300px ;"><mat-icon style="color: rgb(255, 0, 0);"> edit_location</mat-icon><u>Sunrise Taj Mahal Trip from Delhi all Inclusive</u></mat-card-title>
-    
-    <h4> <mat-card-subtitle style="margin-left:550px">By Driver India Private Tours</mat-card-subtitle></h4>
-    <ul style="margin-left:300px" >
-      <img mat-card-xsm-image  style="margin-left:20px"src="https://static.vecteezy.com/system/resources/thumbnails/003/355/389/small/five-5-star-rank-sign-illustration-free-vector.jpg" height="20px" > 
-      <mat-card-subtitle style="margin-left:210px">1,312    REVIEWS</mat-card-subtitle>
-      <div  style="margin-left:220px;">
-          
-        <mat-card-subtitle >
-          <div>Make a tour to Agra easy and stress-free with round-trip private transportation and a dedicated guide. Make your own schedule for pickup and drop-off at your New Delhi hotel; move at your own pace while exploring the landmarks in Agra. Lunch at a top Agra restaurant and entry fees to sites visited are included in the tour price.</div>
-        </mat-card-subtitle>
-       from<h1> <b>₹10,877.63</b> </h1>
-      <h4 style="margin-top: -20px;">per adult (price varies by group size)</h4>
-
-      <mat-icon>query_builder</mat-icon>
-      <h4 style="margin-top:-25px; margin-left:30px;">Duration:11–12 hours
-         </h4>
-         <mat-icon>alarm</mat-icon>
-      <h4 style="margin-top:-25px; margin-left:30px;">Start time: Check availability
-         </h4>
-         <mat-icon>perm_device_information</mat-icon>
-      <h4 style="margin-top:-25px; margin-left:30px;">Ticket type:Mobile
-         </h4>
-         <mat-icon>language</mat-icon>
-      <h4 style="margin-top:-25px; margin-left:30px;">German, English, Italian, French, Spanish
-         </h4>
+<div class="placescontainer">
+  <h1 class="text">Showing Famous Places of {{city}} <span style="font-weight: 500;font-size:19px"> ({{result}} Results)</span></h1>
+ <mat-card  *ngFor="let place of placeArray" fxLayout="row">
+  <div fxFlex="30%" class="image">
+   <app-image [image]="place.image"></app-image>
   </div>
-      <mat-card-actions align="end">
-          <button mat-button style="border-radius: 10px; background-color: yellow;border: 1px solid black;"><b>Check availability</b></button>
-      </mat-card-actions>
-      </ul>
-</mat-card>
-</div>
-      <br>   
-            
-        
-        
-       
-      
-
+  <div>
+     <mat-card-title ><mat-icon style="color: rgb(255, 0, 0);"> edit_location</mat-icon><u>{{place.place}}</u></mat-card-title>
+     <h4> <mat-card-subtitle class="text">{{place.city}}</mat-card-subtitle></h4>
+     <ul  >
+       <img mat-card-xsm-image  src="https://static.vecteezy.com/system/resources/thumbnails/003/355/389/small/five-5-star-rank-sign-illustration-free-vector.jpg" height="20px" >
+       <mat-card-subtitle >1,312    REVIEWS</mat-card-subtitle>
+       <div fxLayout="column">
+         <mat-card-subtitle class="text2">
+           <div >{{place.description}}</div>
+         </mat-card-subtitle>
+        Things to do<h3 *ngFor="let x of place.thingToDo"> <b>{{x}}</b> </h3>
+       <mat-icon>query_builder</mat-icon>
+       <h4 >Timings: {{place.timings}
+          </h4>
+          <mat-icon>room</mat-icon>
+       <h4 >Near By Places: {{place.nearByPlaces}}
+          </h4>
+          <mat-icon>perm_device_information</mat-icon>
+       <h4 >Ticket type: {{place.ticketType}
+          </h4>
+          <mat-icon>language</mat-icon>
+       <h4 >How To Reach: {{place.howToReach}}
+          </h4>
+   </div>
+       <mat-card-actions align="end">
+           <button mat-button style="border-radius: 10px; background-color: yellow;border: 1px solid black;"><b>Check availability</b></button>
+       </mat-card-actions>
+       </ul>
+      </div>
+ </mat-card>
+ </div>
+       <br>

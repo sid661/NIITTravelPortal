@@ -1,6 +1,6 @@
 package com.niit.userserviceusingjwt.service;
 
-import com.niit.userserviceusingjwt.model.User;
+
 import com.niit.userserviceusingjwt.rabbitMq.UserDto;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

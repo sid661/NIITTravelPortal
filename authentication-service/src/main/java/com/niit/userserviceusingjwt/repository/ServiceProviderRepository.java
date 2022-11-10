@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ServiceProviderRepository extends JpaRepository<ServiceProvider,String > {
 
     ServiceProvider findByEmailAndPassword(String email, String password);
+    ServiceProvider findByEmail(String email);
 }

@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CabRegistrationComponent } from './component/cab-registration/cab-registration.component';
 import { CabComponent } from './component/cab/cab.component';
 import { CabsComponent } from './component/cabs/cabs.component';
 import { ExploreComponent } from './component/explore/explore.component';
 import { HolidaypackagesComponent } from './component/holidaypackages/holidaypackages.component';
+import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
 import { HotelComponent } from './component/hotel/hotel.component';
 import { HotelsComponent } from './component/hotels/hotels.component';
+import { InformationComponent } from './component/information/information.component';
 import { LandingpageComponent } from './component/landingpage/landingpage.component';
 import { LoginComponent } from './component/login/login.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
@@ -15,34 +18,49 @@ import { PlacesComponent } from './component/places/places.component';
 import { RegisterComponent } from './component/register/register.component';
 import { RollerComponent } from './component/roller/roller.component';
 import { Roller2Component } from './component/roller2/roller2.component';
+import { RoomRegistrationComponent } from './component/room-registration/room-registration.component';
+import { ViewServiceComponent } from './component/view-service/view-service.component';
 import { ViewhotelComponent } from './component/viewhotel/viewhotel.component';
+
+
 
 const routes: Routes = [
 
-  {path:'',component:LandingpageComponent,children:[{
-    path:'',component:HotelsComponent},
-    {path:'hotel1',component:HotelComponent},
+  {path:'',component:LandingpageComponent,children:[
+     {path:'',component:RoomRegistrationComponent},
+    
   {path:'navbar',component:NavbarComponent},
   {path:'hotels',component:HotelsComponent},
   {path:'cabs',component:CabsComponent},
-  {path:'cab',component:CabComponent},
+  {path:'cab/:name',component:CabComponent},
   {path:'explore',component:ExploreComponent},
   {path:'holidaypackage',component:HolidaypackagesComponent
   },
+  {path:'hotel1',component:HotelComponent},
   {path:'places',component:PlacesComponent},
-  {path:'package',component:PackageComponent},
-  {path:'viewhotel',component:ViewhotelComponent}
+  {path:'package/:name',component:PackageComponent},
+  {path:'viewhotel/:name',component:ViewhotelComponent},
+  {path:"view",component:ViewServiceComponent},
+  {path:"detail/:name",component:HotelDetailComponent},
+  {path:"reg",component:PackageRegistrationComponent},
+  {path:'cabreg',component:CabRegistrationComponent},
+  {
+    path:'hotel',component:HotelComponent},
+    {path:'information/:name',component:InformationComponent}
 ]},
   
   {path:'login',component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  {path:"reg",component:PackageRegistrationComponent}
+
+   
+  
   
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
 })
 export class AppRoutingModule { }
 

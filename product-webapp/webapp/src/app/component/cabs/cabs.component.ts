@@ -38,21 +38,28 @@ export const MY_FORMATS = {
   ],
 })
 export class CabsComponent implements OnInit {
-  date = new FormControl(moment());
+  pickUpDate = new FormControl(moment());
   serializedDate = new FormControl(new Date().toISOString());
   constructor(private router:Router) { }
   cabsearch = new FormGroup({
+    tripType:new FormControl(""),
+    
+    dropDate:new FormControl(""),
+    start:new FormControl(""),
+    destination:new FormControl(""),
+    time:new FormControl("")
     
   })
 
   ngOnInit(): void {
   }
   searchcabmethod(){
-
+   
   }
   search()
   {
+  
+    this.router.navigate(['cab/',this.cabsearch.value.start])
     
-    this.router.navigateByUrl("cab")
   }
 }

@@ -1,0 +1,36 @@
+<div class="container" *ngIf="loggedIn && userRole=='USER' || !loggedIn" >
+    <h1 class="heading">Trending Restaurants To Visit in Delhi</h1>
+    <div fxLayout="row wrap" fx fxLayoutGap="1%">
+    <mat-card class="example-card"  *ngFor="let restaurant of resturantArray|slice:0:3" >
+      <div class="image">  <app-image [image]="restaurant.image"></app-image ></div>
+        <mat-card-header>
+          
+           <mat-card-title></mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content   class="text" style="font-style:italic ;">
+          
+            {{restaurant.restaurantName}}<br>
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
+<hr>
+<div >
+    <h1 class="heading">Trending Places To Visit in Jaipur</h1>
+    <div fxLayout="row wrap" fxLayoutGap="1%">
+    <mat-card class="example-card"  *ngFor="let place of placeArray|slice:0:3" >
+       <div class="image"><app-image [image]="place.image"></app-image></div>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image" ></div>
+           <!-- <mat-card-subtitle>{{place.place}}</mat-card-subtitle>  -->
+        </mat-card-header>
+        <!-- <img mat-card-image [src]="restaurant1.image" alt="Photo"> -->
+        <!-- <app-restaurantimage [image]="restaurant.image"></app-restaurantimage> -->
+        <mat-card-content class="text" style="font-style:italic ;">
+          {{place.place}}
+          <!-- <UL> <B><U>{{restaurant.speciality}}</U></B><br></UL> -->
+            <!-- <mat-icon>where_to_vote</mat-icon> {{restaurant.howToReach}}   -->
+    </mat-card-content>
+      </mat-card> </div>
+</div>

@@ -1,0 +1,94 @@
+
+<div class="cabcontainer">
+    <div fxLayout="row">
+      <div fxFlex="20%">
+        <mat-toolbar class="filtercontainer">Apply Filters</mat-toolbar>
+        <mat-nav-list>
+  
+          <mat-card class="result">
+            <mat-card-content>
+              <h2 class="example-h2">Price Per Night</h2>
+  
+              <section class="example-section">
+                <mat-checkbox class="example-margin" name="price1k" value="price1k" id="price1k" [(ngModel)]="checked1k" binary="true"  >
+                  0-1500
+                </mat-checkbox><BR>
+                <mat-checkbox class="example-margin" name="price2k" value="price2k" id="price2k" [(ngModel)]="checked2k" binary="true">
+                  1500-2500
+                </mat-checkbox><BR>
+                <mat-checkbox class="example-margin" name="price3k" value="price3k" id="price3k" [(ngModel)]="checked3k" binary="true">
+                  2500-4000
+                </mat-checkbox><BR>
+                <mat-checkbox class="example-margin" name="price4k" value="price4k" id="price4k" [(ngModel)]="checked4k" binary="true">
+                  4000-Above
+                </mat-checkbox><BR>
+  
+  
+              </section>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="result">
+            <mat-card-content>
+             
+              <button type="submit" class="button" (click)="applyfilter()">APPLY FILTER</button>
+              <!-- <button type="submit">Reset</button> -->
+              <mat-icon class="home-icon">autorenew</mat-icon>
+            </mat-card-content>
+          </mat-card>
+  
+  
+  
+          <!-- <a mat-list-item href="#">Link 1</a>
+            <a mat-list-item href="#">Link 2</a>
+            <a mat-lis mst-item href="#">Link 3</a> -->
+        </mat-nav-list>
+  
+      </div>
+      <div fxLayout="column">
+        <h1 class="text">Showing Rooms  <span style="font-weight: 500;font-size:19px"> ({{result}} Results)</span></h1>
+        <div fxLayout="column" style="margin-top: -11px;">
+          <mat-card *ngFor="let room of filterrooms" class="cardcontainer">
+  
+            <div fxLayout="row">
+              <app-image fxFlex="30%" [image]="room.images"></app-image>
+  
+              <div fxFlex="55%">
+                
+                <div fxLayout="row" class="first">
+  
+                  <mat-card-title class="hotelName">{{room.roomtype}}</mat-card-title>
+                  
+                </div>
+  
+                
+                <mat-list>
+                  <p style="font-weight: 600;font-size:16px;color:dodgerblue">Number of BEds
+                    {{room.noOfBeds}}</p>
+  
+  
+                </mat-list>
+                
+                <!-- <mat-card-actions >
+                  <button style="border-radius: 150px; background-color: lightblue;">BOOK NOW</button>
+                </mat-card-actions> -->
+              </div>
+              <div fxLayout="row">
+                <hr style="height: 110%;margin-top:-14px;width: 1px;line-gap-override: 20;">
+                <div fxLayout="column">
+                  <span class="price">
+                    </span>
+                  <span
+                    style="text-align:center;font-size: 14px;margin-top: 15px;color:darkgray; font-weight: 500;">Prices
+                    Per Night {{room.price}}</span>
+                    <mat-card-actions>
+                      <button class="button1">BOOK NOW</button>
+                    </mat-card-actions>
+                </div>
+                
+              </div>
+            </div>
+  
+          </mat-card>
+  
+        </div>
+      </div>

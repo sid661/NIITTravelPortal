@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
-
+declare var FB:any
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -19,6 +19,11 @@ export class NavbarComponent implements OnInit {
     this.userName = localStorage.getItem("email");
     this.userRole=localStorage.getItem("role");
     
+  }
+
+  f()
+  {
+    new FB();
   }
 
   logoutUser(){

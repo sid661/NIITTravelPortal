@@ -1,0 +1,148 @@
+.hotelcontainer{
+    margin-top: 230px;
+    justify-content: center;
+    
+}
+.cardcontainer:hover{
+   
+    border: 1.5px solid #21618C ;
+    background:rgb(133, 193, 233,0.4);
+   
+}
+.cardcontainer{
+    margin-top: 13px;
+    margin-left:250px;
+    background-color:aliceblue;
+    border-radius: 5px;
+    border: solid 1px gray;
+    width: 1035px;
+    height: 325x;
+   
+}
+.html-container{
+    margin-top: 0px;
+    position:absolute;
+
+}
+/* .hotelName{
+
+    //margin-left:140px ;
+    font-size: 30px;
+} */
+mat-card-title{
+font-weight: 600;
+font-size: 30px;
+}
+.first{
+    margin-top: 4x;
+    margin-left: 0px;
+    font-size: 30px;
+    font-weight: 400
+    ;
+}
+.ratingclass{
+    margin-top: 20px;
+    border: 1px solid black;
+    width: 40px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 500;
+    background-color: #0C507C;
+    color: white;
+    border-radius: 6px;
+    height: 30px;
+    
+    
+
+}
+.category{
+    font-size: 26px;
+    margin-left: 14px;
+    margin-top: 4px;
+    color: #0052d4;
+}
+.text{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+.filtercontainer{
+    width: 100px;
+    margin-top: -18px;
+    background-color: white;
+    font-weight: 600;
+    font-size: 25px;
+    margin-left:30px;
+
+
+
+}
+/* .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+    width: 30%;
+  } */
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+    width: 20%;
+    background-color: rebeccapurple;
+  }
+.update{
+    margin-top: 190px;
+    /* margin-left: 65px; */
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    color:black;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+}
+  .pannel{
+    width: 30%;
+    margin-top: 50px;
+    background-color: aliceblue;
+  }
+
+.result{
+    background-color: whitesmoke;
+    margin-top: -5px;
+}
+.example-margin
+{
+   font-size: 19px;
+   margin-block: 3px;
+   
+   
+}
+.button{
+    margin-left: -10px; margin-top: 20px; 
+background-image: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+      font-size: 23px; font-weight: bold ; color: white; width: 200px; border-radius: 22px; height: 45px;
+    border-style: none;
+}
+.button1{
+    margin-left: 10px; margin-top: 20px; 
+    background-image: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+          font-size: 23px; font-weight: bold ; color: white; width: 160px; border-radius: 22px; height: 45px;
+        border-style: none;
+}
+.home-icon{
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+   margin-left: 10px;
+   margin-top:17px;
+   position: absolute;
+}
+
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    font-size: 28px!important;
+    padding: 3px!important;
+    margin: 3px!important;
+    font-weight: 700!important;
+    color:#0C507C!important;
+   }
+
+
+.example-button-toggle-label {
+    display: inline-block;
+    margin: 16px;
+  }

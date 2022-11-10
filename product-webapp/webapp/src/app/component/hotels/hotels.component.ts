@@ -4,6 +4,9 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/mat
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+declare function search():void;
+declare var $: any;
+declare var jQuery: any;
 
 
 export const MY_FORMATS = {
@@ -46,10 +49,10 @@ export class HotelsComponent implements OnInit {
   noOfAdults=0;
   ngOnInit(): void {
   }
-  search()
+  search1()
   {
-    localStorage.setItem("city",this.searchform.value.city!)
-    this.router.navigate(['viewhotel'])
+   
+    this.router.navigate(['viewhotel/',this.searchform.value.city])
   }
 
   add()
@@ -60,6 +63,10 @@ export class HotelsComponent implements OnInit {
   sub()
   {
     this.noOfAdults=this.noOfAdults-1
+  }
+
+  f(){
+  //  new  search();
   }
 
 }

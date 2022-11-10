@@ -1,23 +1,23 @@
 <div class="cabSearch">
-  <form >
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button class="radio1"  value="1">One Way Round</mat-radio-button>
-      <mat-radio-button class="radio2" value="2">Round Trip</mat-radio-button>
-      <mat-radio-button class="radio3" value="2">Hourly Rentel</mat-radio-button>
+  <form [formGroup]="cabsearch" >
+    <mat-radio-group aria-label="Select an option" formControlName="tripType">
+      <mat-radio-button class="radio1"  value="oneway">One Way Trip</mat-radio-button>
+      <mat-radio-button class="radio2" value="round">Round Trip</mat-radio-button>
+      <mat-radio-button class="radio3" value="hourly">Hourly Rental</mat-radio-button>
     </mat-radio-group>
     
     <div class="text-input">
-      <input type="text" id="input1" placeholder="              PLEASE ENTER YOUR JOURNEY POINT">
+      <input type="text" id="input1" placeholder="              PLEASE ENTER YOUR JOURNEY POINT" formControlName="start">
       <label for="input1">START POINT</label>
     </div>
     <div class="text-input2">
-      <input type="text" id="input2" placeholder="              PLEASE ENTER YOUR DESTINATION">
+      <input type="text" id="input2" placeholder="              PLEASE ENTER YOUR DESTINATION" formControlName="destination">
       <label for="input2">DESTINATION</label>
     </div>
     <div fxLayout="row" fxLayoutGap="3%" class="conatiner">
       <mat-form-field appearance="outline" >
         <mat-label style="font-size: 18px;font-weight:600">PickUp Date</mat-label>
-        <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500 ;" [matDatepicker]="dp" [formControl]="date">
+        <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500 ;" [matDatepicker]="dp" [formControl]="pickUpDate">
         
         <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
         <mat-datepicker #dp></mat-datepicker>
@@ -25,14 +25,14 @@
     
       <mat-form-field appearance="outline"  color="primary">
         <mat-label  style="font-size: 18px;font-weight:600">Drop Date</mat-label>
-        <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500" [matDatepicker]="picker1" [formControl]="date">
+        <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500" [matDatepicker]="picker1" formControlName="dropDate">
         
         <mat-datepicker-toggle   matSuffix [for]="picker1"></mat-datepicker-toggle>
 
         <mat-datepicker #picker1 ></mat-datepicker>
       </mat-form-field>
        
-      <input [ngxTimepicker]="picker" placeholder="Select Time  HH::MM" style="color:black" class="time1" >
+      <input [ngxTimepicker]="picker" placeholder="Select Time  HH::MM" style="color:black" class="time1" formControlName="time" >
       <ngx-material-timepicker #picker> select the time</ngx-material-timepicker>
     
 

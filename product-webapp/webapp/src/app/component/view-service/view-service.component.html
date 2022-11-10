@@ -1,0 +1,156 @@
+<div fxLayout="column" class="hotelcontainer">
+    <h1 class="text">All Services <span style="font-weight: 500;font-size:19px"> ({{result}} Results)</span></h1>
+    <div fxLayout="column" style="margin-top: -11px;">
+       
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Hotel" style="size: 100px;">
+      <mat-card *ngFor="let hotel of hotelArray" class="cardcontainer">
+
+        <div fxLayout="row">
+          <app-image fxFlex="30%" [image]="hotel.overview.image"></app-image>
+
+          <div fxFlex="55%">
+            <div fxLayout="row">
+              <h3 class="ratingclass">{{getRating}}</h3>
+              <h4 style="margin-top: 25px; margin-left:10px; font-weight: 500;"> Overall Rating ({{length}} RATINGS)
+              </h4>
+            </div>
+            <div fxLayout="row" class="first">
+
+              <mat-card-title class="hotelName">{{hotel.hotelName}}</mat-card-title>
+              <span class="category">{{hotel.hotelCategory}} </span>
+            </div>
+
+            <mat-card-subtitle style="margin-left:0px;font-size: 15px; font-weight:500;color: rgb(32, 114, 165);">
+              {{hotel.address.city}}
+            </mat-card-subtitle>
+            <mat-list>
+              <p style="font-weight: 600;font-size:16px;color:dodgerblue">Foods And Drinks Included
+                {{hotel.amenities.foodanddrinks}}</p>
+
+
+            </mat-list>
+            <div class="pannel">
+              <mat-accordion style="background-color:transparent; border-style: none;">
+                <mat-expansion-panel hideToggle style="background-color:transparent;">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title style="font-weight: 800;font-size: 18px;">
+                      <mat-icon> location_on</mat-icon> <span style="margin-left:15px ">Location</span>
+                    </mat-panel-title>
+
+                  </mat-expansion-panel-header>
+                  <div style="font-weight: 800;font-size: 16px;">
+                    <p>City : {{hotel.address.city}}</p>
+                    <p>State : {{hotel.address.state}}</p>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+           
+          </div>
+          <div fxLayout="row">
+            <hr style="height: 110%;margin-top:-14px;width: 1px;line-gap-override: 20;">
+            <div fxLayout="column">
+              <!-- <span class="price">
+                 <app-rating [rating]="hotel"></app-rating></span> -->
+             
+                <mat-card-actions class="update">
+                  <button class="button1" (click)="update()">Update Hotel</button>
+                </mat-card-actions>
+            </div>
+            
+          </div>
+        </div>
+
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Package">
+        <mat-card *ngFor="let package of packageArray" class="cardcontainer" fxLayoutGap="0%" fxFlex="100%">
+            <div fxLayout="row">
+              <div fxFlex="30%">
+                <app-image [image]="package.images"></app-image>
+              </div>
+              <div fxFlex="70%">
+                <mat-card-title class="model">{{package.agencyName}}</mat-card-title>
+                <div class="text2" fxLayout="row">
+                  <li style="list-style: none;">{{package.tourType}} Package</li>
+
+                </div>
+                <mat-card-subtitle>
+                </mat-card-subtitle>
+                <mat-list>
+                  <div style="display: inline-flex; ">
+                   
+                    <h4 style="margin-left: 20px;" class="text">Cost Per Person</h4>
+                    <h4 style="margin-left: 52px;" class="text1"> Rs {{package.costPerPerson}}</h4>
+                  </div>
+                  <br>
+                  <div style="display: inline-flex; ">
+                    
+                    <h4 style="margin-left: 20px;" class="text">Duration</h4>
+                    <h4 style="margin-left: 112px;" class="text1">{{package.noOfNights}} Nights</h4>
+                  </div>
+                  <br>
+                  <div style="display: inline-flex; ; ">
+                    
+                    <h4 style="margin-left: 20px;" class="text">Cancellation</h4>
+                    <h4 style="margin-left: 87px;" class="text1">Before 3 days from Travelling </h4>
+                  </div>
+                </mat-list>
+                <mat-card-actions >
+                  <button class="button1">BOOK NOW</button>
+                </mat-card-actions>
+              </div>
+            </div>
+          </mat-card>
+    </mat-tab>
+    <mat-tab label="cab">
+      <div fxLayout="column"  style="width: 70%;"  >
+      
+        <mat-card *ngFor="let cab of cabArray"  class="cardcontainer" fxLayoutGap="0%" >
+          <img mat-card-md-image
+            src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/Cab_Images/sedan_new.png"
+            align="left">
+          <mat-card-title  class="model">{{cab.model}}</mat-card-title>
+          <div class="text2"  fxLayout="row">
+            <li style="list-style: none;">{{cab.cabType}}</li>
+            <li style="margin-left: 20px;">AC</li>
+            <li style="margin-left: 20px;">5 Seater</li>
+          </div>
+          <mat-card-subtitle>
+            <!-- <h3 style="margin-left: 240px;"> {{cab.cabType}} </h3> -->
+          </mat-card-subtitle>
+          <mat-list>
+           
+            <div style="display: inline-flex; ">
+         
+              <img mat-card-xsm-image  src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/location_blue.png" height="20px"
+              style="margin-left: 40px;" >
+              <h4 style="margin-left: 20px;" class="text">Price per Km</h4>
+              <h4 style="margin-left: 85px;" class="text1" > Rs {{cab.pricePerKm}}/km</h4>
+            </div>
+            <br>
+            <div style="display: inline-flex; ">
+              <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/fuel_blue.png" height="20px"
+                style="margin-left: 39px;">
+              <h4 style="margin-left: 20px;" class="text">Fuel Type</h4>
+              <h4 style="margin-left: 132px;" class="text1">{{cab.fuelType}}</h4>
+            </div>
+            <br>
+            <div style="display: inline-flex; ; ">
+              <img mat-card-xsm-image src="https://jsak.mmtcdn.com/cabs_cdn_dt/image/cancelInfo.png" height="20px"
+                style="margin-left: 150px;">
+              <h4 style="margin-left: 20px;" class="text">Cancellation</h4>
+              <h4 style="margin-left: 87px;" class="text1">Before 6 hour from departure </h4>
+            </div>
+          </mat-list>
+          <mat-card-actions align="end">
+            <button class="button1" >Update</button>
+          </mat-card-actions>
+        </mat-card>
+      
+      
+    </div>
+    </mat-tab>
+    </mat-tab-group>
+    </div>

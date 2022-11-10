@@ -1,0 +1,44 @@
+<form [formGroup]="bookroomform"   class="example-form">
+
+   
+    <br>
+    <br>
+   
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Event Start Date</mat-label>
+      <input type="date" matInput formControlName="startDate" [min]="mindate">
+      <mat-error *ngIf="bookroomform.controls['startDate'].hasError('required')">
+          StartDate is Required
+        </mat-error>
+        <mat-error *ngIf="bookroomform.controls['startDate'].hasError('myError1')">
+          StartDate should be same or greater than Today
+        </mat-error>
+    </mat-form-field>
+   &nbsp; &nbsp; &nbsp; &nbsp;
+   
+  
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter EndingDate</mat-label>
+      <input type="date" matInput formControlName="endDate">
+      <mat-error *ngIf="bookroomform.controls['endDate'].hasError('required')">
+          EndDate is Required
+        </mat-error>
+        <mat-error *ngIf="bookroomform.controls['endDate'].hasError('myError3')">
+          EndDate should be same or greater than StartDate
+        </mat-error>
+  
+  </mat-form-field>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  
+  
+  <br>
+  <br>
+  
+  
+  
+      <button mat-button color="primary" [disabled]="bookroomform.invalid" value="SAVE" (click)="bookroom()">Book</button>
+  </form>
+  
+  

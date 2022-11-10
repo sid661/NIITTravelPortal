@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+       <img src="../assets/2022-10-33.png" height="77px"  > 
+              <h1 style="margin-top: 15px; color: black; font-weight: 600;">Niit Travel Portal</h1>
+              <button mat-button routerLink="/home" style="background-color: transparent;">
+                <mat-icon style="color: yellow;">where_to_vote</mat-icon><br><h3>Super Offers</h3> </button>
+              <button (click)="route()"  style="background-color: transparent;">
+                <mat-icon *ngIf="!loggedIn" style="color: yellow;">profile</mat-icon><br><h3>Sign In</h3> </button>
+                <button mat-button  style="background-color: transparent;" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                     
+                <div *ngIf="loggedIn"> <mat-icon  style="color: yellow;"> person_pin</mat-icon><br><h3> Welcome</h3></div> 
+                </button>
+                  <mat-menu #menu="matMenu"> 
+                  <button mat-menu-item *ngIf="userRole=='USER'">
+                      
+                      <span>View Profile</span>
+                      
+                    </button>
+                    <button mat-menu-item *ngIf="userRole=='SERVICEPROVIDER'">
+                     
+                      <span>Edit Profile</span>
+                    </button>
+                    <button mat-menu-item *ngIf="userRole=='SERVICEPROVIDER'" >
+                     
+                      <span>Add Service</span>
+                    </button>
+                    <button mat-menu-item (click)="logoutUser()">
+                     
+                      <span>Sign Out</span>
+                    </button>
+                    
+                  </mat-menu>
+   
+    </mat-toolbar>
+    
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

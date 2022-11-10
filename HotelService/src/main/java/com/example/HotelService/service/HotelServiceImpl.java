@@ -3,7 +3,9 @@ package com.example.HotelService.service;
 import com.example.HotelService.config.Producer;
 import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
+import com.example.HotelService.exception.RoomNotFoundException;
 import com.example.HotelService.model.Hotel;
+import com.example.HotelService.model.Reservation;
 import com.example.HotelService.model.Review;
 import com.example.HotelService.model.Room;
 import com.example.HotelService.repository.HotelRepository;
@@ -303,16 +305,7 @@ public class HotelServiceImpl implements HotelService
             {
                 System.out.println("new check 16");
             }
-            if(hotel.getReservation()!=null)
-            {
-                System.out.println("iNSIDE 17");
-                System.out.println("check17");
-                hotel1.setReservation(hotel.getReservation());
-            }
-            else
-            {
-                System.out.println("new check 17");
-            }
+
 
 
 
@@ -426,6 +419,8 @@ public class HotelServiceImpl implements HotelService
         return hotelRepository.findByAddressCity(cityName);
     }
 
+
+
     @Override
     public List<Hotel> findByReviewRating(int rating) {
         List<Hotel> hotels=new ArrayList<>();
@@ -444,5 +439,80 @@ public class HotelServiceImpl implements HotelService
     @Override
     public List<Hotel> findByRoomPrice(int price) {
         return hotelRepository.findByRoomPrice(price);
+    }
+
+    @Override
+    public List<Hotel> findByHotelCategoryAndRoomPriceAndReviewRating(String category, int price, int rating) {
+        return hotelRepository.findByHotelCategoryAndRoomPriceAndReviewRating(category, price, rating);
+    }
+
+    @Override
+    public List<Hotel> findByRoomPriceAndReviewRating(int price, int rating) {
+        return null;
+    }
+
+    @Override
+    public List<Hotel> findByHotelCategoryAndReviewRating(String category, int rating) {
+        return null;
+    }
+
+    @Override
+    public List<Hotel> findByHotelCategoryAndRoomPrice(String category, int price) {
+        return null;
+    }
+
+    @Override
+    public Room makeReservation(String hotelName, int roomid, Reservation reservation) throws HotelNotFoundException, RoomNotFoundException {
+        if(hotelRepository.findById(hotelName).isEmpty())
+        {
+            System.out.println("Hotel not found");
+            throw new HotelNotFoundException();
+        }
+        else
+        {
+            Hotel hotel = hotelRepository.findByHotelName(hotelName);
+            List<Room> rooms=hotel.getRoom();
+            boolean flag=false;
+            Room room1=new Room();
+            for(Room room:rooms)
+            {
+                if(room.getRoomid()==roomid)
+                {
+                    flag=true;
+                    room1=room;
+                    break;
+                }
+            }
+            if(flag)
+            {
+                System.out.println(room1);
+                room1.setReservation(reservation);
+                hotelRepository.save(hotel);
+                return room1;
+
+
+            }
+            else
+            {
+                throw new RoomNotFoundException();
+            }
+
+        }
+
+    }
+
+    @Override
+    public List<Room> getAllRooms(String hotelName) throws HotelNotFoundException
+    {
+        if(hotelRepository.findById(hotelName).isEmpty())
+        {
+            System.out.println("Hotel not found");
+            throw new HotelNotFoundException();
+        }
+        else
+        {
+            Hotel hotel = hotelRepository.findByHotelName(hotelName);
+            return hotel.getRoom();
+        }
     }
 }

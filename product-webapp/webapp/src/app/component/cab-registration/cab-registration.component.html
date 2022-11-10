@@ -1,0 +1,44 @@
+<div style="margin-top: 210px;padding: 20px;">
+    <div fxFlex="35%" class="outer"></div>
+    <mat-card fxLayout="column" class="example-section" [formGroup]="cabForm">
+        <h2 style="text-align: center;font-size:26px;font-weight: 600;">CAB REGISTRATION FORM</h2>
+        <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="City" formControlName="city">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+          <mat-label>Model</mat-label>
+          <input matInput placeholder="model" formControlName="model">
+        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Price per Km</mat-label>
+            <input type="number" matInput placeholder="Price Per Km" formControlName="pricePerKm">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Select fuel Type</mat-label>
+            <mat-select disableRipple formControlName="fuelType">
+              <mat-option value="Petrol">PETROL</mat-option>
+              <mat-option value="Diesel">Diesel</mat-option>
+              <mat-option value="Cng">CNG</mat-option>
+              <mat-option value="Electric">ELECTRIC</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Select Cab Mode</mat-label>
+            <mat-select disableRipple formControlName="cabType">
+              <mat-option value="HATCHBACK">HATCHBACK</mat-option>
+              <mat-option value="SEDAN">SEDAN</mat-option>
+              <mat-option value="SUV">SUV</mat-option>
+              <mat-option value="MINI">MINI</mat-option>
+              
+            </mat-select>
+          </mat-form-field>
+          <section class="example-section">
+            <mat-radio-group formControlName="permit"> <b>Do you have National Permit?</b><br>
+              <mat-radio-button class="example-margin" value="True">YES</mat-radio-button>&nbsp;&nbsp;&nbsp;
+              <mat-radio-button class="example-margin" value="false">NO</mat-radio-button>
+            </mat-radio-group>
+          </section>
+          <button mat-raised-button class="button" (click)="save()">REGISTER</button>
+    </mat-card>
+</div>

@@ -7,11 +7,31 @@
         <div class="navigation" style="width: 800px; ">
           <nav>
             <ul class="nav-type" >
-              <li ><button mat-raised-button routerLink="hotels" style="background-color: transparent;"><mat-icon style="color: white; ">local_hotel</mat-icon><br><h3 style="color: white; ">Hotels</h3> </button></li>
-              <li><button mat-raised-button routerLink="cabs" style="background-color: transparent;"><mat-icon style="color: white">local_taxi</mat-icon><br><h3 style="color: white; ">Cabs</h3> </button></li>
-              <li><button mat-raised-button routerLink="holidaypackage" style="background-color: transparent;"><mat-icon style="color: white;">home</mat-icon><br><h3 style="color: white; ">Holiday Packages</h3> </button></li>
-              <li><button mat-raised-button routerLink="explore" style="background-color: transparent;"><mat-icon style="color: white;">terrain</mat-icon><br><h3 style="color: white; ">Explore</h3> </button></li>
-              <li><button mat-raised-button routerLink="" style="background-color: transparent;"><mat-icon style="color: white;">local_library</mat-icon><br><h3 style="color: white; ">Bookings</h3> </button></li>
+              <li *ngIf="loggedIn && userRole=='USER' || !loggedIn" ><button mat-raised-button routerLink="hotels" style="background-color: transparent;"><mat-icon style="color: white; ">local_hotel</mat-icon><br><h3 style="color: white; ">Hotels</h3> </button></li>
+              <li *ngIf="loggedIn && userRole=='USER' || !loggedIn" ><button mat-raised-button routerLink="cabs" style="background-color: transparent;"><mat-icon style="color: white">local_taxi</mat-icon><br><h3 style="color: white; ">Cabs</h3> </button></li>
+              <li *ngIf="loggedIn && userRole=='USER' || !loggedIn"><button mat-raised-button routerLink="holidaypackage" style="background-color: transparent;"><mat-icon style="color: white;">home</mat-icon><br><h3 style="color: white; ">Holiday Packages</h3> </button></li>
+              <li *ngIf="loggedIn && userRole=='USER' || !loggedIn"><button mat-raised-button routerLink="explore" style="background-color: transparent;"><mat-icon style="color: white;">terrain</mat-icon><br><h3 style="color: white; ">Explore</h3> </button></li>
+              <li *ngIf="loggedIn && userRole=='USER' "><button mat-raised-button routerLink="" style="background-color: transparent;"><mat-icon style="color: white;">local_library</mat-icon><br><h3 style="color: white; ">Bookings</h3> </button></li>
+              <li  *ngIf="loggedIn && userRole=='SERVICEPROVIDER'"><button mat-raised-button routerLink="view" style="background-color: transparent;"><mat-icon style="color: white;">local_library</mat-icon><br><h3 style="color: white; ">View Services</h3> </button></li>
+              <li *ngIf="loggedIn && userRole=='SERVICEPROVIDER'" ><button mat-raised-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="background-color: transparent;"><mat-icon style="color: white;">local_library</mat-icon><br><h3 style="color: white; ">Add Services</h3> </button></li>
+              <mat-menu #menu="matMenu"  style="background-color:blueviolet;"> 
+                <button mat-menu-item (click)="hotel()" style="background-color:blueviolet;">
+                    
+                    <span>Add Hotel</span>
+                    
+                  </button>
+                  <button mat-menu-item (click)="cab()" style="background-color:blueviolet;">
+                   
+                    <span>Add Cab</span>
+                  </button>
+                  <button mat-menu-item  (click)="package()" style="background-color:blueviolet;" >
+                   
+                    <span>Add Package</span>
+                  </button>
+                  
+                  
+                </mat-menu>
+              <li *ngIf="loggedIn && userRole=='SERVICEPROVIDER'" ><button mat-raised-button routerLink="" style="background-color: transparent;"><mat-icon style="color: white;">local_library</mat-icon><br><h3 style="color: white; ">Edit Profile</h3> </button></li>
            </ul>
           </nav>
         </div>

@@ -65,5 +65,6 @@ mat-card{
 }  
 
 .hello{
-    background-image: url("https://static.cegos.co.uk/wp-content/uploads/2016/07/18131345/books-918521_1920-640x426.jpg");
+    background-image: url("https://i.pinimg.com/originals/eb/18/61/eb1861973fb165c36b58bd769a44d4a5.jpg");
+    background-size: cover;
 }

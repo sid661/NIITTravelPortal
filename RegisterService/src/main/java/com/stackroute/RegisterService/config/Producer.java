@@ -4,6 +4,7 @@ import com.stackroute.RegisterService.model.User;
 import com.stackroute.RegisterService.rabbitmq.ServiceProviderDTO;
 import com.stackroute.RegisterService.rabbitmq.UserDTO;
 import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ public class Producer
 
     public void sendMessageToRabbitMqServer(UserDTO userDTO)
     {
+        System.out.println(userDTO);
         rabbitTemplate.convertAndSend(directExchange.getName(),"user_routing",userDTO);
     }
 //    public void sendMessageToRabbitMqServerServiceProvider(ServiceProviderDTO serviceProviderDTO)
@@ -28,6 +30,11 @@ public class Producer
 //        rabbitTemplate.convertAndSend(directExchange.getName(),"serviceprovider_routing",serviceProviderDTO);
 //    }
 
+    public void sendMessageToRabbitMqServer1(UserDTO userDTO)
+    {
+        System.out.println(userDTO);
+        rabbitTemplate.convertAndSend(directExchange.getName(),"email_routing",userDTO);
+    }
 
 
 

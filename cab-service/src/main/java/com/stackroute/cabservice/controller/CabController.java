@@ -8,9 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/cab/")
-@CrossOrigin
-
+@RequestMapping("/cab/")
 public class CabController {
     @Autowired
     private CabService service;

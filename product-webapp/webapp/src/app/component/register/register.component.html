@@ -6,15 +6,15 @@
     </div>
 
     <mat-card fxFlex="50%" class="register-card">
-        <div fxLayout="column" fxLayoutGap="2%">
+        <div fxLayout="column">
             <div fxLayout="row">
                 <div fxFlex="40%"></div>
-                <div fxflex="30%" style="font-weight: bolder; font-size:larger">Register YourSelf</div>
-                <div></div>
+                <div fxflex="30%" style="font-weight: bolder; font-size:larger;margin-top:15px ;">Register YourSelf</div>
+                <div><img src="../assets/2022-10-33.png" height="67px" style="margin-left: 20px;" ></div>
             </div>
 
             <mat-tab-group mat-align-tabs="center" fxFlex="100%">
-                <mat-tab label="Guest User" fxFlex="50%" [formGroup]="registerForm" fxLayoutGap="5%">
+                <mat-tab label="Guest User" fxFlex="50%" [formGroup]="registerForm" >
                     <div fxLayout="column">
                         <mat-form-field appearance="outline">
                             <mat-label>Name</mat-label>

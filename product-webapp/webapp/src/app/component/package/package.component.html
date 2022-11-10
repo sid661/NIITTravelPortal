@@ -25,7 +25,7 @@
           <mat-card-content>
             <h2 class="example-h2">DURATION</h2>
             <section class="example-section">
-              <ng5-slider [(value)]="minDate" [(highValue)]="maxDate" [options]="nights"></ng5-slider>
+              <ng5-slider #slider [(value)]="minDate" [(highValue)]="maxDate" [options]="nights" (valueChange)="nightsa(slider.value)"></ng5-slider>
             </section>
           </mat-card-content>
         </mat-card>
@@ -52,7 +52,7 @@
               <mat-form-field appearance="outline" style="margin-top:-20px">
                   
                 <mat-label style="font-size: 19px;font-weight:500">Filter Option</mat-label>
-                <mat-select >
+                <mat-select #sorts (valueChange)="sort(sorts.value)">
                   <mat-option value="phightolow">Price High-low</mat-option>
                   <mat-option value="plowtohigh" >Price Low-High</mat-option>
                   <mat-option value="dhightolow">Duration High-low</mat-option>
@@ -69,9 +69,9 @@
       <div class="text4">Showing Results of Package in {{city}}<span style="font-weight: 500;font-size:19px"> (
           {{result}} Results)</span></div>
       <div fxLayout="row">
-        <div fxFlex="20%">Hello</div>
+        <div fxFlex="20%"></div>
         <div fxFlex="80%" fxLayout="column" style="width: 70%;">
-          <mat-card *ngFor="let package of packageArray" class="cardcontainer" fxLayoutGap="0%" fxFlex="100%">
+          <mat-card *ngFor="let package of filterpackageArray" class="cardcontainer" fxLayoutGap="0%" fxFlex="100%">
             <div fxLayout="row">
               <div fxFlex="30%">
                 <app-image [image]="package.images"></app-image>

@@ -1,13 +1,25 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8076/eureka
-    register-with-eureka: true
-    fetch-registry: true
-
 server:
-  port: 8086
+  port: 9000
 
 spring:
-  application:
-    name: "api-gateway"
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    fetchRegistry: true
+    registerWithEureka: true

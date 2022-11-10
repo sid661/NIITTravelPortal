@@ -1,0 +1,49 @@
+.example-action-button {
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+
+  .hotelContainer{
+    margin-top: 250px;
+   
+    margin-left:60px;
+    margin-bottom: 500px;
+  }
+.image{
+  height: 500px;
+  width:1200px;
+ 
+
+}
+.name{
+ 
+ 
+  position: relative;
+}
+.name1{
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-shadow: 10px;
+  text-align: center;
+  justify-content: center;
+  font-weight:800;
+  color:whitesmoke;
+  position:absolute;
+  top: 640px;
+  left:90px
+}
+.rating{
+ 
+  border: 1px solid black;
+  width: 200px;
+  padding-top: 30px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 500;
+  background-color: #0C507C;
+  color: white;
+  border-radius: 6px;
+  height: 100px;
+}
+
+/*  */

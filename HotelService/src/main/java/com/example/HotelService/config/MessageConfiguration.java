@@ -17,9 +17,6 @@ public class MessageConfiguration
         private String queueName = "hotelqueue";
 
 
-
-
-
         @Bean
         public DirectExchange directExchange()
         {

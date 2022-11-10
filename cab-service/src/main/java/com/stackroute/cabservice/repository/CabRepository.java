@@ -12,5 +12,6 @@ public interface CabRepository  extends MongoRepository<Cab,String> {
     List<Cab>  findAllByCabType(String cabType);
 
     Cab findByCabType(String cabType);
+    Cab findByFuelType(String fuelType);
 
 }

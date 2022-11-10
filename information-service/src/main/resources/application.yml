@@ -1,0 +1,18 @@
+server:
+  port: 8089
+  error:
+    include: always
+spring:
+  data:
+    mongodb:
+      database: niittraveluserdb
+      uri: mongodb://localhost:27017/
+  application:
+    name: information-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    fetchRegistry: true
+    registerWithEureka: true

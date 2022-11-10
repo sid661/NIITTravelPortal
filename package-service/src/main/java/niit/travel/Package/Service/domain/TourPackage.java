@@ -1,6 +1,8 @@
 package niit.travel.Package.Service.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,6 +12,8 @@ import java.util.Set;
 
 @Data
 @Document
+@NoArgsConstructor
+@AllArgsConstructor
 public class TourPackage {
    private String email;
    private String agencyName;                      //input field

@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 public class Cab {
+
     private String cabType,model,fuelType;
     private   int pricePerKm;
    private boolean permit;

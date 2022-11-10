@@ -1,7 +1,7 @@
-<div class="packageSearch">
-    <form>
+<div class="packageSearch" >
+    <form [formGroup]="packagesearch">
       <div class="text-input">
-        <input type="text" id="input1" placeholder="        DESTINATION OR LOCATION">
+        <input type="text" id="input1" placeholder="        DESTINATION OR LOCATION" formControlName="package">
         <label for="input1">HOLIDAY PACKAGE</label>
       </div>
       <div class="button1">

@@ -1,7 +1,7 @@
 <div class="exploreSearch">
     <form>
-      <div class="text-input">
-        <input type="text" id="input1" placeholder="       CITY,DESTINATION OR LOCATION">
+      <div class="text-input" [formGroup]="place">
+        <input type="text" id="input1" placeholder="       CITY,DESTINATION OR LOCATION" formControlName="city">
         <label for="input1">EXPLORE</label>
       </div>
       <div class="button1">

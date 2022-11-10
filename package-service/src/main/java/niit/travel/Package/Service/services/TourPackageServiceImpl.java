@@ -4,11 +4,12 @@ import niit.travel.Package.Service.domain.TourPackage;
 import niit.travel.Package.Service.repository.RepositoryPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class TourPackageServiceImpl implements TourPackageService {
 
     private RepositoryPackage repositoryPackage;
@@ -45,10 +46,18 @@ public class TourPackageServiceImpl implements TourPackageService {
         return repositoryPackage.findAll();
     }
 
-//    @Override
-//    public TourPackage findByDestination(String destination) {
-//        return repositoryPackage.findByDestination(destination);
-//    }
+    @Override
+    public List<TourPackage> findByDestination(String destination) {
+        return repositoryPackage.findByDestination(destination);
+    }
+
+    @Override
+    public List<TourPackage> findAllPackageByEmail(String email) {
+        System.out.println(email);
+        return repositoryPackage.findByEmail(email);
+    }
+
+
 
 
 }

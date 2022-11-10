@@ -9,28 +9,28 @@
             <h2 class="example-h2">HOTEL CATEGORY</h2>
 
             <section class="example-section">
-              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+              <mat-checkbox type="checkbox" class="example-margin" name="5Starhotel" value="5Starhotel" id="5Starhotel" [(ngModel)]="star5checked" binary="true">
                 5-Star
               </mat-checkbox>
               <BR>
-              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+              <mat-checkbox type="checkbox" class="example-margin" name="4Starhotel" value="4Starhotel" id="4Starhotel" [(ngModel)]="star4checked" binary="true">
                 4-Star
               </mat-checkbox>
               <BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="3Starhotel" value="3Starhotel" id="3Starhotel" [(ngModel)]="star3checked" binary="true">
                 3-Star
               </mat-checkbox><BR>
-              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+              <mat-checkbox type="checkbox" class="example-margin" name="2Starhotel" value="2Starhotel" id="2Starhotel" [(ngModel)]="star2checked" binary="true">
                 2-Star
               </mat-checkbox><br>
-              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" value="HATCHBACK" id="cabType1">
+              <mat-checkbox type="checkbox" class="example-margin" name="1Starhotel" value="1Starhotel" id="1Starhotel" [(ngModel)]="star1checked" binary="true">
                 1-Star
               </mat-checkbox>
               <BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="villa" value="villa" id="villa" [(ngModel)]="villachecked" binary="true">
                 VILLA
               </mat-checkbox><BR>
-              <mat-checkbox type="checkbox" class="example-margin" name="HATCHBACK" id="cabType1">
+              <mat-checkbox type="checkbox" class="example-margin" name="cottage" id="cottage" [(ngModel)]="cottagechecked" binary="true">
                 Cottage
               </mat-checkbox>
               <BR>
@@ -44,16 +44,16 @@
             <h2 class="example-h2">Price Per Night</h2>
 
             <section class="example-section">
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="price1k" value="price1k" id="price1k" [(ngModel)]="checked1k" binary="true"  >
                 0-1500
               </mat-checkbox><BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="price2k" value="price2k" id="price2k" [(ngModel)]="checked2k" binary="true">
                 1500-2500
               </mat-checkbox><BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="price3k" value="price3k" id="price3k" [(ngModel)]="checked3k" binary="true">
                 2500-4000
               </mat-checkbox><BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="price4k" value="price4k" id="price4k" [(ngModel)]="checked4k" binary="true">
                 4000-Above
               </mat-checkbox><BR>
 
@@ -66,18 +66,18 @@
             <h2 class="example-h2">Rating</h2>
 
             <section class="example-section">
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="5star" value="5star" id="5star" [(ngModel)]="checked5rating" binary="true">
                 *****
               </mat-checkbox><BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="4star" value="4star" id="4star" [(ngModel)]="checked4rating" binary="true">
                 ****
               </mat-checkbox><BR>
-              <mat-checkbox class="example-margin">
+              <mat-checkbox class="example-margin" name="3star" value="3star" id="3star" [(ngModel)]="checked3rating" binary="true">
                 ***
               </mat-checkbox><BR>
 
             </section>
-            <button type="submit" class="button">APPLY FILTER</button>
+            <button type="submit" class="button" (click)="applyfilter()">APPLY FILTER</button>
             <!-- <button type="submit">Reset</button> -->
             <mat-icon class="home-icon">autorenew</mat-icon>
           </mat-card-content>
@@ -94,7 +94,7 @@
     <div fxLayout="column">
       <h1 class="text">Showing Properties of {{city}} <span style="font-weight: 500;font-size:19px"> ({{result}} Results)</span></h1>
       <div fxLayout="column" style="margin-top: -11px;">
-        <mat-card *ngFor="let hotel of hotelArray" class="cardcontainer">
+        <mat-card *ngFor="let hotel of filterHotel" class="cardcontainer">
 
           <div fxLayout="row">
             <app-image fxFlex="30%" [image]="hotel.overview.image"></app-image>
@@ -149,7 +149,7 @@
                   style="text-align:center;font-size: 14px;margin-top: 15px;color:darkgray; font-weight: 500;">Prices
                   Per Night</span>
                   <mat-card-actions>
-                    <button class="button1">BOOK NOW</button>
+                    <button class="button1" (click)="book(hotel.hotelName)">BOOK NOW</button>
                   </mat-card-actions>
               </div>
               

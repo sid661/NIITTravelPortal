@@ -1,6 +1,9 @@
+.hello{
+	background-image: url("src\assets\Travel Buddy.png");
+	background-size: cover;
+}
 
-
-* {
+/* * {
 	box-sizing: border-box;
 }
 .text2{
@@ -15,7 +18,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
+	height: 80%;
 	margin: -20px 0 50px;
 }
 /* .mat-radio-button ~ .mat-radio-button {
@@ -49,13 +52,15 @@ a {
 }
 
 button {
-	border-radius: 20px;
+	border-radius: 14px;
 	border: 1px solid #FF4B2B;
 	background-color: #FF4B2B;
 	color: #FFFFFF;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: bold;
-	padding: 12px 45px;
+	margin-top: 17px;
+	/* padding: 12px 45px; */
+	height: 50px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -144,7 +149,7 @@ button {
 
 .overlay-right {
 	right: 0;
-}
+} */
 
 
 
@@ -173,13 +178,23 @@ a {
     margin-top: 30px;
     margin-right: 15px;
     margin-left: 15px;
-	background-color:rgb(192, 182, 202);
+	
+
+	height: 90%;
+	text-align: center;
+	justify-content: center	;
+	background-color: rgba(51, 51, 51, 0.436);
+	
+	/* border: 1px solid black; */
+
   
     
 }
 .register-card {
     /* height: 700px; */
-    background-color:rgba(255, 255, 255, 0.84);
+    background-color:rgba(255, 255, 255, 0.4);
+	margin: 7px;
+	
 }
 
 .text{

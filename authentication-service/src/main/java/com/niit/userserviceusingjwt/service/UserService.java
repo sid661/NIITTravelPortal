@@ -14,6 +14,10 @@ public interface UserService {
     User saveUser(User user) throws UserAlreadyExistException;
     User findByEmailAndPassword(String email,String password) throws UserNotFoundException;
 
+    User getUser(String email);
+
+    ServiceProvider getProvider(String email);
+
   List<User> getAllUsers();
     ServiceProvider findByServiceEmailAndPassword(String email,String password) throws ServiceProviderAlreadyExist;
 

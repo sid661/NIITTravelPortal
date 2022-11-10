@@ -1,7 +1,7 @@
 package niit.travel.Package.Service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
+
 import niit.travel.Package.Service.domain.TourPackage;
 import niit.travel.Package.Service.services.TourPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/Package")
-@CrossOrigin
+@RequestMapping("/package")
+
 public class Controller {
 
     private TourPackageService tourPackageService;
     private ResponseEntity responseEntity;
 
-    Gson gson=new Gson();
+
     @Autowired
     public Controller(TourPackageService tourPackageService) {
         this.tourPackageService = tourPackageService;
@@ -61,9 +62,20 @@ public ResponseEntity<?> registerUser(@RequestParam("file")MultipartFile file,@R
         responseEntity = new ResponseEntity<>(tourPackageService.showAll(),HttpStatus.OK);
         return responseEntity;
     }
-//    @GetMapping("/destination/{destination}")
-//    public ResponseEntity<?> destination(@PathVariable String destination){
-//        responseEntity = new ResponseEntity<>(tourPackageService.findByDestination(destination),HttpStatus.OK);
-//        return responseEntity;
-//    }
+    @GetMapping("/destination/{destination}")
+    public ResponseEntity<?> destination(@PathVariable String destination){
+        responseEntity = new ResponseEntity<>(tourPackageService.findByDestination(destination),HttpStatus.OK);
+        return responseEntity;
+    }
+
+    @GetMapping("/getPackageByEmail/{email}")
+    public ResponseEntity<?> getAllPackageByEmail(@PathVariable String email){
+        List<TourPackage> packageList=tourPackageService.findAllPackageByEmail(email);
+        System.out.println(packageList);
+        responseEntity = new ResponseEntity<>(packageList,HttpStatus.OK);
+        return responseEntity;
+    }
+
+
+
 }

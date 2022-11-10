@@ -32,6 +32,7 @@ public class CabServiceImpl implements CabService {
         Arrays.stream(cabType).forEach(x-> {
         Cab cab=    cabRepository.findByCabType(x);
 
+
         cabs.add(cab);
         });
 

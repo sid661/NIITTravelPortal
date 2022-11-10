@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Filehandle } from 'src/app/model/filehandle';
 import { TourPackage } from 'src/app/model/tour-package';
+import { PackageService } from 'src/app/service/package.service';
 import { RegisterserviceService } from 'src/app/service/registerservice.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class PackageRegistrationComponent implements OnInit {
   image: Filehandle[] = [];
   public userFile: any = File;
   tourPackage: TourPackage = new TourPackage();
-  constructor(private link: RegisterserviceService, private formbuilder: FormBuilder, private sanitizer: DomSanitizer,
+  constructor(private link: PackageService, private formbuilder: FormBuilder, private sanitizer: DomSanitizer,
   ) {
     this.packageRegistrationForm = this.formbuilder.group({
       agencyName: new FormControl('', [Validators.required]),

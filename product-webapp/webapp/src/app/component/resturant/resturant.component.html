@@ -1,0 +1,22 @@
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10%">
+    <div class="dashboard" *ngFor="let rest of resturantArray" fxFlex="17%">
+
+        <mat-card class="example-card">
+            <mat-card-header>
+                
+                <mat-card-title style="text-decoration:center;">{{rest.restaurantName}}</mat-card-title>
+                <mat-card-subtitle>{{rest.city}}</mat-card-subtitle>
+            </mat-card-header>
+            <div style="width:200px ;">
+            <app-image [image]="rest.image"></app-image>
+        </div>
+            <mat-card-content *ngFor="let x of rest.howToReach">
+               <h1> How To Reach </h1>
+                <h4>{{x}}</h4>
+            </mat-card-content>
+            <mat-card-actions fxLayout="row">
+
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

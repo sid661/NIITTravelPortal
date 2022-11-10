@@ -1,172 +1,155 @@
-<div>
+<div class="hotelcontainer">
+  
+    <div fxFlex="40%" class="hotel"> </div>
+    <mat-card fxFlex="60%" [formGroup]="registerformHotel" fxLayout="column">
+        <h1 style="font-size: 30px;font-weight: 700;">  HOTEL REGISTRATION FORM </h1>
+        <mat-stepper orientation="horizontal" fxFlex="100" fxLayoutAlign=" stretch" #stepper>
+            <mat-step  fxFlexFill>
+                <ng-template matStepLabel>Basic registration</ng-template>
+                <ng-template matStepContent>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hotel Name</mat-label>
+                        <input matInput placeholder="Hotel Name" formControlName="hotelName">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hotel Category</mat-label>
+                        <mat-select matNativeControl formControlName="hotelCategory">
+                            <mat-option>None</mat-option>
+                            <mat-option value="Family">Family</mat-option>
+                            <mat-option value="Suite">Suite</mat-option>
+                            <mat-option value="Resort">Resort</mat-option>
+                            <mat-option value="Conference">Conference</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
+                        <h1>Property Rules</h1>
 
-    <mat-card class="example-form"  [formGroup]="RegisterformHotel" enctype="multipart/form-data">
-        <div><h1>Hotel Registration Form</h1></div>
-        <mat-stepper orientation="vertical">
-            <mat-step>
-              <ng-template matStepLabel>Step 1</ng-template>
-              <ng-template matStepContent>
-               
-                <button mat-button matStepperNext>Next</button>
-              </ng-template>
+
+                        <div formArrayName="propertyRules">
+                            <div *ngFor="let x of add.controls;let i=index" [formGroupName]="i">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field appearance="outline">
+                                                    <input type="text" matInput placeholder="Enter City"
+                                                        formControlName="rule">
+                                                </mat-form-field>
+                                            </td>
+                                            <td><button mat-icon-button (click)="Removeitem(i)">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button></td>
+    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+    
+                            <div>
+                                <a mat-stroked-button color="primary" (click)="addNewRow()">Add City (+)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Hotel Overview</mat-label>
+                            <textarea matInput formControlName="description" placeholder="Hotel Description"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <button mat-button matStepperNext>Next</button>
+                </ng-template>
             </mat-step>
-        
-        <div>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Hotel Name</mat-label>
-                <input  matInput placeholder="Hotel Name" class`="inputs" formControlName="hotelName">
-            </mat-form-field>
-            <br>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Hotel Category</mat-label>
-                <mat-select matNativeControl formControlName="hotelCategory">
-                    <mat-option >None</mat-option>
-                    <mat-option value="Family">Family</mat-option> 
-                    <mat-option value="Suite">Suite</mat-option> 
-                    <mat-option value="Resort">Resort</mat-option> 
-                    <mat-option value="Conference">Conference</mat-option> 
-                  </mat-select>
-            </mat-form-field>
-    
-            <div>
-                <h1>Property Rules</h1>
-            
-    
-                <div formArrayName="propertyRules">
-                     <div *ngFor="let rules of propertyRulesControls;let i=index">
-                    <mat-form-field class="example-full-width" appearance="fill" >
-                     
-                       <mat-label>Property Rules</mat-label>
-                        <input type="text" matInput [formControlName]="i"  placeholder="Enter Property Rule">
-                        
-                        
-                   </mat-form-field>
-                   <button mat-icon-button style="margin-left: 30px;" (click)="Removeitem(i)"><mat-icon>delete</mat-icon></button>
-                </div>    
-                   <a mat-stroked-button color="primary" (click)="addRules()">Add Property Rule (+)</a>
-                    <br>
-                    <br>
-                   </div>
-                   </div>
-    
-            <div formGroupName="overview">
-                
-                <mat-form-field class="example-full-width" appearance="fill" >
-                    <mat-label>Hotel Overview</mat-label>
-                     <textarea rows="3" cols="4"  matInput formControlName="description"  placeholder="Hotel Description"></textarea>                   
-                 </mat-form-field>
-                 </div>
-    
-    
-                 <div formGroupName="amenities">
-                    Amenities 
-                    <br>
-                    <br>
-                    <mat-form-field class="example-full-width" appearance="fill" >
-                     <mat-label>Safety and Hygiene</mat-label>
-                     <mat-select matNativeControl formControlName="safetyandhygiene">
-                        <mat-option >None</mat-option>
-                        <mat-option value="yes">Yes</mat-option> 
-                        <mat-option value="no">No</mat-option> 
-                      </mat-select>
-                     <!-- <input type="text" matInput formControlName="safetyandhygiene"  placeholder="Safety and Hygiene">        -->
-                     </mat-form-field>
-                     &nbsp;
-                     &nbsp;
-                     
-                     <mat-form-field class="example-full-width" appearance="fill" >
-                         <mat-label>Basic Facilities</mat-label>
-                         <mat-select matNativeControl formControlName="basicfacilities">
-                            <mat-option >None</mat-option>
-                            <mat-option value="yes">Yes</mat-option> 
-                            <mat-option value="no">No</mat-option> 
-                          </mat-select>    
-                         </mat-form-field>
-                         &nbsp;
-                         &nbsp;
-                         <mat-form-field class="example-full-width" appearance="fill" >
-                             <mat-label> Family and Kids</mat-label>
-                             <mat-select matNativeControl formControlName="familyandkids">
-                                <mat-option >None</mat-option>
-                                <mat-option value="yes">Yes</mat-option> 
-                                <mat-option value="no">No</mat-option> 
-                              </mat-select>       
-                           
-                             </mat-form-field>
-                             &nbsp;
-                             &nbsp;
-                         <mat-form-field class="example-full-width" appearance="fill" >
-                             <mat-label> Food and Drinks</mat-label>
-                             <mat-select matNativeControl formControlName="foodanddrinks">
-                                <mat-option >None</mat-option>
-                                <mat-option value="yes">Yes</mat-option> 
-                                <mat-option value="no">No</mat-option> 
-                              </mat-select>    
-                           
-                             </mat-form-field>
-         
-                 </div>
-    
-    
-                 <div formGroupName="address">
-                    Address
-                    <br>
-                    <br>
-                    <mat-form-field class="example-full-width" appearance="fill" >
-                        <mat-label> Street Name</mat-label>
-                        <input type="text" matInput formControlName="streetname"  placeholder="streetname">       
-                     
+            <mat-step  fxFlexFill>
+                <ng-template matStepLabel>Amenities</ng-template>
+                <ng-template matStepContent>
+                    <div fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Safety and Hygiene</mat-label>
+                            <mat-select formControlName="safetyandhygiene">
+                                <mat-option>None</mat-option>
+                                <mat-option value="yes">Yes</mat-option>
+                                <mat-option value="no">No</mat-option>
+                            </mat-select>
+
                         </mat-form-field>
-                        &nbsp;
-                        &nbsp;
-                     
-                    <mat-form-field class="example-full-width" appearance="fill" >
-                        <mat-label> Landmark</mat-label>
-                        <input type="text" matInput formControlName="landmark"  placeholder="Landmark">       
-                     
+
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Basic Facilities</mat-label>
+                            <mat-select formControlName="basicfacilities">
+                                <mat-option>None</mat-option>
+                                <mat-option value="yes">Yes</mat-option>
+                                <mat-option value="no">No</mat-option>
+                            </mat-select>
                         </mat-form-field>
-                        &nbsp;
-                        &nbsp;
-                    
-                    <mat-form-field class="example-full-width" appearance="fill" >
-                        <mat-label> City</mat-label>
-                        <input type="text" matInput formControlName="city"  placeholder="City">       
-                     
+
+                        <mat-form-field appearance="outline">
+                            <mat-label> Family and Kids</mat-label>
+                            <mat-select formControlName="familyandkids">
+                                <mat-option>None</mat-option>
+                                <mat-option value="yes">Yes</mat-option>
+                                <mat-option value="no">No</mat-option>
+                            </mat-select>
+
                         </mat-form-field>
-                        &nbsp;
-                        &nbsp;
-                       
-                        <mat-form-field class="example-full-width" appearance="fill" >
+
+                        <mat-form-field appearance="outline">
+                            <mat-label> Food and Drinks</mat-label>
+                            <mat-select formControlName="foodanddrinks">
+                                <mat-option>None</mat-option>
+                                <mat-option value="yes">Yes</mat-option>
+                                <mat-option value="no">No</mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+
+                    </div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </ng-template>
+            </mat-step>
+            <mat-step  fxFlexFill>
+                <ng-template matStepLabel>Address</ng-template>
+                <ng-template matStepContent>
+                    <div fxLayout="column">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label> Street Name</mat-label>
+                            <input type="text" matInput formControlName="streetname" placeholder="streetname">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label> Landmark</mat-label>
+                            <input type="text" matInput formControlName="landmark" placeholder="Landmark">
+
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label> City</mat-label>
+                            <input type="text" matInput formControlName="city" placeholder="City">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label> State</mat-label>
-                            <input type="text" matInput formControlName="state"  placeholder="State">       
-                        
-                            </mat-form-field>
-                        
-        
-                    
-                </div>
-    
-    
-            <div style="display: flex">
-            
+                            <input type="text" matInput formControlName="state" placeholder="State">
+                        </mat-form-field>
+                    </div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </ng-template>
+            </mat-step>
+            <mat-step   style="height: 9000px;">
+                <ng-template matStepLabel>Image upload</ng-template>
+                <ng-template matStepContent>
+                      
            <div class="file-upload">
-      <div class="file-select">
-        <div class="file-select-button" id="fileName">Image</div>
-        <!-- <div class="file-select-name" id="noFile">No file chosen...</div> -->
-        <input type="file" name="SelectImage" (change)="onSelectFile($event)" id="chooseFile">
-      </div>{{imageName}}
-    </div>
-        </div>
-            <mat-divider></mat-divider>
-            <br>
-            <br>
-         
-            <button mat-raised-button type="submit" color="primary" (click)="saveData()">Save Hotel</button>
-            <br>
-            <br>
-            <button mat-raised-button class="cancel-button" >Cancel</button>
-        </div>
+            <div class="file-select">
+              <div class="file-select-button" id="fileName">Image</div>
+              <!-- <div class="file-select-name" id="noFile">No file chosen...</div> -->
+              <input type="file" name="SelectImage" (change)="onSelectFile($event)" id="chooseFile">
+            </div>{{imageName}}
+          </div>
+                  <button mat-raised-button  style="width: 100px;margin-top:10px;Background-color: #65c7f7;" matStepperPrevious>Back</button>
+                  <button mat-raised-button style="margin-left:350px; width:100px; background-color:#65c7f7;" (click)="saveData()">Save</button>
+                </ng-template>
+              </mat-step>
         </mat-stepper>
-    <!-- </form> -->
     </mat-card>
-    </div>
+</div>

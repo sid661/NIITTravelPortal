@@ -1,0 +1,20 @@
+.example-section{
+    width: 90%;
+    background-color: rgb(162, 210, 211);
+}
+mat-label{
+    font-size: 21px;
+    font-weight: 500;
+    color: black    ;
+}
+
+.outer{
+    background-image: url("https://3.imimg.com/data3/QN/LW/MY-5930114/cab-facility-500x500.jpg");
+    background-size: cover;
+}
+.button{
+    width: 30%;
+    justify-content: center;
+    height: 30%;
+
+}

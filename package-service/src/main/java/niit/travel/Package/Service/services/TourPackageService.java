@@ -10,5 +10,7 @@ public interface TourPackageService {
     void deletePackage(TourPackage pack);
     TourPackage updatePackage(TourPackage tourPackage);
     List<TourPackage> showAll();
-//    TourPackage findByDestination(String destination);
+    List<TourPackage> findByDestination(String destination);
+
+    List<TourPackage> findAllPackageByEmail(String email);
 }

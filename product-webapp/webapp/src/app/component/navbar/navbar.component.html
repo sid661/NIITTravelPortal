@@ -6,7 +6,8 @@
           <nav>
        
             <ul class="nav-type">
-              <li><h1 style="margin-left: -900px; color: black; font-weight: 600;">Niit Travel Portal</h1></li>
+            <li> <img src="../assets/2022-10-33.png" height="77px" style="margin-left: -1040px;" ></li> 
+              <li><h1 style="margin-left: -940px;margin-top: 15px; color: black; font-weight: 600;" onclick="FBlogin()">Niit Travel Portal</h1></li>
               <li><button mat-button routerLink="/home" style="background-color: transparent;">
                 <mat-icon style="color: yellow;">where_to_vote</mat-icon><br><h3>Super Offers</h3> </button></li>
               <li *ngIf="!loggedIn"><button mat-button  routerLink="/login" style="background-color: transparent;">
@@ -35,8 +36,7 @@
                     </button>
                     
                   </mat-menu>
-              <li *ngIf="loggedIn"><button mat-button routerLink="/home" style="background-color: transparent;">
-                <mat-icon  style="color: yellow;">book_online</mat-icon><br><h3>Manage Bookings</h3> </button></li>
+   
 
 
 

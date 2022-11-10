@@ -2,8 +2,10 @@
     <form [formGroup]="searchform">
       <div fxLayout="row" fxLayoutGap="3%" class="conatiner">
       <div class="text-input">
-        <input type="text"  placeholder="       CITY,PROPERTY NAME OR LOCATION" formControlName="city">
+        <input type="text"  onkeyup="search()"  id="search-input"  placeholder="       CITY,PROPERTY NAME OR LOCATION" formControlName="city">
         <label for="input1">HOTELS</label>
+        <div class="search-result">
+        </div>
       </div>
       <div fxLayout="row" fxLayoutGap="3%" class="conatiner">
         <mat-form-field appearance="outline" >
@@ -16,7 +18,7 @@
       
         <mat-form-field appearance="outline"  color="primary">
           <mat-label  style="font-size: 18px;font-weight:600">Check Out</mat-label>
-          <input matInput style="border-radius: 20px;font-size: 20px;font-weight: 500" [matDatepicker]="picker1" [formControl]="date">
+          <input matInput  style="border-radius: 20px;font-size: 20px;font-weight: 500" [matDatepicker]="picker1" [formControl]="date">
           
           <mat-datepicker-toggle   matSuffix [for]="picker1"></mat-datepicker-toggle>
   
@@ -30,7 +32,7 @@
       <button mat-stroked-button style="margin-left: 420px; margin-top: 85px; 
 background-image: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
       font-size: 23px; color: white; width: 230px; border-radius: 30px; height: 45px;
-      " (click)="search()">SEARCH</button>
+      " (click)="search1()">SEARCH</button>
     </div>
    
   </div>
