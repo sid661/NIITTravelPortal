@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Filehandle } from 'src/app/model/filehandle';
 import { HotelService } from 'src/app/service/hotel.service';
 
@@ -15,7 +16,7 @@ export class EdithotelComponent implements OnInit {
 
   RegisterformHotel:FormGroup
 
-  constructor(private hotelservice:HotelService,private fb:FormBuilder) { 
+  constructor(private hotelservice:HotelService,private fb:FormBuilder,private activatedRoute: ActivatedRoute,private router:Router) { 
     this.RegisterformHotel=new FormGroup({
       email:new FormControl('',[]),
       hotelName:new FormControl('',[Validators.required]),
@@ -77,12 +78,15 @@ export class EdithotelComponent implements OnInit {
     return (<FormArray>this.RegisterformHotel.get('propertyRules')).controls
   }
 allhoteldetails:any;
-
+nameofhotel:any;
 
   ngOnInit(): void 
   {
+    this.nameofhotel = this.activatedRoute.snapshot.paramMap.get('hotelName');
+    console.log(this.nameofhotel);
+    
   
-  this.hotelservice.getHotel("hotel").subscribe((subscriber)=>{
+  this.hotelservice.getHotel(this.nameofhotel).subscribe((subscriber)=>{
     this.allhoteldetails=subscriber;
     this.initializeForm();
     console.log(this.RegisterformHotel.value)
@@ -136,6 +140,7 @@ allhoteldetails:any;
     formData.append('file', this.userFile);
     this.hotelservice.updateHotel(regData).subscribe(() => {
       alert("successfully Changed")
+      this.router.navigate(['view'])
       
     
      },(error: any) => {

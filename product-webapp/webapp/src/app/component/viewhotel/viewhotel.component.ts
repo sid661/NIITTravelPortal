@@ -649,6 +649,9 @@ ratingfilterd:boolean=false;
   book(hotelName:any)
   {
     
+    this.hotelservice.hotelName=hotelName;
+  
+    
     this.route.navigate(['viewroom/',hotelName])
       
   }

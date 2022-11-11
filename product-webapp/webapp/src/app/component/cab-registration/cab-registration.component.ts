@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Cab } from 'src/app/model/cab';
 import { CabService } from 'src/app/service/cab.service';
 
@@ -20,7 +21,7 @@ cabForm=new FormGroup({
 })
 
 cab:Cab=new Cab();
-  constructor(private service:CabService) { }
+  constructor(private service:CabService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +36,7 @@ cab:Cab=new Cab();
 
     this.service.saveCab(this.cab).subscribe((x:any)=>{
       alert("cab registered successfully");
+      this.router.navigate(['view'])
     })
 
    

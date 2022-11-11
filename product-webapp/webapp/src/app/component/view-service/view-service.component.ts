@@ -47,8 +47,8 @@ export class ViewServiceComponent implements OnInit {
 }
 
 
-  update()
+  update(hotelName:any)
   {
-    this.router.navigate(['edit'])
+    this.router.navigate(['edit/',hotelName])
   }
 }

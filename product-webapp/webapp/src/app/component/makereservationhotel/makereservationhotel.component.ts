@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Amenties } from 'src/app/model/amenties';
 import { HotelService } from 'src/app/service/hotel.service';
+import { BookroomComponent } from '../bookroom/bookroom.component';
 
 @Component({
   selector: 'app-makereservationhotel',
@@ -10,7 +12,7 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class MakereservationhotelComponent implements OnInit {
 
-  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute ) { }
+  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute,private dialog:MatDialog ) { }
 result=0;
 Rooms:any;
 isvalid:boolean=false;
@@ -22,7 +24,11 @@ hotelName:any;
 bookRoom(roomid:any)
 {
   this.hotelservice.roomid=roomid;
-  this.router.navigate(['bookroom'])
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = false;
+  dialogConfig.autoFocus = true;
+  this.dialog.open(BookroomComponent, dialogConfig);
+  
 }
   ngOnInit(): void 
   {
