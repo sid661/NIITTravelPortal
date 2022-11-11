@@ -50,6 +50,7 @@ export class PackageComponent implements OnInit {
   constructor(private service:PackageService,private activatedRoute:ActivatedRoute) { }
 packageArray:any=[]
 filterpackageArray:any=[];
+
 city:any;
 length:any
 result:any
@@ -218,6 +219,5 @@ console.log(slider);
 
 this.result=this.filterpackageArray.length;
 }
-
 
 }

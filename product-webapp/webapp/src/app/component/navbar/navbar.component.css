@@ -20,6 +20,10 @@ body {
   transition: 3s;
 
 }
+.html-container
+{
+ margin-top:0;
+}
 
 ul {
  margin-top: -335px;
@@ -279,6 +283,7 @@ nav {
     font-size: 23px;
     font-weight: lighter;
   }
+ 
   
   .radial-cyrcle {
     width: 60px;

@@ -62,12 +62,9 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {MatMenuModule} from '@angular/material/menu';
+
 import { RoomRegistrationComponent } from './component/room-registration/room-registration.component';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-  GoogleLoginProvider,
-} from 'angularx-social-login';
+
 import { ViewServiceComponent } from './component/view-service/view-service.component';
 import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
 import { InformationComponent } from './component/information/information.component';
@@ -81,12 +78,25 @@ import { MakereservationComponent } from './component/makereservation/makereserv
 import { ReviewComponent } from './component/review/review.component';
 import { Navbar3Component } from './navbar3/navbar3.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+
+import { RoomComponent } from './component/room/room.component';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,FacebookLoginProvider
+  
+} from '@abacritt/angularx-social-login';
+import { MakereservationhotelComponent } from './component/makereservationhotel/makereservationhotel.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HotelsComponent,
     CabsComponent,
+    RoomComponent,
     ExploreComponent,
+    MakereservationhotelComponent,
     HolidaypackagesComponent,
     LoginComponent,
     ServiceproviderregistercomponentComponent,
@@ -107,6 +117,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
     ImageComponent,
     RatingComponent,
     PackageRegistrationComponent,
+
     RoomRegistrationComponent,
   
     ViewServiceComponent,
@@ -122,6 +133,8 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
         ForgotPasswordComponent,
     
     
+
+
  
   ],
   imports: [
@@ -130,7 +143,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
     ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
-    SocialLoginModule,
+    
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -158,27 +171,33 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
     FlexLayoutModule,
     MatMenuModule,
     LayoutModule,
+    SocialLoginModule
   
 
    
 
    
   ],
-//   providers:[{
-//     provide: 'SocialAuthServiceConfig',
-//     useValue: {
-//       autoLogin: false,
-//       providers: [
-//         {
-//           id: GoogleLoginProvider.PROVIDER_ID,
-//           provider: new GoogleLoginProvider(
-//             '202101362455-uvcalo58ivtrr77ofeio9j48le1o9hc3.apps.googleusercontent.com'
-//           ),
-//         },
-//       ],
-//     } as SocialAuthServiceConfig,
-//   },
-// ],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '589672450302-k0fi0figmt04vntkob8d4ng6t63ki0hr.apps.googleusercontent.com'
+            )
+          },
+         
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

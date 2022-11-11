@@ -4,10 +4,12 @@ import com.example.HotelService.config.Producer;
 import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
 import com.example.HotelService.exception.RoomNotFoundException;
+
 import com.example.HotelService.model.Hotel;
 import com.example.HotelService.model.Reservation;
 import com.example.HotelService.model.Review;
 import com.example.HotelService.model.Room;
+
 import com.example.HotelService.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,25 +19,21 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class HotelServiceImpl implements HotelService
-{
+public class HotelServiceImpl implements HotelService {
     @Autowired
     private Producer producer;
     private HotelRepository hotelRepository;
+
     @Autowired
     public HotelServiceImpl(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
 
     @Override
-    public Hotel registerHotel(Hotel hotel,String email) throws HotelAlreadyExistsException
-    {
-        if(hotelRepository.findById(hotel.getHotelName()).isPresent())
-        {
+    public Hotel registerHotel(Hotel hotel, String email) throws HotelAlreadyExistsException {
+        if (hotelRepository.findById(hotel.getHotelName()).isPresent()) {
             throw new HotelAlreadyExistsException();
-        }
-        else
-        {
+        } else {
             hotel.setEmail(email);
             hotelRepository.save(hotel);
             producer.sendMessageToRabbitMqServer(hotel);
@@ -45,17 +43,12 @@ public class HotelServiceImpl implements HotelService
 
     @Override
     public Hotel registerHotelDetails(Hotel hotel, String email, byte[] overviewimage) throws HotelAlreadyExistsException {
-        if(hotelRepository.findById(hotel.getHotelName()).isPresent())
-        {
+        if (hotelRepository.findById(hotel.getHotelName()).isPresent()) {
             throw new HotelAlreadyExistsException();
-        }
-        else
-        {
+        } else {
 
-            if(hotel.getOverview()!=null)
-            {
-                if(overviewimage.length!=0)
-                {
+            if (hotel.getOverview() != null) {
+                if (overviewimage.length != 0) {
                     System.out.println(overviewimage);
                     hotel.getOverview().setImage(overviewimage);
                 }
@@ -72,34 +65,25 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
-    public List<Hotel> getAllHotel()
-    {
+    public List<Hotel> getAllHotel() {
         return hotelRepository.findAll();
     }
 
     @Override
-    public List<Hotel> getHotelsByEmail(String email) throws HotelNotFoundException
-    {
-        if(hotelRepository.findByEmail(email)==null)
-        {
+    public List<Hotel> getHotelsByEmail(String email) throws HotelNotFoundException {
+        if (hotelRepository.findByEmail(email) == null) {
             throw new HotelNotFoundException();
-        }
-        else
-        {
+        } else {
             return hotelRepository.findByEmail(email);
         }
     }
 
     @Override
-    public Hotel deleteHotel(String hotelName) throws HotelNotFoundException
-    {
-        if(hotelRepository.findById(hotelName).isEmpty())
-        {
+    public Hotel deleteHotel(String hotelName) throws HotelNotFoundException {
+        if (hotelRepository.findById(hotelName).isEmpty()) {
             System.out.println("Hotel not found");
             throw new HotelNotFoundException();
-        }
-        else
-        {
+        } else {
             Hotel hotel = hotelRepository.findByHotelName(hotelName);
             hotelRepository.delete(hotel);
             return hotel;
@@ -108,67 +92,49 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
-    public Hotel getHotelByHotelName(String hotelName) throws HotelNotFoundException
-    {
-        if(hotelRepository.findById(hotelName).isEmpty())
-        {
+    public Hotel getHotelByHotelName(String hotelName) throws HotelNotFoundException {
+        if (hotelRepository.findById(hotelName).isEmpty()) {
             System.out.println("Hotel not found");
             throw new HotelNotFoundException();
-        }
-        else
-        {
-            Hotel hotel=hotelRepository.findByHotelName(hotelName);
+        } else {
+            Hotel hotel = hotelRepository.findByHotelName(hotelName);
             return hotel;
         }
     }
 
     @Override
-    public Hotel updateHotelDetails(String hotelName,String email,Hotel hotel) throws HotelNotFoundException
-    {
-        if(hotelRepository.findByEmail(email)==null)
-        {
+    public Hotel updateHotelDetails(String hotelName, String email, Hotel hotel) throws HotelNotFoundException {
+        if (hotelRepository.findByEmail(email) == null) {
             System.out.println("Not found by mail");
             throw new HotelNotFoundException();
-        }
-        else if(hotelRepository.findById(hotelName).isEmpty())
-        {
+        } else if (hotelRepository.findById(hotelName).isEmpty()) {
             System.out.println("Hotel not found");
             throw new HotelNotFoundException();
-        }
-        else
-        {
-            Hotel hotel1=hotelRepository.findByHotelName(hotelName);
+        } else {
+            Hotel hotel1 = hotelRepository.findByHotelName(hotelName);
             System.out.println(hotel1);
-            if(hotel.getHotelName()!=null && hotel1.getHotelName()!=null)
-            {
+            if (hotel.getHotelName() != null && hotel1.getHotelName() != null) {
                 System.out.println("iNSIDE 1");
-                if (!hotel1.getHotelName().equals(hotel.getHotelName()))
-                {
+                if (!hotel1.getHotelName().equals(hotel.getHotelName())) {
 
                     hotel1.setHotelName(hotel.getHotelName());
                     System.out.println("check1");
 
                 }
-            }
-            else
-            {
+            } else {
                 System.out.println("new check 1");
             }
-            if(hotel.getHotelCategory()!=null && hotel1.getHotelCategory()!=null)
-            {
+            if (hotel.getHotelCategory() != null && hotel1.getHotelCategory() != null) {
                 System.out.println("iNSIDE 2");
-                if (!hotel1.getHotelCategory().equals(hotel.getHotelCategory()))
-                {
+                if (!hotel1.getHotelCategory().equals(hotel.getHotelCategory())) {
                     hotel1.setHotelCategory(hotel.getHotelCategory());
                     System.out.println(hotel1);
                     System.out.println("check2");
                 }
-            }
-            else
-            {
+            } else {
                 System.out.println("new check 2");
             }
-            if(hotel.getOverview()!=null) {
+            if (hotel.getOverview() != null) {
                 if (hotel.getOverview().getDescription() != null) {
                     System.out.println("iNSIDE 3");
                     if (!hotel1.getOverview().getDescription().equals(hotel.getOverview().getDescription())) {
@@ -189,7 +155,7 @@ public class HotelServiceImpl implements HotelService
                     System.out.println("new check 4");
                 }
             }
-            if(hotel.getAmenities()!=null) {
+            if (hotel.getAmenities() != null) {
                 if (hotel.getAmenities().getSafetyandhygiene() != null) {
                     System.out.println("iNSIDE 5");
                     if (!hotel1.getAmenities().getSafetyandhygiene().equals(hotel.getAmenities().getSafetyandhygiene())) {
@@ -227,7 +193,7 @@ public class HotelServiceImpl implements HotelService
                     System.out.println("new check 8");
                 }
             }
-            if(hotel.getAddress()!=null) {
+            if (hotel.getAddress() != null) {
                 if (hotel.getAddress().getStreetname() != null) {
                     System.out.println("iNSIDE 9");
                     if (!hotel1.getAddress().getStreetname().equals(hotel.getAddress().getStreetname())) {
@@ -265,50 +231,34 @@ public class HotelServiceImpl implements HotelService
                     System.out.println("new check 12");
                 }
             }
-            if(hotel.getPropertyRules()!=null)
-            {
+            if (hotel.getPropertyRules() != null) {
                 System.out.println("iNSIDE 13");
                 System.out.println("check13");
                 hotel1.setPropertyRules(hotel.getPropertyRules());
-            }
-            else
-            {
+            } else {
                 System.out.println("new check 13");
             }
-            if(hotel.getEmail()!=null)
-            {
+            if (hotel.getEmail() != null) {
                 System.out.println("iNSIDE 14");
                 System.out.println("check14");
                 hotel1.setEmail(hotel.getEmail());
-            }
-            else
-            {
+            } else {
                 System.out.println("new check 14");
             }
-            if(hotel.getRoom()!=null)
-            {
+            if (hotel.getRoom() != null) {
                 System.out.println("iNSIDE 15");
                 System.out.println("check15");
                 hotel1.setRoom(hotel.getRoom());
-            }
-            else
-            {
+            } else {
                 System.out.println("new check 15");
             }
-            if(hotel.getReview()!=null)
-            {
+            if (hotel.getReview() != null) {
                 System.out.println("iNSIDE 16");
                 System.out.println("check16");
                 hotel1.setReview(hotel.getReview());
-            }
-            else
-            {
+            } else {
                 System.out.println("new check 16");
             }
-
-
-
-
 
 
             System.out.println("check18");
@@ -323,23 +273,16 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
-    public Hotel addReview(String hotelName, Review review) throws HotelNotFoundException
-    {
-        if(hotelRepository.findById(hotelName).isEmpty())
-        {
+    public Hotel addReview(String hotelName, Review review) throws HotelNotFoundException {
+        if (hotelRepository.findById(hotelName).isEmpty()) {
             System.out.println("Hotel not found");
             throw new HotelNotFoundException();
-        }
-        else
-        {
-            Hotel hotel=hotelRepository.findByHotelName(hotelName);
-            if(hotel.getReview()==null)
-            {
+        } else {
+            Hotel hotel = hotelRepository.findByHotelName(hotelName);
+            if (hotel.getReview() == null) {
                 hotel.setReview(Arrays.asList(review));
-            }
-            else
-            {
-                List<Review> reviews=hotel.getReview();
+            } else {
+                List<Review> reviews = hotel.getReview();
                 reviews.add(review);
                 hotel.setReview(reviews);
             }
@@ -349,14 +292,10 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
-    public Hotel updateExistingHotel(Hotel hotel, String hotelName) throws HotelNotFoundException
-    {
-        if(hotelRepository.findById(hotel.getHotelName()).isEmpty())
-        {
+    public Hotel updateExistingHotel(Hotel hotel, String hotelName) throws HotelNotFoundException {
+        if (hotelRepository.findById(hotel.getHotelName()).isEmpty()) {
             throw new HotelNotFoundException();
-        }
-        else
-        {
+        } else {
             hotelRepository.save(hotel);
             producer.sendMessageToRabbitMqServer(hotel);
             return hotel;
@@ -364,25 +303,18 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
-    public Hotel addRoom(String hotelName, Room room,byte[] roomimage) throws HotelNotFoundException
-    {
-        if(hotelRepository.findById(hotelName).isEmpty())
-        {
+    public Hotel addRoom(String hotelName, Room room, byte[] roomimage) throws HotelNotFoundException {
+        if (hotelRepository.findById(hotelName).isEmpty()) {
             System.out.println("Hotel not found");
             throw new HotelNotFoundException();
-        }
-        else
-        {
-            Hotel hotel=hotelRepository.findByHotelName(hotelName);
+        } else {
+            Hotel hotel = hotelRepository.findByHotelName(hotelName);
             room.setImages(roomimage);
-            if(hotel.getRoom()==null)
-            {
+            if (hotel.getRoom() == null) {
 
                 hotel.setRoom(Arrays.asList(room));
-            }
-            else
-            {
-                List<Room> rooms=hotel.getRoom();
+            } else {
+                List<Room> rooms = hotel.getRoom();
 
                 rooms.add(room);
                 hotel.setRoom(rooms);
@@ -392,43 +324,26 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
-    public List<Hotel> getHotelByCityName(String city) throws HotelNotFoundException
-    {
-        List<Hotel> allhotels=hotelRepository.findAll();
-        List<Hotel> hotelsByCity=new ArrayList<>();
-        for(Hotel h:allhotels)
-        {
-            if(h.getAddress()!=null)
-            {
-                System.out.println(h);
-                if(h.getAddress().getCity().equalsIgnoreCase(city))
-                {
+    public List<Hotel> getHotelByCityName(String city)  {
+        return hotelRepository.findByAddressCity(city);
 
-
-                    hotelsByCity.add(h);
-
-                }
-            }
-        }
-
-        return  hotelsByCity;
     }
 
     @Override
     public List<Hotel> findByAddressCity(String cityName) {
+
+
         return hotelRepository.findByAddressCity(cityName);
     }
 
 
-
     @Override
     public List<Hotel> findByReviewRating(int rating) {
-        List<Hotel> hotels=new ArrayList<>();
-        List<Hotel> listedHotel=hotelRepository.findAll();
-        for(Hotel hotel: listedHotel) {
-            for(Review review: hotel.getReview()) {
-                if(review.getRating()==rating)
-                {
+        List<Hotel> hotels = new ArrayList<>();
+        List<Hotel> listedHotel = hotelRepository.findAll();
+        for (Hotel hotel : listedHotel) {
+            for (Review review : hotel.getReview()) {
+                if (review.getRating() == rating) {
                     hotels.add(hotel);
                 }
             }
@@ -462,48 +377,45 @@ public class HotelServiceImpl implements HotelService
     }
 
     @Override
+
     public Room makeReservation(String hotelName, int roomid, Reservation reservation) throws HotelNotFoundException, RoomNotFoundException {
-        if(hotelRepository.findById(hotelName).isEmpty())
         {
-            System.out.println("Hotel not found");
-            throw new HotelNotFoundException();
-        }
-        else
-        {
-            Hotel hotel = hotelRepository.findByHotelName(hotelName);
-            List<Room> rooms=hotel.getRoom();
-            boolean flag=false;
-            Room room1=new Room();
-            for(Room room:rooms)
-            {
-                if(room.getRoomid()==roomid)
-                {
-                    flag=true;
-                    room1=room;
-                    break;
+
+            if (hotelRepository.findById(hotelName).isEmpty()) {
+                System.out.println("Hotel not found");
+                throw new HotelNotFoundException();
+            } else {
+                Hotel hotel = hotelRepository.findByHotelName(hotelName);
+                List<Room> rooms = hotel.getRoom();
+                boolean flag = false;
+                Room room1 = new Room();
+                for (Room room : rooms) {
+                    if (room.getRoomid() == roomid) {
+                        flag = true;
+                        room1 = room;
+                        break;
+                    }
                 }
-            }
-            if(flag)
-            {
-                System.out.println(room1);
-                room1.setReservation(reservation);
-                hotelRepository.save(hotel);
-                return room1;
+                if (flag) {
+                    System.out.println(room1);
+                    room1.setReservation(reservation);
+                    hotelRepository.save(hotel);
+                    return room1;
 
 
-            }
-            else
-            {
-                throw new RoomNotFoundException();
+                } else {
+                    throw new RoomNotFoundException();
+                }
+
             }
 
         }
+
 
     }
 
     @Override
-    public List<Room> getAllRooms(String hotelName) throws HotelNotFoundException
-    {
+    public List<Room> getAllRooms(String hotelName) throws HotelNotFoundException {
         if(hotelRepository.findById(hotelName).isEmpty())
         {
             System.out.println("Hotel not found");
@@ -512,7 +424,8 @@ public class HotelServiceImpl implements HotelService
         else
         {
             Hotel hotel = hotelRepository.findByHotelName(hotelName);
-            return hotel.getRoom();
+            return  hotel.getRoom();
         }
     }
+
 }

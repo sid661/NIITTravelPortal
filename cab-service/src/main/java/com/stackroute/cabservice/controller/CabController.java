@@ -30,6 +30,10 @@ public class CabController {
     {
         System.out.println("hi");
         String[] cabArray=cabType.split(",");
+        for(int i=0;i<cabArray.length;i++)
+        {
+            System.out.println(cabArray[i]);
+        }
         System.out.println(cabArray.length);
         for (int i = 0; i <cabArray.length ; i++) {
             System.out.println(cabArray[i]);

@@ -2,7 +2,7 @@ package com.example.HotelService.model;
 
 import lombok.*;
 
-import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +19,7 @@ public class Room
     //private int roomavailable;//input field
     private int totalNoOfRoom;//input field
     private Reservation reservation;
+
 
 
 

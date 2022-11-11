@@ -10,8 +10,10 @@ import { CabService } from 'src/app/service/cab.service';
   templateUrl: './cab.component.html',
   styleUrls: ['./cab.component.css']
 })
+
 export class CabComponent implements OnInit {
  
+
   checksuv:boolean=false;
   checksedan:boolean=false;
   checkhatchback:boolean=false;
@@ -284,11 +286,14 @@ export class CabComponent implements OnInit {
   }
 
 
+
   cabArray:Cab[]=[];
  city:any
  result:any
  filtercabArray:Cab[]=[];
   constructor(private cabService:CabService,private activatedRoute:ActivatedRoute) { }
+
+
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   ngOnInit(): void {
     this.city = this.activatedRoute.snapshot.paramMap.get('name');

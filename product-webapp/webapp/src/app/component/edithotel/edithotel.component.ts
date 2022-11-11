@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Filehandle } from 'src/app/model/filehandle';
 import { HotelService } from 'src/app/service/hotel.service';
+
 
 @Component({
   selector: 'app-edithotel',
@@ -10,7 +12,9 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class EdithotelComponent implements OnInit {
 
+
   RegisterformHotel:FormGroup
+
   constructor(private hotelservice:HotelService,private fb:FormBuilder) { 
     this.RegisterformHotel=new FormGroup({
       email:new FormControl('',[]),
@@ -78,7 +82,7 @@ allhoteldetails:any;
   ngOnInit(): void 
   {
   
-  this.hotelservice.getHotel().subscribe((subscriber)=>{
+  this.hotelservice.getHotel("hotel").subscribe((subscriber)=>{
     this.allhoteldetails=subscriber;
     this.initializeForm();
     console.log(this.RegisterformHotel.value)

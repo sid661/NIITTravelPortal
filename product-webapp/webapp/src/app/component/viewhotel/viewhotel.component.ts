@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Hotel } from 'src/app/model/hotel';
 import { Room } from 'src/app/model/room';
 import { HotelService } from 'src/app/service/hotel.service';
@@ -11,7 +13,10 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class ViewhotelComponent implements OnInit {
 
+
   constructor(private hotelservice: HotelService,private route:Router,private activatedRoute:ActivatedRoute) { }
+
+
   hotelArray: Hotel[] = [];
   retrieveImage: any;
   getRating: any;
@@ -56,6 +61,15 @@ export class ViewhotelComponent implements OnInit {
     })
 
   }
+  // bookhotel(hotelName:any)
+  // {
+  //   this.hotelservice.hotelName=hotelName;
+  //   console.log("dsds");
+    
+  
+  //  // this.route.navigate(['viewrooms']);
+
+  // }
   price1k:any;
   filterHotel:Hotel[]=[];
  
@@ -631,11 +645,14 @@ ratingfilterd:boolean=false;
     }
 
   } 
+
   book(hotelName:any)
   {
-    this.route.navigate(['detail/',hotelName])
+    
+    this.route.navigate(['viewroom/',hotelName])
       
   }
+
 }
 
 

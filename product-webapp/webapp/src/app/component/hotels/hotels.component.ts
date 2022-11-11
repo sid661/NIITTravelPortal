@@ -51,8 +51,13 @@ export class HotelsComponent implements OnInit {
   }
   search1()
   {
+
    
     this.router.navigate(['viewhotel/',this.searchform.value.city])
+
+    console.log(this.searchform.value.city!)
+    
+
   }
 
   add()

@@ -9,7 +9,10 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class BookroomComponent implements OnInit {
 
+
   bookroomform:FormGroup
+
+
   constructor(private hotelservice:HotelService) { 
     this.bookroomform=new FormGroup({
       
@@ -56,5 +59,6 @@ export function enddatevalidator(control:AbstractControl)
   else{
     return { myError2:false}
   }
+
 
 }

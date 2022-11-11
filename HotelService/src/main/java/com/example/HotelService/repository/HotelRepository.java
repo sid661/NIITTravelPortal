@@ -2,9 +2,10 @@ package com.example.HotelService.repository;
 
 import com.example.HotelService.model.Hotel;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface HotelRepository extends MongoRepository<Hotel,String>
 {
     List<Hotel> findByEmail(String email);
@@ -17,5 +18,8 @@ public interface HotelRepository extends MongoRepository<Hotel,String>
     List<Hotel> findByRoomPriceAndReviewRating(int price,int rating);
     List<Hotel> findByHotelCategoryAndReviewRating(String category,int rating);
     List<Hotel> findByHotelCategoryAndRoomPrice(String category,int price);
+
+
+
 
 }

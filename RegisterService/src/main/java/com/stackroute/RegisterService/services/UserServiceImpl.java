@@ -2,6 +2,7 @@ package com.stackroute.RegisterService.services;
 
 import com.stackroute.RegisterService.config.Producer;
 import com.stackroute.RegisterService.exception.UserAlreadyExistsException;
+import com.stackroute.RegisterService.exception.UserNotFoundException;
 import com.stackroute.RegisterService.model.User;
 import com.stackroute.RegisterService.rabbitmq.UserDTO;
 import com.stackroute.RegisterService.rabbitmq.UserRole;
@@ -32,6 +33,25 @@ public class UserServiceImpl implements UserService
         {
             userRepository.save(user);
              System.out.println("Data going to Save into Rabbit Server");
+            UserDTO userDTO=new UserDTO();
+            userDTO.setEmail(user.getEmail());
+            userDTO.setPassword(user.getPassword());
+            userDTO.setRole(UserRole.USER);
+            producer.sendMessageToRabbitMqServer(userDTO);
+        }
+        return user;
+    }
+
+    @Override
+    public User updateUser(User user, String email) throws UserNotFoundException
+    {
+        if(userRepository.findById(email).isEmpty())
+        {
+            throw new UserNotFoundException();
+        }
+        else
+        {
+            userRepository.save(user);
             UserDTO userDTO=new UserDTO();
             userDTO.setEmail(user.getEmail());
             userDTO.setPassword(user.getPassword());

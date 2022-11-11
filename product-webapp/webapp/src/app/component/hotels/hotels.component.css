@@ -72,6 +72,7 @@ body{
     width: 1100px;
     border-radius: 20px;
     border: solid 1px black;
+    
 
   
 }
@@ -80,4 +81,5 @@ body{
 .conatiner{
   margin-left: 0px;
   margin-top: 50px;
+  
 }

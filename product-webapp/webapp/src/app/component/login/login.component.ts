@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/service/login.service';
@@ -13,8 +14,10 @@ declare var FB:any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private loginService:LoginService,private router:Router,private dialog:MatDialog) { }
+user1 :any;
+loggedIn :any;
+name:any
+  constructor(private loginService:LoginService,private router:Router,private dialog:MatDialog,private authservice:SocialAuthService) { }
   loginForm=new FormGroup({
     email:new FormControl(""),
     password:new FormControl(""),
@@ -23,6 +26,11 @@ export class LoginComponent implements OnInit {
 user:User=new User();
 
   ngOnInit(): void {
+    this.authservice.authState.subscribe((user1: any) => {
+      this.user1 = user1 ;
+      this.loggedIn = (user1 != null);
+      console.log(this.user);
+    });
   }
 
   f()

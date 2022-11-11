@@ -23,11 +23,11 @@
 
 		</div>
 		<div fxLayout="row" style="margin-top:8px ;">
-			<div fxFlex="39%"></div>
-			<div fxFlex="26%"  fxLayout="row">
-				<i class="fa fa-facebook-square fa-4x" onclick="FBlogin()">Fb</i>
-				<i class="fab fa fa fa-envelope fa-4x" style="margin-left: 15px;"></i>
-				<script src="src/app/login.js"></script>
+			<div fxFlex="49%"></div>
+			<div fxFlex="30%"  fxLayout="row" style="height: 50px;">
+				
+				<asl-google-signin-button *ngIf="!user1"></asl-google-signin-button>
+				
 			</div>
 
 		</div>
@@ -94,3 +94,12 @@
 
 	</mat-card>
 </div>
+<!-- <asl-google-signin-button *ngIf="!user1"></asl-google-signin-button> -->
+<!-- <div *ngIf="user1">
+    <img src="{{ user1.photoUrl }}">
+<div>
+  <h4>{{ user1.name }}</h4>
+  <p>{{ user1.email }}</p>
+</div>
+
+</div> -->

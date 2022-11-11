@@ -4,6 +4,10 @@ import com.example.HotelService.exception.HotelAlreadyExistsException;
 import com.example.HotelService.exception.HotelNotFoundException;
 import com.example.HotelService.model.*;
 import com.example.HotelService.repository.HotelRepository;
+
+import com.example.HotelService.exception.RoomNotFoundException;
+
+
 import com.example.HotelService.service.HotelService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/hotel/")
@@ -62,17 +68,15 @@ public class HotelController
         return responseEntity = new ResponseEntity(myList, HttpStatus.OK);
     }
         @GetMapping("hotelbycity/{city}")
-    public ResponseEntity<?>  getHotelsByCity(@PathVariable String city) throws HotelNotFoundException
+    public ResponseEntity<?>  getHotelsByCity(@PathVariable String city)
     {
         try
         {
-
+            System.out.println("city "+city);
+            System.out.println(hotelService.getHotelByCityName(city));
             responseEntity=new ResponseEntity<>(hotelService.getHotelByCityName(city),HttpStatus.OK);
         }
-        catch (HotelNotFoundException hotelNotFoundException)
-        {
-            responseEntity=new ResponseEntity<>(hotelNotFoundException,HttpStatus.NOT_FOUND);
-        }
+
         catch (Exception e)
         {
             System.out.println(e);
@@ -242,10 +246,58 @@ public class HotelController
     ResponseEntity<Hotel> findByprice(@PathVariable int price){
         return responseEntity = new ResponseEntity<>(hotelService.findByRoomPrice(price),HttpStatus.OK);
     }
+
     @GetMapping("filter")
-    ResponseEntity<Hotel> filter(@RequestBody FilterData filterData){
-        return responseEntity= new ResponseEntity(hotelService.findByHotelCategoryAndRoomPriceAndReviewRating
-                (filterData.getHotelCategory(),filterData.getPrice(),filterData.getRating()),HttpStatus.OK);
+    ResponseEntity<Hotel> filter(@RequestBody FilterData filterData) {
+        return responseEntity = new ResponseEntity(hotelService.findByHotelCategoryAndRoomPriceAndReviewRating
+                (filterData.getHotelCategory(), filterData.getPrice(), filterData.getRating()), HttpStatus.OK);
+    }
+
+
+    @PostMapping("makereservation/{hotelName}/{roomid}")
+    ResponseEntity<?> makeReservation(@RequestBody Reservation reservation,@PathVariable String hotelName,@PathVariable int roomid) throws HotelNotFoundException, RoomNotFoundException
+    {
+        try
+        {
+          return  responseEntity=new ResponseEntity(hotelService.makeReservation(hotelName,roomid,reservation),HttpStatus.OK);
+        }
+        catch (HotelNotFoundException hotelNotFoundException)
+        {
+            System.out.println("Not found the Hotel");
+            responseEntity=new ResponseEntity<>(hotelNotFoundException,HttpStatus.NOT_FOUND);
+        }
+        catch (RoomNotFoundException roomNotFoundException)
+        {
+            System.out.println("Not found the Room");
+            responseEntity=new ResponseEntity<>(roomNotFoundException,HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            responseEntity=new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @GetMapping("getallrooms/{hotelName}")
+    public ResponseEntity<?> getAllRooms(@PathVariable String hotelName) throws HotelNotFoundException
+    {
+        try
+        {
+            responseEntity=new ResponseEntity<>(hotelService.getAllRooms(hotelName),HttpStatus.OK);
+        }
+        catch (HotelNotFoundException hotelNotFoundException)
+        {
+            System.out.println("Not found the Hotel");
+            responseEntity=new ResponseEntity<>(hotelNotFoundException,HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            responseEntity=new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+
+
     }
 
 }

@@ -17,7 +17,7 @@ export class MakereservationComponent implements OnInit {
     ngOnInit(): void 
     {
       let today : Date = new Date();
-    this.hotelservice.getAllRooms().subscribe((subscriber)=>{
+    this.hotelservice.getAllRooms("x").subscribe((subscriber)=>{
       this.Rooms=subscriber
       console.log(this.Rooms);
       

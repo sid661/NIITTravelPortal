@@ -28,6 +28,7 @@
     "@coreui/angular": "^4.2.9",
     "angularx-social-login": "^4.1.0",
     "moment": "^2.29.4",
+    "ng-template": "^1.0.0",
     "ng5-slider": "^1.2.6",
     "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~7.5.0",

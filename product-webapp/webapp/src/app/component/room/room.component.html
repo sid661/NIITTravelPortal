@@ -1,0 +1,48 @@
+
+<div ></div>
+
+<mat-card class="example-form"  [formGroup]="RegisterRoom" enctype="multipart/form-data">
+    <div><h1>Add Room Details</h1></div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Room Type</mat-label>
+            <input  matInput placeholder="Room Type" class="inputs" formControlName="roomtype">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>No of Beds</mat-label>
+            <input type="number" matInput placeholder="No of Beds" class="inputs" formControlName="noOfBeds">
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Price</mat-label>
+            <input type="number" matInput placeholder="Price" class="inputs" formControlName="price">
+        </mat-form-field>
+        <br>
+        <br>
+       
+      
+
+        <div style="display: flex">
+        
+       <div class="file-upload">
+  <div class="file-select">
+    <div class="file-select-button" id="fileName">Image</div>
+    <!-- <div class="file-select-name" id="noFile">No file chosen...</div> -->
+    <input type="file" name="SelectImage" (change)="onSelectFile($event)" id="chooseFile">
+  </div>{{imageName}}
+</div>
+    </div>
+        <mat-divider></mat-divider>
+        <br>
+        <br>
+     
+        <button mat-raised-button type="submit" color="primary" (click)="saveData()">Save Room</button>
+        <br>
+        <br>
+        <button mat-raised-button class="cancel-button" >Cancel</button>
+    </div>
+<!-- </form> -->
+</mat-card>
