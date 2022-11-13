@@ -17,46 +17,46 @@ public class MessageConfiguration {
         return new Jackson2JsonMessageConverter();
     }
 
-
-    private String exchangeName = "userxchange";
-    private String queueName = "otpqueue";
-    // private String serviceProviderQueue="serviceProviderQueue";
-    @Bean(name="directExchangeUser")
-    public DirectExchange directExchange()
-    {
-        return new DirectExchange(exchangeName);
-    }
-
-    @Bean(name="queueUser")
-
-    public Queue registerQueue()
-    {
-        return new Queue(queueName);
-    }
-
-
-
-
-    @Bean(name="bindingUser")
-    public Binding userBinding(Queue queue, DirectExchange directExchange)
-    {
-        return BindingBuilder.bind(queue).to(directExchange).with("email_routing");
-    }
-
-
-    @Bean(name="rabbittemplateUser")
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory)
-    {
-        RabbitTemplate rabbitTemplate=new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(producerConverter());
-        return rabbitTemplate;
-    }
-    @Bean(name="producerConverterUser")
-    public Jackson2JsonMessageConverter producerConverter()
-    {
-        return new Jackson2JsonMessageConverter();
-    }
-
+//
+//    private String exchangeName = "userxchange";
+//    private String queueName = "otpqueue";
+//    // private String serviceProviderQueue="serviceProviderQueue";
+//    @Bean(name="directExchangeUser")
+//    public DirectExchange directExchange()
+//    {
+//        return new DirectExchange(exchangeName);
+//    }
+//
+//    @Bean(name="queueUser")
+//
+//    public Queue registerQueue()
+//    {
+//        return new Queue(queueName);
+//    }
+//
+//
+//
+//
+//    @Bean(name="bindingUser")
+//    public Binding userBinding(Queue queue, DirectExchange directExchange)
+//    {
+//        return BindingBuilder.bind(queue).to(directExchange).with("email_routing");
+//    }
+//
+//
+//    @Bean(name="rabbittemplateUser")
+//    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory)
+//    {
+//        RabbitTemplate rabbitTemplate=new RabbitTemplate(connectionFactory);
+//        rabbitTemplate.setMessageConverter(producerConverter());
+//        return rabbitTemplate;
+//    }
+//    @Bean(name="producerConverterUser")
+//    public Jackson2JsonMessageConverter producerConverter()
+//    {
+//        return new Jackson2JsonMessageConverter();
+//    }
+//
 
 }
 

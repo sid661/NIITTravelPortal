@@ -1,5 +1,5 @@
 {
-  "name": "spotify-frontend",
+  "name": "webapp",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@coreui/angular": "^4.2.9",
+    "@coreui/icons-angular": "^4.2.4",
     "angularx-social-login": "^4.1.0",
     "moment": "^2.29.4",
     "ng-template": "^1.0.0",

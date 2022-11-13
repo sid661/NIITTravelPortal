@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeaderComponent } from '@coreui/angular';
 import { BookroomComponent } from './component/bookroom/bookroom.component';
 
 import { CabRegistrationComponent } from './component/cab-registration/cab-registration.component';
@@ -19,6 +20,7 @@ import { MakereservationhotelComponent } from './component/makereservationhotel/
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { PackageRegistrationComponent } from './component/package-registration/package-registration.component';
 import { PackageComponent } from './component/package/package.component';
+import { PaymentComponent } from './component/payment/payment.component';
 import { PlacesComponent } from './component/places/places.component';
 import { RegisterComponent } from './component/register/register.component';
 import { RollerComponent } from './component/roller/roller.component';
@@ -129,7 +131,10 @@ const routes: Routes = [
    {path:"detail/:name",component:HotelDetailComponent},
    {path:"reg",component:PackageRegistrationComponent},
    {path:'cabreg',component:CabRegistrationComponent},
+  
 ]},
+
+{path:'header',component:PaymentComponent},
   
   {
     path:'login',

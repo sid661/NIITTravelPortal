@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Amenties } from 'src/app/model/amenties';
+import { Bookhotel } from 'src/app/model/bookhotel';
 import { HotelService } from 'src/app/service/hotel.service';
+import { BookroomComponent } from '../bookroom/bookroom.component';
+import { UserformComponent } from '../userform/userform.component';
 
 @Component({
   selector: 'app-makereservationhotel',
@@ -10,7 +14,7 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class MakereservationhotelComponent implements OnInit {
 
-  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute ) { }
+  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute,private d:MatDialog ) { }
 result=0;
 Rooms:any;
 isvalid:boolean=false;
@@ -19,11 +23,27 @@ filterrooms:any[]=[];
 allhoteldetails:any;
 amenities:Amenties=new Amenties();
 hotelName:any;
-bookRoom(roomid:any)
+bookRoom(room:any)
 {
-  this.hotelservice.roomid=roomid;
-  this.router.navigate(['bookroom'])
+  this.hotelservice.getHotel(this.hotelName).subscribe((subscriber)=>{
+    this.book.hotelAddress=subscriber.address.city;
+    this.book.hotelCategory=subscriber.hotelCategory;
+    this.book.hotelName=subscriber.hotelName;
+    this.book.noOfBeds=room.noOfBeds;
+    this.book.price=room.price;
+    this.book.roomtype=room.roomtype;
+    this.book.serviceProviderEmailId=subscriber.email;
+    this.book.roomid=room.roomid;
+    
+  })
+  this.hotelservice.roomid=room.roomid;
+  this.d.open(UserformComponent,{
+    height:'600px',
+    width:'700px',
+    data:this.book
+  })
 }
+book:Bookhotel=new Bookhotel();
   ngOnInit(): void 
   {
     this.hotelName=this.activate.snapshot.paramMap.get('name')
@@ -61,6 +81,8 @@ bookRoom(roomid:any)
   this.hotelservice.getHotel(this.hotelName).subscribe((subscriber)=>{
     this.allhoteldetails=subscriber
     console.log(this.allhoteldetails)
+    
+    
     this.amenities=this.allhoteldetails.amenities;
     console.log(this.amenities)
   })

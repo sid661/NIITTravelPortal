@@ -16,11 +16,11 @@ public class Consumer {
         String status= emailService.sendSimpleEmail(userDto);
 
     }
-    @RabbitListener(queues = "otpqueue")
-    public void getDtoSendToOtp(String  email)  {
-        System.out.println("called");
-        String status= emailService.sendForgotEmailLink(email);
-
-    }
+//    @RabbitListener(queues = "otp")
+//    public void getDtoSendToOtp(String  email)  {
+//        System.out.println("called");
+//        String status= emailService.sendForgotEmailLink(email);
+//
+//    }
 
 }

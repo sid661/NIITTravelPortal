@@ -87,7 +87,13 @@ import {
   
 } from '@abacritt/angularx-social-login';
 import { MakereservationhotelComponent } from './component/makereservationhotel/makereservationhotel.component';
-
+import { OtpformComponent } from './component/otpform/otpform.component';
+import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
+import { UserformComponent } from './component/userform/userform.component';
+import { CabreservationComponent } from './component/cabreservation/cabreservation.component';
+import { HeaderComponent } from './component/header/header.component';
+import { PaymentComponent } from './component/payment/payment.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -131,6 +137,12 @@ import { MakereservationhotelComponent } from './component/makereservationhotel/
         ReviewComponent,
         Navbar3Component,
         ForgotPasswordComponent,
+        OtpformComponent,
+        ResetpasswordComponent,
+        UserformComponent,
+        CabreservationComponent,
+        HeaderComponent,
+        PaymentComponent,
     
     
 
@@ -196,7 +208,8 @@ import { MakereservationhotelComponent } from './component/makereservationhotel/
           console.error(err);
         }
       } as SocialAuthServiceConfig,
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

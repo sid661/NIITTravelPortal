@@ -13,8 +13,12 @@ import org.springframework.stereotype.Component;
 public class Consumer {
 
 
-    @Autowired
+
     private UserService userService;
+    @Autowired
+    public Consumer(UserService userService) {
+        this.userService = userService;
+    }
 
     @RabbitListener(queues = "userqueue")
     public void getDtoAndAddToDbOfGuestUser(UserDto userDto) throws UserAlreadyExistException, ServiceProviderAlreadyExist {

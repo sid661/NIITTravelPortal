@@ -24,7 +24,13 @@ export class LoginService {
   forgot(data:any)
   {
     console.log(data)
-    return this.http.post("http://localhost:9000/user/forgot-password",data);
+    return this.http.post("http://localhost:9000/register/forgot-password",data);
+  }
+
+  otp(email:any)
+ 
+  {
+      return this.http.get("http://localhost:8077/getotp/"+email)
   }
 
   // for login user

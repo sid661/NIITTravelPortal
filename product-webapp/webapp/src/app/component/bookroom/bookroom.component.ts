@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from 'src/app/model/user';
 import { HotelService } from 'src/app/service/hotel.service';
+import { UserformComponent } from '../userform/userform.component';
 
 @Component({
   selector: 'app-bookroom',
@@ -13,7 +16,7 @@ export class BookroomComponent implements OnInit {
   bookroomform:FormGroup
 
 
-  constructor(private hotelservice:HotelService) { 
+  constructor(private hotelservice:HotelService,private d:MatDialog) { 
     this.bookroomform=new FormGroup({
       
       startDate:new FormControl('',[Validators.required,startdatevalidator]),
@@ -26,6 +29,11 @@ export class BookroomComponent implements OnInit {
   mindate:Date=new Date();
   bookroom()
   {
+    this.d.closeAll();
+    this.d.open(UserformComponent,{
+      width: '700px',
+    height: '500px'
+    })
 
   }
 

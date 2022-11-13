@@ -1,0 +1,50 @@
+<!-- <div style="background-color:rgb(1, 38, 82); ">
+        <img  src="./assets/logo.png" alt="">
+      
+      </div> -->
+      <body>
+<div class="b">
+
+    <div class=" card card-container">
+
+        <img class="razorpay" src="./assets/Razorpay.png" alt="">
+
+        <form name="form"  [formGroup]="payment" class="form">
+            <!-- <div class="form-group">
+                 <div class="alert alert-danger" role="alert" *ngIf="error">Payment failed: {{ error }}</div>
+                <div class="alert alert-success" role="alert" *ngIf="paymentId">Payment Success. Payment ID: {{ paymentId }}</div>
+            </div> -->
+            <div class="form-group">
+                <label for="name">NAME</label>
+                 <input type="text" matInput   class="form-control" name="customerName"
+                    formControlName="customerName"   placeholder="abc" readonly/>
+                
+            </div>
+            <div class="form-group">
+                <label for="email">EMAIL</label> <input type="text" class="form-control" name="email"
+                    formControlName="email"   placeholder="abc@xyz.com" readonly />
+                
+            </div>
+            <div class="form-group">
+                <label for="phone">PHONE</label> <input type="number"  class="form-control" formControlName="phoneNumber"
+                    
+                    placeholder="9999999999" readonly/>
+                
+            </div>
+            <div class="form-group">
+                <label for="amount" style="margin-left:-360px ;">AMOUNT</label> <input type="number"
+                    class="form-control" formControlName="amount" readonly
+                    placeholder="₹000" />
+                
+            </div>
+
+            <div class="form-group1">
+                <button mat-stroked-button style="margin-left: 20px; margin-top: 55px; 
+                background-image: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+                      font-size: 23px; color: white; width: 230px; border-radius: 10px; height: 45px; border: 2px solid white;
+                      " (click)="pay()">Pay</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>

@@ -30,8 +30,10 @@ user:User=new User();
       this.user1 = user1 ;
       this.loggedIn = (user1 != null);
       console.log(this.user);
-    });
+  
+    })
   }
+
 
   f()
   {

@@ -1,0 +1,67 @@
+<mat-card [formGroup]="userForm">
+    <h1>Please Provide Your Details</h1>
+    <div fxLayout="column" fxLayoutGap="3%">
+        <div fxLayout="row" fxLayoutGap="3%">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Enter Start Date</mat-label>
+            <input type="date" matInput formControlName="startDate" [min]="mindate">
+            <mat-error *ngIf="userForm.controls['startDate'].hasError('required')">
+                StartDate is Required
+              </mat-error>
+              <mat-error *ngIf="userForm.controls['startDate'].hasError('myError1')">
+                StartDate should be same or greater than Today
+              </mat-error>
+          </mat-form-field>
+         
+         
+        
+        
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Enter EndingDate</mat-label>
+            <input type="date" matInput formControlName="endDate">
+            <mat-error *ngIf="userForm.controls['endDate'].hasError('required')">
+                EndDate is Required
+              </mat-error>
+              <mat-error *ngIf="userForm.controls['endDate'].hasError('myError3')">
+                EndDate should be same or greater than StartDate
+              </mat-error>
+        
+        </mat-form-field>
+        <mat-form-field>
+            <input type="time" formControlName="time" placeholder="Enter pickuptime">
+        </mat-form-field>
+    </div>
+        
+    <div fxLayout="row" fxLayoutGap="2%">
+    <mat-form-field appearance="outline" style="width:100px">
+    <mat-select value="Mr"  formControlName="title">
+        <mat-label>Choose Title</mat-label>
+        <mat-option value="Mr.">Mr</mat-option>
+        <mat-option value="Mrs">Mrs</mat-option>
+        <mat-option value="Ms">Ms</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="outline">
+    <mat-label>Enter First Name</mat-label>
+    <input matInput placeholder="Enter First Name" formControlName="firstName">
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+    <mat-label>Enter Last Name</mat-label>
+    <input matInput placeholder="Enter Last Name" formControlName="lastName">
+</mat-form-field>
+</div>
+
+<mat-form-field appearance="outline">
+    <mat-label>Enter Email  Id</mat-label>
+    <input matInput placeholder="Enter email id" formControlName="email">
+</mat-form-field>
+<mat-form-field appearance="outline">
+    <mat-label>Enter Phone No</mat-label>
+    <input matInput placeholder="Enter First Name" formControlName="phoneNo">
+</mat-form-field>
+</div>
+
+<button mat-raised-button (click)="pay()">Pay Now</button>
+</mat-card>
+

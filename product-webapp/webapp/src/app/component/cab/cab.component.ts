@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Cab } from 'src/app/model/cab';
+import { Cabuserform } from 'src/app/model/cabuserform';
 import { CabService } from 'src/app/service/cab.service';
+import { CabreservationComponent } from '../cabreservation/cabreservation.component';
 
 @Component({
   selector: 'app-cab',
@@ -291,7 +294,7 @@ export class CabComponent implements OnInit {
  city:any
  result:any
  filtercabArray:Cab[]=[];
-  constructor(private cabService:CabService,private activatedRoute:ActivatedRoute) { }
+  constructor(private cabService:CabService,private activatedRoute:ActivatedRoute,private d:MatDialog) { }
 
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
@@ -308,5 +311,16 @@ export class CabComponent implements OnInit {
       })
     })
   }
-
+cabuser:Cabuserform=new Cabuserform();
+  pay(cab:any)
+  {
+    this.cabuser.cabType=cab.cabType;
+    this.cabuser.cabmodel=cab.model;
+    this.cabuser.registrationNo=cab.registrationNo;
+    this.d.open(CabreservationComponent,{
+      height:'600px',
+      width:'700px',
+      data:this.cabuser
+    })
+  }
 }

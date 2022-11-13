@@ -1,5 +1,24 @@
 version: "2"
 services:
+  mongo:
+    image: mongo:3.2-jessie
+    ports:
+      - 27017:27017
+    container_name: mongo
+    network_mode: host
+  mysqlservice:
+    image: mysql:5.5
+    ports:
+      - 3306:3306
+    container_name: mysql-container
+    network_mode: host
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      #      MYSQL_DATABASE: movielistdb
+      MYSQL_USERNAME: user
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   eureka-server:
     build: eureka-server/
     container_name: eureka-server
@@ -30,3 +49,96 @@ services:
     hostname: localhost
     ports:
       - 4200:4200
+  authentication-service:
+    image: userimage
+    build: authentication-service/
+    restart: "no"
+    container_name: authentication-service
+    network_mode: "host"
+    depends_on:
+      - mysqlservice
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8081:8081
+  cab-service:
+    image: cabimage
+    build: cab-service/
+    restart: "no"
+    container_name: cab-service
+    network_mode: "host"
+    depends_on:
+      - mongo
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8083:8083
+  config-server:
+    image: configimage
+    build: config-server/
+    restart: "no"
+    container_name: config-service
+    network_mode: "host"
+    depends_on:
+      - eureka-server
+    ports:
+      - 8888:8888
+  email-service:
+    image: emailimage
+    build: email-service/
+    restart: "no"
+    container_name: email-service
+    network_mode: "host"
+    depends_on:
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8077:8077
+  HotelService:
+    image: HotelImage
+    build: HotelService/
+    restart: "no"
+    container_name: Hotel-service
+    network_mode: "host"
+    depends_on:
+      - mongo
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8084:8084
+  information-service:
+    image: informationimage
+    build: information-service/
+    restart: "no"
+    container_name: information-service
+    network_mode: "host"
+    depends_on:
+      - mongo
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8089:8089
+  package-service:
+    image: packageimage
+    build: package-service/
+    restart: "no"
+    container_name: package-service
+    network_mode: "host"
+    depends_on:
+      - mongo
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8072:8072
+  Register-service:
+    image: registerimage
+    build: Register-service/
+    restart: "no"
+    container_name: register-service
+    network_mode: "host"
+    depends_on:
+      - mongo
+      - api-gateway
+      - eureka-server
+    ports:
+      - 8087:8087

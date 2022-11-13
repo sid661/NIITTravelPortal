@@ -1,0 +1,10 @@
+<mat-card [formGroup]="otpform" >
+    <h2>Provide Otp</h2>
+    <mat-form-field appearance="outline">
+        <mat-label>Enter Otp  Here</mat-label>
+        <input matInput placeholder="enter otp" formControlName="otp" >
+        
+      </mat-form-field>
+      <br>
+      <button mat-raised-button (click)="verify()">Verify Your Otp</button>
+</mat-card>

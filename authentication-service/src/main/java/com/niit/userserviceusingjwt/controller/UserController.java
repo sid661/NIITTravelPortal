@@ -24,8 +24,8 @@ public class UserController {
     private UserService userService;
     private SecurityTokenGenerator securityTokenGenerator;
 
-    @Autowired
-    Producer producer;
+//    @Autowired
+//    Producer producer;
 
     @Autowired
     public UserController(UserService userService, SecurityTokenGenerator securityTokenGenerator) {
@@ -76,13 +76,13 @@ public class UserController {
         try {
             System.out.println("called");
             if (userDto.getRole().toString().equals("USER")) {
-                producer.sendMessageToRabbitMqServer(userDto.getEmail());
+//                producer.sendMessageToRabbitMqServer(userDto.getEmail());
                 responseEntity = new ResponseEntity(userService.getUser(userDto.getEmail()), HttpStatus.OK);
                 return responseEntity;
             } else if((userDto.getRole().toString().equals("SERVICEPROVIDER"))) {
 
                 responseEntity = new ResponseEntity(userService.getProvider(userDto.getEmail()), HttpStatus.OK);
-                producer.sendMessageToRabbitMqServer(userDto.getEmail());
+//                producer.sendMessageToRabbitMqServer(userDto.getEmail());
                 return responseEntity;
             }
         }
@@ -91,5 +91,20 @@ public class UserController {
           return   responseEntity=new ResponseEntity("Error!!! Try after sometime",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     return responseEntity;
+    }
+    @PutMapping("/update")
+    public ResponseEntity updateUser(@RequestBody UserDto userDto) {
+        if (userDto.getRole().toString().equals("USER")) {
+//                producer.sendMessageToRabbitMqServer(userDto.getEmail());
+            responseEntity = new ResponseEntity(userService.updateUser(userDto), HttpStatus.OK);
+            return responseEntity;
+        } else if ((userDto.getRole().toString().equals("SERVICEPROVIDER"))) {
+
+            responseEntity = new ResponseEntity(userService.updateProvider(userDto), HttpStatus.OK);
+//                producer.sendMessageToRabbitMqServer(userDto.getEmail());
+            return responseEntity;
+
+        }
+        return responseEntity;
     }
 }

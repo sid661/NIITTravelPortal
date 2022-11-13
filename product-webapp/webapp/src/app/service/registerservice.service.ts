@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -29,4 +30,12 @@ registerServiceProvider(data:any)
   return this.httpClient.post(this.registerServiceProviderUrl,data);
 
 }
+
+update(user:User)
+{
+  console.log(user);
+  
+  return this.httpClient.put("http://localhost:9000/register/updatepassword",user)
+}
+
 }

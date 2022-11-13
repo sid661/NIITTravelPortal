@@ -50,7 +50,7 @@ export class HotelService
   }
   getHotel(name:any)
   {
-    return this.http.get("http://localhost:9000/hotel/gethotelbyname/"+name)
+    return this.http.get<Hotel>("http://localhost:9000/hotel/gethotelbyname/"+name)
   }
   getAllRooms(name:any)
   {

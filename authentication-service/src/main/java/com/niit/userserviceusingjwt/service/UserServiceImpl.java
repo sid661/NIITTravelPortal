@@ -6,10 +6,13 @@ import com.niit.userserviceusingjwt.exception.UserNotFoundException;
 import com.niit.userserviceusingjwt.model.ServiceProvider;
 import com.niit.userserviceusingjwt.model.User;
 import com.niit.userserviceusingjwt.rabbitMq.Consumer;
+
 import com.niit.userserviceusingjwt.rabbitMq.UserDto;
 import com.niit.userserviceusingjwt.repository.ServiceProviderRepository;
 import com.niit.userserviceusingjwt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,14 +22,15 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;
-    @Autowired
-    private Consumer consumer;
-    @Autowired
-    private ServiceProviderRepository repository;
 
+    private Consumer consumer;
+
+    private ServiceProviderRepository repository;
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, @Lazy Consumer consumer, ServiceProviderRepository repository) {
         this.userRepository = userRepository;
+        this.consumer = consumer;
+        this.repository = repository;
     }
 
     @Override
@@ -62,6 +66,26 @@ public class UserServiceImpl implements UserService{
     @Override
     public ServiceProvider getProvider(String email) {
         return repository.findById(email).get();
+    }
+
+    @Override
+    public User updateUser(UserDto userDto) {
+        Optional<User> user=userRepository.findById(userDto.getEmail());
+        User user1=new User();
+        user1.setPassword(userDto.getPassword());
+        user1.setEmail(userDto.getEmail());
+        userRepository.save(user1);
+        return user1;
+    }
+
+    @Override
+    public ServiceProvider updateProvider(UserDto userDto) {
+         Optional<ServiceProvider> user=repository.findById(userDto.getEmail());
+        ServiceProvider user1=new ServiceProvider();
+        user1.setPassword(userDto.getPassword());
+        user1.setEmail(userDto.getEmail());
+        repository.save(user1);
+        return user1;
     }
 
     @Override

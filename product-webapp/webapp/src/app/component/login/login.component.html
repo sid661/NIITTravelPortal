@@ -1,105 +1,67 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-<div fxLayout="row" class="register-container">
-	
-	<div fxFlex="40%" class="hello" style="border:1px solid black ;">
-	
-		
-	</div>
-
-	<mat-card fxFlex="50%" class="register-card" style="border:1px solid black ; " fxLayout="column">
-		<div>
-		<div fxLayout="row" (click)="route()">
-			<div fxFlex="36%"></div>
-			<div fxflex="20%" style="font-weight: bolder; font-size:50px; margin-top:30px">Login</div>
-				<img src="../assets/2022-10-33.png" height="77px" >
-		</div>
-		<div fxLayout="row">
-			<div fxFlex="36%"></div>
-			<div fxFlex="30%" style="margin-top:20px ;">
-				<img src="https://cdn4.iconfinder.com/data/icons/internet-37/48/65-512.png" height="50px" width="50px">
-			</div>
-
-		</div>
-		<div fxLayout="row" style="margin-top:8px ;">
-			<div fxFlex="49%"></div>
-			<div fxFlex="30%"  fxLayout="row" style="height: 50px;">
-				
-				<asl-google-signin-button *ngIf="!user1"></asl-google-signin-button>
-				
-			</div>
-
-		</div>
-
-			<div  [formGroup]="loginForm" fxLayou="column">
-				<div fxFlex="33%"></div>
-				<div fxFlex="60%">
-			<mat-radio-group  fxLayout="row" fxLayoutGap="5%" formControlName="userRole">
-
-				<mat-radio-button value="USER" [checked]='true'>User</mat-radio-button>
-				<mat-radio-button value="SERVICEPROVIDER">Service Provider</mat-radio-button>
-
-			</mat-radio-group>
-
-		</div>
-			<div fxLayout="column" style="margin-top: 40px;margin-left:-510px ;width:500px">
-
-			<mat-form-field appearance="outline">
-				<mat-label>Email</mat-label>
-				<input matInput formControlName="email" placeholder="Enter Email">
-				<mat-error *ngIf="loginForm.controls['email'].hasError('email')">Email is required
-				</mat-error>
-			</mat-form-field>
-
-			<mat-form-field appearance="outline">
-				<mat-label>Password</mat-label>
-				<input type="password" matInput formControlName="password" placeholder="Enter Password">
-			
-				<mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-					Password is Required
-				</mat-error>
-				<mat-error *ngIf="loginForm.controls['password'].hasError('minLength')">
-					Minimum length is 6
-				</mat-error>
-				<mat-error *ngIf="loginForm.controls['password'].hasError('maxLength')">
-					Minimum length is 15
-				</mat-error>
-			</mat-form-field>
-		</div>
-		</div>
-			<div fxLayout="column">
-				<div fxFlex="36%" (click)="open()">Forgot Password</div>
-
-				<button style="width: 200px;margin-left:200px;" mat-raised-button color="primary" [disabled]="loginForm.invalid"
-					(click)="login()">Login</button>
+<body>
+	<section class="login">
+		<div class="login_box">
+			<div class="right" >
+				<div class="right-text">
+					<h2>NIIT</h2>
+					<h4>TRAVEL PORTAL</h4>
 				</div>
-
-
-		 
-		<div fxLayout="row" style="margin-top:17px ;">
-			<div fxFlex="20% "></div>
-			<div fxFlex="57%" style="font-size: 18px;">
-				Don't have an account! <a class="text2"  style="font-size: 22px;color: blueviolet;" href="register">Create 
-					Account</a>
+				<div class="right-inductor"><img
+						src="../assets/Black & White Minimalist Business Logo (2).png"
+						alt=""></div>
 			</div>
+			<div class="left">
+				<div class="top_link"><a href="#"><img
+							src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
+							alt="">Return home</a> 	</div>
+				<div class="contact">
+					
+					<div [formGroup]="loginForm">
+						<h3 style="font-weight: 500; color: #0052d4;">SIGN IN</h3>
+						<mat-radio-group fxLayout="row" fxLayoutGap="5%" formControlName="userRole">
 
+							<mat-radio-button value="USER" [checked]='true'>User</mat-radio-button>
+							<mat-radio-button value="SERVICEPROVIDER">Service Provider</mat-radio-button>
+
+						</mat-radio-group>
+						<input type="text" matInput formControlName="email" placeholder="USERNAME">
+						<mat-error *ngIf="loginForm.controls['email'].hasError('email')">Email is required
+						</mat-error>
+
+
+						<input type="password" matInput formControlName="password" placeholder="PASSWORD">
+						<mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+							Password is Required
+						</mat-error>
+						<mat-error *ngIf="loginForm.controls['password'].hasError('minLength')">
+							Minimum length is 6
+						</mat-error>
+						<mat-error *ngIf="loginForm.controls['password'].hasError('maxLength')">
+							Minimum length is 15
+						</mat-error>
+
+
+
+						<button class="submit" [disabled]="loginForm.invalid" (click)="login()">Sign In</button>
+
+						
+
+						<div fxLayout="row" fxLayoutGap="2%" style="margin-top:30px; ">
+							<div (click)="open()" style="font-weight: 500; ">Forgot Password</div>
+							
+								<a class="text2" style="font-size: 22px; font-weight:500; color:rgb(55, 43, 226);"
+									href="register">SignUp</a>
+								<asl-google-signin-button *ngIf="!user1" ></asl-google-signin-button>
+								<button onclick="FBlogin()"><img src="https://cdn.freebiesupply.com/logos/large/2x/facebook-2-logo-svg-vector.svg" alt="facebook" width="10" ></button>
+							
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
 		</div>
-
-
-
-	</div>
-
-
-
-	</mat-card>
-</div>
-<!-- <asl-google-signin-button *ngIf="!user1"></asl-google-signin-button> -->
-<!-- <div *ngIf="user1">
-    <img src="{{ user1.photoUrl }}">
-<div>
-  <h4>{{ user1.name }}</h4>
-  <p>{{ user1.email }}</p>
-</div>
-
-</div> -->
+	</section>
+</body>

@@ -5,12 +5,15 @@ import com.stackroute.RegisterService.exception.ServiceProviderAlreadyException;
 import com.stackroute.RegisterService.exception.ServiceProviderNotFoundException;
 import com.stackroute.RegisterService.exception.UserAlreadyExistsException;
 import com.stackroute.RegisterService.model.ServiceProvider;
+import com.stackroute.RegisterService.model.User;
 import com.stackroute.RegisterService.rabbitmq.ServiceProviderDTO;
 import com.stackroute.RegisterService.rabbitmq.UserDTO;
 import com.stackroute.RegisterService.rabbitmq.UserRole;
 import com.stackroute.RegisterService.repository.ServiceProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ServiceProviderServiceImpl implements ServiceProviderServie
@@ -66,5 +69,22 @@ private ServiceProviderRepository serviceProviderRepository;
 
         }
         return serviceProvider;
+    }
+
+    @Override
+    public ServiceProvider updateProvider(UserDTO userDTO) {
+        Optional<ServiceProvider> user=serviceProviderRepository.findById(userDTO.getEmail());
+        ServiceProvider user1=new ServiceProvider();
+        user1.setPassword(userDTO.getPassword());
+        user1.setEmail(userDTO.getEmail());
+        user1.setAccountNo(user.get().getAccountNo());
+        user1.setAddress(user.get().getAddress());
+        user1.setName(user.get().getName());
+        user1.setCin(user.get().getCin());
+        user1.setGst(user.get().getGst());
+        user1.setPhoneNo(user.get().getPhoneNo());
+
+            serviceProviderRepository.save(user1);
+        return user1;
     }
 }

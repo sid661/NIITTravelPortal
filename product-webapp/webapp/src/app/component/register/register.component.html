@@ -1,146 +1,110 @@
-<div fxLayout="row" class="register-container">
-    <div fxFlex="50%" class="hello">
-        <div class="text">Welcome to NIIT Travel Portel
-            <h4 style="margin-left: 15%;font-size:69%">Know more about your city</h4>
+<section class="login">
+    <div class="login_box">
+        <div class="right">
+            <div class="right-text">
+                <h2>NIIT</h2>
+                <h3>TRAVEL PORTAL</h3>
+            </div>
+            <div class="right-inductor"><img src="../assets/Black & White Minimalist Business Logo (2).png" alt="">
+            </div>
+        </div>
+        
+        <div class="left">
+            <div class="top_link"><a href="#" ><img
+                        src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download"
+                        alt="" >Home</a> </div>
+            <div class="contact">
+            
+                <div >
+                    <h3 style="font-weight: 600; color: #0052d4; font-size: 25px;">SIGN UP</h3>
+                    <mat-tab-group mat-align-tabs="center">
+                        <mat-tab label="Guest User" [formGroup]="registerForm">
+                    <input matInput formControlName="name" placeholder="Enter Name">
+                    <mat-error *ngIf="registerForm.controls['name'].hasError('name')&&registerForm.touched">Name is required
+                    </mat-error>
+
+
+                    <input matInput formControlName="email" placeholder="Enter Email">
+                    <mat-error *ngIf="registerForm.controls['email'].hasError('email')&&registerForm.touched">Email is required
+                    </mat-error>
+                    <input type="password" matInput formControlName="password" placeholder="Enter Password">
+                    <mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
+                    <mat-error *ngIf="registerForm.controls['password'].hasError('required')&&registerForm.touched">
+                        Password is Required
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['password'].hasError('minLength')&&registerForm.touched">
+                        Minimum length is 6
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['password'].hasError('maxLength')&&registerForm.touched">
+                        Minimum length is 15
+                    </mat-error>
+
+                    <input type="password" matInput formControlName="confirmpassword"
+                        placeholder="Confirm Password">
+                    <mat-error *ngIf="registerForm.controls['confirmpassword'].hasError('required')&&registerForm.touched">
+                        Confirm Password is Required
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['confirmpassword'].hasError('myError1')&&registerForm.touched">
+                        Password Should Match
+                    </mat-error>
+
+                    <input type="tel" matInput formControlName="phoneNo" placeholder="Enter PhoneNo">
+                    <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('maxLength')&&registerForm.touched">
+                        PhoneNo should be 10 digits
+
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('required')&&registerForm.touched">
+                        PhoneNo is Required
+                    </mat-error>
+                    <div fxLayoutGap="%">
+                        <mat-checkbox formControlName="premiumMember">Do you want to become a Premium Member
+                        </mat-checkbox>
+                    </div>
+
+                    <button class="submit" [disabled]="registerForm.invalid" (click)="register()">Register</button>
+                </mat-tab>
+                <mat-tab label="Service Provider" [formGroup]="serviceregisterForm">
+                    <input matInput formControlName="name" placeholder="Enter Name">
+                        <mat-error *ngIf="registerForm.controls['name'].hasError('name')&&registerForm.touched">Name is required
+                        </mat-error>
+                        <input matInput formControlName="email" placeholder="Enter Email">
+                        <mat-error *ngIf="registerForm.controls['email'].hasError('email')&&registerForm.touched">Email is required
+                        </mat-error>
+                        <input type="password" matInput formControlName="password" placeholder="Enter Password">
+                        <mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
+                        <mat-error *ngIf="registerForm.controls['password'].hasError('required')&&registerForm.touched">
+                            Password is Required
+                        </mat-error>
+                        <mat-error *ngIf="registerForm.controls['password'].hasError('minLength')&&registerForm.touched">
+                            Minimum length is 6
+                        </mat-error>
+                        <mat-error *ngIf="registerForm.controls['password'].hasError('maxLength')&&registerForm.touched">
+                            Minimum length is 15
+                        </mat-error>
+
+                        <input type="text" matInput placeholder="Enter GST NUMBER" formArrayName="gst">
+
+                        <input type="tel" matInput formControlName="phoneNo" placeholder="Enter PhoneNo"
+                        formControlName="phoneNo">
+                    <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('maxLength')&&registerForm.touched">
+                        PhoneNo should be 10 digits
+
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('required')&&registerForm.touched">
+                        PhoneNo is Required
+                    </mat-error>
+
+                    <button class="submit"  (click)=" serviceregister()">Register</button>
+
+                </mat-tab>
+                </mat-tab-group>
+
+
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <mat-card fxFlex="50%" class="register-card">
-        <div fxLayout="column">
-            <div fxLayout="row">
-                <div fxFlex="40%"></div>
-                <div fxflex="30%" style="font-weight: bolder; font-size:larger;margin-top:15px ;">Register YourSelf</div>
-                <div><img src="../assets/2022-10-33.png" height="67px" style="margin-left: 20px;" ></div>
-            </div>
 
-            <mat-tab-group mat-align-tabs="center" fxFlex="100%">
-                <mat-tab label="Guest User" fxFlex="50%" [formGroup]="registerForm" >
-                    <div fxLayout="column">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Name</mat-label>
-                            <input matInput formControlName="name" placeholder="Enter Name">
-                            <mat-error *ngIf="registerForm.controls['name'].hasError('name')">Name is required
-                            </mat-error>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Email</mat-label>
-                            <input matInput formControlName="email" placeholder="Enter Email">
-                            <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Email is required
-                            </mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>Password</mat-label>
-                            <input type="password" matInput formControlName="password" placeholder="Enter Password">
-                            <mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
-                            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
-                                Password is Required
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['password'].hasError('minLength')">
-                                Minimum length is 6
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['password'].hasError('maxLength')">
-                                Minimum length is 15
-                            </mat-error>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Confirm Password</mat-label>
-                            <input type="password" matInput formControlName="confirmpassword"
-                                placeholder="Confirm Password">
-                            <mat-error *ngIf="registerForm.controls['confirmpassword'].hasError('required')">
-                                Confirm Password is Required
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['confirmpassword'].hasError('myError1')">
-                                Password Should Match
-                            </mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>PhoneNo</mat-label>
-                            <input type="number" matInput formControlName="phoneNo" placeholder="Enter PhoneNo">
-                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('maxLength')">
-                                PhoneNo should be 10 digits
-
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('required')">
-                                PhoneNo is Required
-                            </mat-error>
-                        </mat-form-field>
-                        <div fxLayoutGap="%">
-                            <mat-checkbox formControlName="premiumMember">Do you want to become a Premium Member
-                            </mat-checkbox>
-                        </div>
-                        <div fxLayout="row">
-                            <div fxFlex="40%"></div>
-                            <div fxFlex="25%">
-                                <button mat-raised-button color="primary" [disabled]="registerForm.invalid"
-                                    (click)="register()">Register</button>
-                            </div>
-
-                            <div></div>
-                        </div>
-                    </div>
-
-                </mat-tab>
-                <mat-tab label="Service Provider" [formGroup]="serviceregisterForm" fxLayoutGap="5%">
-                    <div fxLayout="column">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Name</mat-label>
-                            <input matInput formControlName="name" placeholder="Enter Name">
-                            <mat-error *ngIf="registerForm.controls['name'].hasError('name')">Name is required
-                            </mat-error>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Email</mat-label>
-                            <input matInput formControlName="email" placeholder="Enter Email">
-                            <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Email is required
-                            </mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>Password</mat-label>
-                            <input type="password" matInput formControlName="password" placeholder="Enter Password">
-                            <mat-hint>Minimum length 6 and maxlength is 15</mat-hint>
-                            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
-                                Password is Required
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['password'].hasError('minLength')">
-                                Minimum length is 6
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['password'].hasError('maxLength')">
-                                Minimum length is 15
-                            </mat-error>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                            <mat-label>GST NUMBER</mat-label>
-                            <input type="text" matInput placeholder="Enter GST NUMBER" formArrayName="gst">
-
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>PhoneNo</mat-label>
-                            <input type="number" matInput formControlName="phoneNo" placeholder="Enter PhoneNo" formControlName="phoneNo">
-                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('maxLength')">
-                                PhoneNo should be 10 digits
-
-                            </mat-error>
-                            <mat-error *ngIf="registerForm.controls['phoneNo'].hasError('required')">
-                                PhoneNo is Required
-                            </mat-error>
-                        </mat-form-field>
-
-                    </div>
-                    <div fxLayout="row">
-                        <div fxFlex="40%"></div>
-                        <div fxFlex="25%">
-                            <button mat-raised-button color="primary" 
-                                (click)=" serviceregister()">Register</button>
-                        </div>
-                        <div></div>
-                    </div>
-                </mat-tab>
-
-            </mat-tab-group>
-        </div>
-    </mat-card>
-</div>
+</section>

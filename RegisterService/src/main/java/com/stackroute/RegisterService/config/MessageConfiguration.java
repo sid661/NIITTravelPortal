@@ -16,10 +16,12 @@ public class MessageConfiguration
 {
     private String exchangeName = "userxchange";
     private String exchangeName1 = "userxchange1";
+    private String otpExchange="otpexhange";
 
     private String queueName = "userqueue";
     private String emailqueue="email";
-   // private String serviceProviderQueue="serviceProviderQueue";
+    private String otpqueue="otp";
+
     @Bean
     public DirectExchange directExchange()
     {
@@ -32,6 +34,7 @@ public class MessageConfiguration
         return new DirectExchange(exchangeName1);
     }
 
+
     @Bean
 
     public Queue registerQueue()
@@ -39,7 +42,7 @@ public class MessageConfiguration
         return new Queue(queueName);
     }
     @Bean
-    @Primary
+
     public Queue emailQ()
     {
         return new Queue(emailqueue);
@@ -47,17 +50,21 @@ public class MessageConfiguration
 
 
 
-    @Qualifier
+
+
+
     @Bean
-    public Binding userBinding(Queue queue, DirectExchange directExchange)
+    public Binding userBinding(@Qualifier("registerQueue") Queue queue, DirectExchange directExchange)
     {
         return BindingBuilder.bind(queue).to(directExchange).with("user_routing");
     }
     @Bean
-    public Binding userBinding1(Queue queue, DirectExchange directExchange)
+    public Binding userBinding1(@Qualifier("emailQ")Queue queue, DirectExchange directExchange)
     {
         return BindingBuilder.bind(queue).to(directExchange).with("email_routing");
     }
+
+
 
 
     @Bean
@@ -75,6 +82,7 @@ public class MessageConfiguration
         rabbitTemplate.setMessageConverter(producerConverter1());
         return rabbitTemplate;
     }
+
     @Bean
     public Jackson2JsonMessageConverter producerConverter()
     {
