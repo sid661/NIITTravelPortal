@@ -22,7 +22,7 @@ export class Navbar2Component implements OnInit {
 
   hotel()
   {
-    this.router.navigate(['hotel']);
+    this.router.navigateByUrl('regHotel');
   }
 
   cab()

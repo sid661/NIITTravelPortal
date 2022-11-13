@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Amenties } from 'src/app/model/amenties';
 import { Bookhotel } from 'src/app/model/bookhotel';
 import { HotelService } from 'src/app/service/hotel.service';
-import { BookroomComponent } from '../bookroom/bookroom.component';
-import { UserformComponent } from '../userform/userform.component';
 
 @Component({
   selector: 'app-makereservationhotel',
@@ -14,7 +11,7 @@ import { UserformComponent } from '../userform/userform.component';
 })
 export class MakereservationhotelComponent implements OnInit {
 
-  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute,private d:MatDialog ) { }
+  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute ) { }
 result=0;
 Rooms:any;
 isvalid:boolean=false;
@@ -25,23 +22,8 @@ amenities:Amenties=new Amenties();
 hotelName:any;
 bookRoom(room:any)
 {
-  this.hotelservice.getHotel(this.hotelName).subscribe((subscriber)=>{
-    this.book.hotelAddress=subscriber.address.city;
-    this.book.hotelCategory=subscriber.hotelCategory;
-    this.book.hotelName=subscriber.hotelName;
-    this.book.noOfBeds=room.noOfBeds;
-    this.book.price=room.price;
-    this.book.roomtype=room.roomtype;
-    this.book.serviceProviderEmailId=subscriber.email;
-    this.book.roomid=room.roomid;
-    
-  })
   this.hotelservice.roomid=room.roomid;
-  this.d.open(UserformComponent,{
-    height:'600px',
-    width:'700px',
-    data:this.book
-  })
+  this.router.navigate(['bookroom'])
 }
 book:Bookhotel=new Bookhotel();
   ngOnInit(): void 

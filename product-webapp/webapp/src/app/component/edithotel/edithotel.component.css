@@ -1,0 +1,29 @@
+.hotelcontainer{
+    margin-top: 210px;
+   
+   
+}
+
+mat-label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+mat-stepper{
+    background-color: rgb(209, 190, 225);
+   
+}
+.hotel{
+    background-image: url("https://fastly.4sqi.net/img/general/600x600/76932757_gFwRdaFV0m3XZYYskRJNJIjJUhhj_eqfb6fwihBflxc.jpg");
+    background-size: cover;
+}
+
+mat-card{
+    overflow-x: hidden;
+    overflow-block: hidden;
+    background-color: rgb(120, 91, 146);
+}
+
+::ng-deep .mat-horizontal-stepper-content[aria-expanded="false"] {
+    width: 0px !important;
+  }

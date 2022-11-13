@@ -8,6 +8,7 @@ import { CabRegistrationComponent } from './component/cab-registration/cab-regis
 
 import { CabComponent } from './component/cab/cab.component';
 import { CabsComponent } from './component/cabs/cabs.component';
+import { EdithotelComponent } from './component/edithotel/edithotel.component';
 import { ExploreComponent } from './component/explore/explore.component';
 import { HolidaypackagesComponent } from './component/holidaypackages/holidaypackages.component';
 import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
@@ -73,7 +74,10 @@ const routes: Routes = [
         path:'',
         component:HotelsComponent
       },
-      {path:'viewhotel/:name',component:ViewhotelComponent},
+      {
+        path:'viewhotel/:name',
+        component:ViewhotelComponent
+      },
       {
         path:'hotel1',
         component:HotelComponent
@@ -120,18 +124,23 @@ const routes: Routes = [
       },
       {
         path:'viewroom/:name',
-        component:MakereservationhotelComponent
+        component:MakereservationhotelComponent,
+        
       },
       {
-        path:"bookroom",
+        path:'bookroom',
         component:BookroomComponent,
         canActivate:[LoginGuard]
       },
-      {path:"view",component:ViewServiceComponent},
+     
+      {path:"view",component:ViewServiceComponent,canActivate:[LoginGuard]},
+      
    {path:"detail/:name",component:HotelDetailComponent},
    {path:"reg",component:PackageRegistrationComponent},
    {path:'cabreg',component:CabRegistrationComponent},
   
+   
+  {path:'edit/:hotelName',component:EdithotelComponent}
 ]},
 
 {path:'header',component:PaymentComponent},
@@ -144,10 +153,10 @@ const routes: Routes = [
     path:"register",
     component:RegisterComponent
   },
-  {
-    path:"reg",
-    component:PackageRegistrationComponent
-  }
+  {path:"reg",component:PackageRegistrationComponent,canActivate:[LoginGuard]},
+  {path:'cabreg',component:CabRegistrationComponent,canActivate:[LoginGuard]},
+  
+ {path:'regHotel',component:HotelComponent,canActivate:[LoginGuard]},
 
   
 ];

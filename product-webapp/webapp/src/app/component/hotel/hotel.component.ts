@@ -22,23 +22,36 @@ export class HotelComponent implements OnInit {
     this.registerformHotel=this.formbuilder.group({
       hotelName:new FormControl('',[Validators.required]),
       hotelCategory:new FormControl('',[Validators.required]),
-      propertyRules:this.formbuilder.array([
-        this.formbuilder.group({
-          rule: new FormControl('', [Validators.required]),
-        })
-      ]),
-      description:new FormControl('',[]),
-      safetyandhygiene:new FormControl('',[]),
+      propertyRules:this.formbuilder.array([]),
+      overview:new FormGroup({
+        description:new FormControl('',[]),
+       
+      }),
+      amenities:new FormGroup({
+        safetyandhygiene:new FormControl('',[]),
         basicfacilities:new FormControl('',[]),
         familyandkids:new FormControl('',[]),
-        foodanddrinks:new FormControl('',[]),
+        foodanddrinks:new FormControl('',[])
+
+      }),
+      address:new FormGroup({
         streetname:new FormControl('',[]),
         landmark:new FormControl('',[]),
         city:new FormControl('',[]),
         state:new FormControl('',[])
+
+      }),
+      
+
     })
   }
   imageName:any;
+
+  addRules()
+  {
+   const control=new FormControl('',[]);
+   (<FormArray>this.registerformHotel.get('propertyRules')).push(control)
+  }
   
   get add() {
     return this.registerformHotel.get('propertyRules') as FormArray;
@@ -85,31 +98,17 @@ file:any;
   hotel:Hotel=new Hotel();
   data0: any;
   saveData() {
-    this.hotel.hotelName=this.registerformHotel.value.hotelName;
-    this.hotel.hotelCategory=this.registerformHotel.value.hotelCategory;
-    this.hotel.email="service@gmail.com";
-    this.hotel.overview.description=this.registerformHotel.value.description;
-    this.hotel.address.streetname=this.registerformHotel.value.streetname;
-    this.hotel.address.landmark=this.registerformHotel.value.landmark;
-   
-    this.hotel.address.city=this.registerformHotel.value.city;
-    this.hotel.address.state=this.registerformHotel.value.state;
-    this.hotel.amenities.basicfacilities=this.registerformHotel.value.basicfacilities;
-    this.hotel.amenities.familyandkids=this.registerformHotel.value.familyandkids;
-    this.hotel.amenities.foodanddrinks=this.registerformHotel.value.foodanddrinks;
-    this.hotel.amenities.safetyandhygiene=this.registerformHotel.value.safetyandhygiene;
-    this.registerformHotel.value.propertyRules.forEach((element:any) => {
-      this.hotel.propertyRules.push(element.rule)
-    });
-    console.log(this.registerformHotel.get('propertyRules'));
     const u = this.registerformHotel.value;
     console.log("Value of u ", u);
     var formData = new FormData();
-    formData.append('details', JSON.stringify(this.hotel));
+    formData.append('details', JSON.stringify(u));
     formData.append('file', this.userFile);
-    this.hotelservice.saveHotel(formData).subscribe((response: any) => {
+    console.log(localStorage.getItem("email"));
+    
+    this.hotelservice.saveHotel(formData,localStorage.getItem("email")).subscribe((response: any) => 
+    {
       console.log(response);
-      this.router.navigate([''])
+      this.router.navigate(['view'])
     })
   }
   

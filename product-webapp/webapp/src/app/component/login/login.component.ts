@@ -7,6 +7,7 @@ import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/an
 import { User } from 'src/app/model/user';
 import { LoginService } from 'src/app/service/login.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { HotelService } from 'src/app/service/hotel.service';
 declare var FB:any;
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 user1 :any;
 loggedIn :any;
 name:any
-  constructor(private loginService:LoginService,private router:Router,private dialog:MatDialog,private authservice:SocialAuthService) { }
+  constructor(private loginService:LoginService,private router:Router,private dialog:MatDialog,private authservice:SocialAuthService,private hotelservice:HotelService) { }
   loginForm=new FormGroup({
     email:new FormControl(""),
     password:new FormControl(""),
@@ -59,8 +60,20 @@ login()
   this.loginService.generateToken(this.user).subscribe((x:any)=>{
     console.log("token login ",x.token);
     console.log("role",x.role)
+    console.log(this.loginForm.value.email);
+    
           this.loginService.loginUser(x.token, this.user.email,x.role);
-          this.router.navigate(['']);
+          if(x.role=="SERVICEPROVIDER")
+          {
+            this.router.navigate(['view'])
+            
+          }
+          else
+          {
+            
+            
+                this.router.navigate([''])
+          }
   },
   ()=>
   {

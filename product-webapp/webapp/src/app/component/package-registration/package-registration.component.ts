@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Filehandle } from 'src/app/model/filehandle';
 import { TourPackage } from 'src/app/model/tour-package';
 import { PackageService } from 'src/app/service/package.service';
@@ -20,7 +20,7 @@ export class PackageRegistrationComponent implements OnInit {
   image: Filehandle[] = [];
   public userFile: any = File;
   tourPackage: TourPackage = new TourPackage();
-  constructor(private link: PackageService, private formbuilder: FormBuilder, private sanitizer: DomSanitizer,
+  constructor(private link: PackageService, private formbuilder: FormBuilder, private sanitizer: DomSanitizer,private router:Router
   ) {
     this.packageRegistrationForm = this.formbuilder.group({
       agencyName: new FormControl('', [Validators.required]),
@@ -124,6 +124,7 @@ export class PackageRegistrationComponent implements OnInit {
     formData.append('file', this.userFile);
     this.link.savePackage(formData).subscribe((response: any) => {
       console.log(response);
+      this.router.navigate(['view'])
     })
   }
   // cancelation(): void {

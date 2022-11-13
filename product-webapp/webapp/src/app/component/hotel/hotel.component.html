@@ -17,50 +17,40 @@
                         <mat-label>Hotel Category</mat-label>
                         <mat-select matNativeControl formControlName="hotelCategory">
                             <mat-option>None</mat-option>
-                            <mat-option value="Family">Family</mat-option>
-                            <mat-option value="Suite">Suite</mat-option>
-                            <mat-option value="Resort">Resort</mat-option>
-                           <mat-option value="Conference">Conference</mat-option>
+                            <mat-option value="Faymil">Family</mat-option> 
+                           <mat-option value="5starhotel">Five Satr</mat-option> 
+                           <mat-option value="4starhotel">Four Star</mat-option> 
+                           <mat-option value="3starhotel">Three Star</mat-option> 
+                           <mat-option value="2starhotel">Two Star</mat-option> 
+                           <mat-option value="1starhotel">One Star</mat-option> 
+                          <mat-option value="villa">Villa</mat-option> 
+                           <mat-option value="cottage">Cottage</mat-option> 
                         </mat-select>
                     </mat-form-field>
                     <div>
-                        <h1>Property Rules</h1>
+                        
 
- <div>
-
-
-
-                        <div formArrayName="propertyRules">
-                            <div *ngFor="let x of add.controls;let i=index" [formGroupName]="i">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <mat-form-field appearance="outline">
-                                                    <input type="text" matInput placeholder="Enter City"
-                                                        formControlName="rule">
-                                                </mat-form-field>
-                                            </td>
-                                            <td><button mat-icon-button (click)="Removeitem(i)">
-                                                    <mat-icon>delete</mat-icon>
-                                                </button></td>
-    
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-    
-                            <div>
-                                <a mat-stroked-button color="primary" (click)="addNewRow()">Add City (+)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Hotel Overview</mat-label>
-                            <textarea matInput formControlName="description" placeholder="Hotel Description"></textarea>
-                        </mat-form-field>
-                    </div>
+                        <div>
+                            <h1>Property Rules</h1>
+                        
+                
+                            <div formArrayName="propertyRules">
+                                 <div *ngFor="let rules of propertyRulesControls;let i=index">
+                                <mat-form-field class="overview"  >
+                                 
+                                   <mat-label>Property Rules</mat-label>
+                                    <input type="text" matInput [formControlName]="i"  placeholder="Enter Property Rule">
+                                    
+                                    
+                               </mat-form-field>
+                               <button mat-icon-button style="margin-left: 30px;" (click)="Removeitem(i)"><mat-icon>delete</mat-icon></button>
+                            </div>    
+                               <a mat-stroked-button color="primary" (click)="addRules()">Add Property Rule (+)</a>
+                                <br>
+                                <br>
+                               </div>
+                               </div>
+                   
                     <button mat-button matStepperNext>Next</button>
                     </div>
                 </ng-template>
@@ -70,7 +60,7 @@
                 <ng-template matStepLabel>Amenities</ng-template>
                 <ng-template matStepContent>
                     <div fxLayout="column">
-                        <mat-form-field appearance="outline">
+                        <!-- <mat-form-field appearance="outline">
                             <mat-label>Safety and Hygiene</mat-label>
                             <mat-select formControlName="safetyandhygiene">
                                 <mat-option>None</mat-option>
@@ -78,18 +68,23 @@
                                 <mat-option value="no">No</mat-option>
                             </mat-select>
 
-                            </mat-form-field>
-            
+                            </mat-form-field> -->
+                            <div formGroupName="overview">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Hotel Overview</mat-label>
+                                    <textarea matInput formControlName="description" placeholder="Hotel Description"></textarea>
+                                </mat-form-field>
+                            </div>
     
               
-    
+<!--     
             <div formGroupName="overview">
                 
                 <mat-form-field class="example-full-width" appearance="fill" >
                     <mat-label>Hotel Overview</mat-label>
                      <textarea rows="3" cols="4"  matInput formControlName="description"  placeholder="Hotel Description"></textarea>                   
                  </mat-form-field>
-                 </div>
+                 </div> -->
     
     
                  <div formGroupName="amenities">
@@ -156,6 +151,7 @@
                 <ng-template matStepLabel>Address</ng-template>
                 <ng-template matStepContent>
                     <div fxLayout="column">
+                        <div formGroupName="address">
                         <mat-form-field class="example-full-width" appearance="outline">
                             <mat-label> Street Name</mat-label>
                             <input type="text" matInput formControlName="streetname" placeholder="streetname">
@@ -173,6 +169,7 @@
                             <mat-label> State</mat-label>
                             <input type="text" matInput formControlName="state" placeholder="State">
                         </mat-form-field>
+                    </div>
                     </div>
                     <button mat-button matStepperPrevious>Back</button>
                     <button mat-button matStepperNext>Next</button>

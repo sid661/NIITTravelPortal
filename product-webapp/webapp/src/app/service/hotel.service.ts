@@ -9,16 +9,15 @@ export class HotelService
 {
 
   constructor(private http:HttpClient) { }
-  saveHotelUrl="http://localhost:9000/hotel/registerhotel/joelraj97@gmail.com";
-  saveReviewUrl="http://localhost:8082/hotelservice/addreview/Palace";
-  ​
+ 
+
     username="harry";
-  ​
-
-
   
 
- hotelName:string="";
+
+  bookhotel:boolean=false;
+
+ hotelName:any;
  roomid=0;
 
 
@@ -26,15 +25,17 @@ export class HotelService
     saveREview(data:any)
     {
       console.log(data);
-      return this.http.post(this.saveReviewUrl,data);
+      return this.http.post("http://localhost:9000/hotel/addreview/"+this.hotelName,data);
   ​
     }
   ​
 
-  saveHotel(data: any)
+  saveHotel(data: any,email:any)
   {
     console.log(data);
-    return this.http.post(this.saveHotelUrl,data);
+    console.log(email);
+    
+    return this.http.post("http://localhost:9000/hotel/registerhotel/"+email,data);
   }
   getHotelByCity(city:any)
   {
