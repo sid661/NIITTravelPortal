@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  local: 'local',
+  apiBaseUrl: 'https://TravelBuddy.stackroute.io',
+  localUrl: 'http://localhost:8080'
 };
 
 /*

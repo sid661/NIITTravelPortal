@@ -10,12 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@NonNull
 public class CabModel
 {
     @Id
     private String bookingId;
-    private String transactionid;
+    private String razorpayOrderId;
     private String userEmailId;
     private String firstName;
     private String lastName;
@@ -27,4 +26,9 @@ public class CabModel
     private String startPoint;
     private String endPoint;
     private String pickUpTime;
+    private String startDate;
+    private String endDate;
+    private String   tourType;
+
+    private  int pricePerKm;
 }

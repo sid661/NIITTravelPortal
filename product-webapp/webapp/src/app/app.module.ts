@@ -94,6 +94,9 @@ import { CabreservationComponent } from './component/cabreservation/cabreservati
 import { HeaderComponent } from './component/header/header.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { DatePipe } from '@angular/common';
+import { CabpaymentComponent } from './component/cabpayment/cabpayment.component';
+import { PackageformComponent } from './component/packageform/packageform.component';
+import { BookingComponent } from './component/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +146,9 @@ import { DatePipe } from '@angular/common';
         CabreservationComponent,
         HeaderComponent,
         PaymentComponent,
+        CabpaymentComponent,
+        PackageformComponent,
+        BookingComponent,
     
     
 

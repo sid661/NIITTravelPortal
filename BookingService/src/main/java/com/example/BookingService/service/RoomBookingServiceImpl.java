@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class RoomBookingServiceImpl implements RoomBookingService
 {
-private RoomRepository roomRepository;
-private RoomProxy roomProxy;
+    private RoomRepository roomRepository;
+    private RoomProxy roomProxy;
 
     @Autowired
     public RoomBookingServiceImpl(RoomRepository roomRepository, RoomProxy roomProxy) {
@@ -25,22 +25,21 @@ private RoomProxy roomProxy;
     @Override
     public RoomModel bookRoom(RoomModel roomModel)
     {
-        System.out.println(roomModel);
-//        Reservation reservation=new Reservation();
-//        reservation.setStartDate(roomModel.getStartDate());
-//        reservation.setEndDate(roomModel.getEndDate());
-//        System.out.println(reservation);
-        return roomRepository.save(roomModel);
-       // ResponseEntity<?> response=roomProxy.saveReservation(reservation,roomModel.getHotelName(),roomModel.getRoomid());
-//        if(response.getStatusCodeValue()==200)
-//        {
-//            return roomRepository.save(roomModel);
-//        }
-//        else
-//        {
-//            System.out.println("Some Error");
-//            return null;
-//        }
+        Reservation reservation=new Reservation();
+        reservation.setStartDate(roomModel.getStartDate());
+        reservation.setEndDate(roomModel.getEndDate());
+        System.out.println(reservation);
+
+        ResponseEntity<?> response=roomProxy.saveReservation(reservation,roomModel.getHotelName(),roomModel.getRoomid());
+        if(response.getStatusCodeValue()==201)
+        {
+            return roomRepository.save(roomModel);
+        }
+        else
+        {
+            System.out.println("Some Error");
+            return null;
+        }
 
 
     }
@@ -56,10 +55,10 @@ private RoomProxy roomProxy;
         RoomModel roomModel=roomRepository.findByBookingId(bookingId);
         Reservation reservation=new Reservation();
         ResponseEntity<?> response=roomProxy.saveReservation(reservation,roomModel.getHotelName(),roomModel.getRoomid());
-        if(response.getStatusCodeValue()==200)
+        if(response.getStatusCodeValue()==201)
         {
-           roomRepository.delete(roomModel);
-           return roomModel;
+            roomRepository.delete(roomModel);
+            return roomModel;
         }
         else
         {
@@ -68,4 +67,10 @@ private RoomProxy roomProxy;
         }
 
     }
+
+    @Override
+    public List<RoomModel> getallBookings() {
+        return roomRepository.findAll();
+    }
+
 }

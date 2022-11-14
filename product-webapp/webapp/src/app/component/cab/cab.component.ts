@@ -4,8 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Cab } from 'src/app/model/cab';
+import { CabOrder } from 'src/app/model/cab-order';
 import { Cabuserform } from 'src/app/model/cabuserform';
 import { CabService } from 'src/app/service/cab.service';
+import { OrderService } from 'src/app/service/order.service';
 import { CabreservationComponent } from '../cabreservation/cabreservation.component';
 
 @Component({
@@ -294,7 +296,7 @@ export class CabComponent implements OnInit {
  city:any
  result:any
  filtercabArray:Cab[]=[];
-  constructor(private cabService:CabService,private activatedRoute:ActivatedRoute,private d:MatDialog) { }
+  constructor(private cabService:CabService,private service:OrderService,private activatedRoute:ActivatedRoute,private d:MatDialog) { }
 
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
@@ -311,14 +313,17 @@ export class CabComponent implements OnInit {
       })
     })
   }
-cabuser:Cabuserform=new Cabuserform();
+cabuser:CabOrder=new CabOrder();
   pay(cab:any)
   {
+   this.cabuser=this.service.caborder;
     this.cabuser.cabType=cab.cabType;
     this.cabuser.cabmodel=cab.model;
     this.cabuser.registrationNo=cab.registrationNo;
+    this.cabuser.pricePerKm=cab.pricePerKm;
+    //this.service.getCab(this.cabuser);
     this.d.open(CabreservationComponent,{
-      height:'600px',
+      height:'700px',
       width:'700px',
       data:this.cabuser
     })

@@ -35,27 +35,33 @@ export class UserformComponent implements OnInit {
     lastName:new FormControl(""),
     email:new FormControl(""),
     phoneNo:new FormControl(""),
-    startDate:new FormControl('',[Validators.required,startdatevalidator]),
-      endDate:new FormControl('',[Validators.required,startdatevalidator,enddatevalidator]),
+    startDate:new FormControl(new Date("01/01/2022"),[Validators.required,startdatevalidator,Validators.nullValidator]),
+      endDate:new FormControl(new Date("01/01/2022"),[Validators.required,startdatevalidator,enddatevalidator]),
      
   })
   ngOnInit(): void {
     this.userForm.get("email")?.setValue(localStorage.getItem("email"));
   }
 
-   date1=new Date(this.datepipe.transform(this.userForm.value.startDate,'MM/dd/yyyy')!)
-   date2=new Date(this.datepipe.transform(this.userForm.value.endDate,'MM/dd/yyyy')!)
-   time=this.date2.getTime()-this.date1.getTime()
-   
-   days=this.time/(1000*3600*24)
+ 
 value:any
+date1?:Date=new Date();
+date2?:Date=new Date("01/11/2022")
+time:any;
+da:any;
   pay()
   {
+
+  //   this.date1=this.datepipe.transform(this.userForm.value.startDate,'MM-dd-yyyy')?
+  //   this.date2=this.datepipe.transform(this.userForm.value.endDate,'MM-dd-yyyy')?
+  //   this.time=this.date2!.getTime()-this.date1!.getTime()?
+    
+  //  this.da=Math.round(this.time/(1000*3600*24))
     console.log(this.datepipe.transform(this.userForm.value.startDate,'MM-dd-yyyy'))
     console.log(this.date1)
     console.log(this.datepipe.transform(this.date2),'MM/dd/yyyy');
     
-    console.log("days",this.days)
+    console.log("days",this.da)
     //console.log(this.userForm.value)
     this.data.userEmailId=this.userForm.value.email;
     this.data.startDate=this.userForm.value.startDate;
@@ -64,21 +70,23 @@ value:any
     // this.data.title=this.userForm.value.title;
     this.data.firstName=this.userForm.value.firstName;
     this.data.lastName=this.userForm.value.lastName;
-   // this.data.price=this.data.price*this.days
+   //this.data.price=this.data.price*this.da
 
     console.log(this.data)
+    this.service.getData(this.data);
+    this.d.closeAll();
+    this.r.navigateByUrl('header')
     
     
-    this.value=localStorage.getItem("token");
-    if(this.value==null){
-          this.r.navigateByUrl("login");
-      }
+    // this.value=localStorage.getItem("token");
+    // if(this.value==null){
+    //       this.r.navigateByUrl("login");
+    //   }
     
-    else{
-      this.service.getData(this.data);
-      this.d.closeAll();
-      this.r.navigateByUrl('header')
-    }
+    // else{
+      
+     
+    // }
   }
   
 

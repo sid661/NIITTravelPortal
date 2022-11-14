@@ -19,7 +19,12 @@ public class config {
                 .route(p->p.path("/hotel/**").uri("lb://hotel-service"))
                 .route(p->p.path("/package/**").uri("lb://package-service"))
                 .route(p->p.path("/information/**").uri("lb://information-service"))
-                   .route(p->p.path("/book/**").uri("lb://booking-service")).
+                   .route(p->p.path("/book/**").uri("lb://booking-service"))
+                   .route(p->p.path("/payment/**").uri("lb://payment-service"))
+                .route(p->p.path("/config/**").uri("lb://config-service"))
+                .route(p->p.path("/email/**").uri("lb://email-service")).
+
+
 
                 build();
     }

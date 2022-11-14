@@ -7,6 +7,8 @@ import * as _moment from 'moment';
 //import {default as _rollupMoment} from 'moment';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { CabOrder } from 'src/app/model/cab-order';
+import { OrderService } from 'src/app/service/order.service';
 //import {default as _rollupMoment} from 'moment';
 //const moment = _rollupMoment || moment;
 export const MY_FORMATS = {
@@ -38,13 +40,14 @@ export const MY_FORMATS = {
   ],
 })
 export class CabsComponent implements OnInit {
-  pickUpDate = new FormControl(moment());
+  pickUpDate = new FormControl(new Date());
+  dropDate=new FormControl(new Date())
   serializedDate = new FormControl(new Date().toISOString());
-  constructor(private router:Router) { }
+  constructor(private router:Router,private service:OrderService) { }
   cabsearch = new FormGroup({
     tripType:new FormControl(""),
-    
-    dropDate:new FormControl(""),
+    pickUpDate:new FormControl(new Date()),
+     dropDate:new FormControl(new Date()),
     start:new FormControl(""),
     destination:new FormControl(""),
     time:new FormControl("")
@@ -56,8 +59,18 @@ export class CabsComponent implements OnInit {
   searchcabmethod(){
    
   }
+  cab:CabOrder=new CabOrder();
   search()
   {
+    this.cab.endDate=this.dropDate.value?.toISOString()!;
+    this.cab.tourType=this.cabsearch.value.tripType!;
+    this.cab.startDate=this.pickUpDate.value?.toISOString()!;
+    this.cab.startPoint=this.cabsearch.value.start!;
+    this.cab.endPoint=this.cabsearch.value.destination!;
+    this.cab.pickupTime=this.cabsearch.value.time!;
+    this.service.getCab(this.cab);
+    console.log(this.dropDate.value?.toLocaleDateString())
+
   
     this.router.navigate(['cab/',this.cabsearch.value.start])
     

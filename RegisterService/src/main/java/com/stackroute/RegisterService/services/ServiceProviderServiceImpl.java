@@ -87,4 +87,21 @@ private ServiceProviderRepository serviceProviderRepository;
             serviceProviderRepository.save(user1);
         return user1;
     }
+    @Override
+    public ServiceProvider getServiceProviderDetails(String email) throws ServiceProviderNotFoundException
+    {
+        if(serviceProviderRepository.findById(email).isEmpty())
+        {
+            throw new ServiceProviderNotFoundException();
+        }
+        else
+        {
+            return serviceProviderRepository.findByEmail(email);
+        }
+    }
+
+    @Override
+    public ServiceProvider getProvider(String email) {
+        return serviceProviderRepository.findById(email).get();
+    }
 }

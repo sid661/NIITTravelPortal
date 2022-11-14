@@ -7,6 +7,7 @@ import { CabRegistrationComponent } from './component/cab-registration/cab-regis
 
 
 import { CabComponent } from './component/cab/cab.component';
+import { CabpaymentComponent } from './component/cabpayment/cabpayment.component';
 import { CabsComponent } from './component/cabs/cabs.component';
 import { EdithotelComponent } from './component/edithotel/edithotel.component';
 import { ExploreComponent } from './component/explore/explore.component';
@@ -144,6 +145,7 @@ const routes: Routes = [
 ]},
 
 {path:'header',component:PaymentComponent},
+{path:'cabpayment',component:CabpaymentComponent},
   
   {
     path:'login',

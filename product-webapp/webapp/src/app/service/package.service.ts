@@ -9,19 +9,19 @@ export class PackageService {
 
   constructor(private http:HttpClient) { }
 
-
+  baseUrl="http://localhost:8080";
   savePackage(data:any)
 {
-  return this.http.post("http://localhost:9000/package/save",data)
+  return this.http.post(this.baseUrl+"/package/save",data)
 }
 
 getPackage(city:any)
 {
-  return this.http.get("http://localhost:9000/package/destination/"+city)
+  return this.http.get(this.baseUrl+"/package/destination/"+city)
 }
 
 findPackageByEmail(email:any)
 {
-  return this.http.get<TourPackage[]>("http://localhost:9000/package/getPackageByEmail/"+email)
+  return this.http.get<TourPackage[]>(this.baseUrl+"/package/getPackageByEmail/"+email)
 }
 }

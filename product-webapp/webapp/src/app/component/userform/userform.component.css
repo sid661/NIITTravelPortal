@@ -1,0 +1,19 @@
+ .card{
+    background: linear-gradient(212.38deg, rgba(61, 157, 248, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%);
+     
+}
+
+/* mat-dialog{
+    background: linear-gradient(212.38deg, rgba(61, 157, 248, 0.7) 0%, rgba(175, 70, 189, 0.71) 100%);
+} */
+/* mat-dialog-container {
+    background: grey !important;
+ } */
+ /* .backdropBackground{
+    background-color: aqua;
+ } */
+ .backdropBackground mat-dialog-container {
+    background-color: rebeccapurple !important;
+    padding: 0px 0px 0px 0px !important;
+    overflow: hidden !important;
+  }

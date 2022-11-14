@@ -15,10 +15,21 @@ services:
     hostname: localhost
     environment:
       MYSQL_ROOT_PASSWORD: root
-      #      MYSQL_DATABASE: movielistdb
+
       MYSQL_USERNAME: user
       MYSQL_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  rabbitmq:
+    image: rabbitmq:3.7.5-management
+    container_name: rabbitmq
+    hostname: localhost
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST:
+    ports:
+      - 15672:15672
   eureka-server:
     build: eureka-server/
     container_name: eureka-server
@@ -37,6 +48,16 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
+  config-server:
+    image: configimage
+    build: config-server/
+    restart: "no"
+    container_name: config-service
+    network_mode: "host"
+    depends_on:
+      - eureka-server
+    ports:
+      - 8888:8888
   product-webapp:
     build: product-webapp/
     image: product-webapp
@@ -59,6 +80,7 @@ services:
       - mysqlservice
       - api-gateway
       - eureka-server
+      - rabbitmq
     ports:
       - 8081:8081
   cab-service:
@@ -73,16 +95,7 @@ services:
       - eureka-server
     ports:
       - 8083:8083
-  config-server:
-    image: configimage
-    build: config-server/
-    restart: "no"
-    container_name: config-service
-    network_mode: "host"
-    depends_on:
-      - eureka-server
-    ports:
-      - 8888:8888
+
   email-service:
     image: emailimage
     build: email-service/

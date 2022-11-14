@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Amenties } from 'src/app/model/amenties';
 import { Bookhotel } from 'src/app/model/bookhotel';
 import { HotelService } from 'src/app/service/hotel.service';
+import { OrderService } from 'src/app/service/order.service';
+import { UserformComponent } from '../userform/userform.component';
 
 @Component({
   selector: 'app-makereservationhotel',
@@ -11,7 +14,7 @@ import { HotelService } from 'src/app/service/hotel.service';
 })
 export class MakereservationhotelComponent implements OnInit {
 
-  constructor(private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute ) { }
+  constructor(private service:OrderService,private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute,private d:MatDialog ) { }
 result=0;
 Rooms:any;
 isvalid:boolean=false;
@@ -20,12 +23,43 @@ filterrooms:any[]=[];
 allhoteldetails:any;
 amenities:Amenties=new Amenties();
 hotelName:any;
+book:Bookhotel=new Bookhotel();
+value:any
 bookRoom(room:any)
 {
-  this.hotelservice.roomid=room.roomid;
-  this.router.navigate(['bookroom'])
+  this.value=localStorage.getItem("token");
+  if(this.value==null){
+        this.router.navigateByUrl("login");
+    }
+  
+  else{
+    
+    this.hotelservice.getHotel(this.hotelName).subscribe((subscriber)=>{
+      this.book.roomid=room.roomid;
+      this.book.bookingId="1";
+      this.book.hotelName=subscriber.hotelName;
+      this.book.hotelCategory=subscriber.hotelCategory;
+      this.book.noOfBeds=room.noOfBeds;
+      this.book.price=room.price;
+      this.book.roomtype=room.roomtype;
+      this.book.serviceProviderEmailId=subscriber.email;
+      this.book.hotelAddress=subscriber.address.city;
+      // this.service.getData(this.book);
+      this.d.open(UserformComponent,{
+        // height:'600px',
+        // width:'700px',
+        backdropClass: 'backdropBackground',
+        data:this.book
+      })
+      
+    })
+   
+  }
+  
+  
+  
 }
-book:Bookhotel=new Bookhotel();
+// book:Bookhotel=new Bookhotel();
   ngOnInit(): void 
   {
     this.hotelName=this.activate.snapshot.paramMap.get('name')

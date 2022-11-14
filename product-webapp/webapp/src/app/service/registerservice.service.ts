@@ -13,13 +13,13 @@ registerServiceProviderUrl="http://localhost:9000/register/registerserviceprovid
   register(data: any)
 {
   console.log(data);
-  return this.httpClient.post(this.registerUser,data);
+  return this.httpClient.post(this.baseUrl+"/register/registeruser",data);
 }
 
 serviceregister(data: any)
 {
   console.log(data);
-  return this.httpClient.post(this.registerServiceProviderUrl,data);
+  return this.httpClient.post(this.baseUrl+"/register/regiterserviceprovider",data);
 }
 
 
@@ -27,15 +27,15 @@ serviceregister(data: any)
 registerServiceProvider(data:any)
 {
   console.log(data);
-  return this.httpClient.post(this.registerServiceProviderUrl,data);
+  return this.httpClient.post(this.baseUrl+"/register/regiterserviceprovider",data);
 
 }
-
+baseUrl="http://localhost:8080";
 update(user:User)
 {
   console.log(user);
   
-  return this.httpClient.put("http://localhost:9000/register/updatepassword",user)
+  return this.httpClient.put(this.baseUrl+"/register/updatepassword",user)
 }
 
 }

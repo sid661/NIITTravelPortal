@@ -13,35 +13,33 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/book/")
+@CrossOrigin
 public class BookingController {
     private ResponseEntity responseEntity;
     private CabBookingService cabBookingService;
     private PackageBookingService packageBookingService;
     private RoomBookingService roomBookingService;
-@Autowired
+    @Autowired
     public BookingController(CabBookingService cabBookingService, PackageBookingService packageBookingService, RoomBookingService roomBookingService) {
         this.cabBookingService = cabBookingService;
         this.packageBookingService = packageBookingService;
         this.roomBookingService = roomBookingService;
     }
-   @PostMapping("booking/hotel")
+    @PostMapping("booking/hotel")
     public ResponseEntity<?> saveBooking(@RequestBody RoomModel roomModel)
     {
         try
         {
-            RoomModel r=roomModel;
-            r.setBookingId("1");
-            System.out.println(roomModel);
-            responseEntity=new ResponseEntity(roomBookingService.bookRoom(r),HttpStatus.OK);
+            responseEntity=new ResponseEntity(roomBookingService.bookRoom(roomModel),HttpStatus.OK);
         }
         catch (Exception e)
         {
             System.out.println(e);
             responseEntity=new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-      return responseEntity;
+        return responseEntity;
     }
-  @PostMapping("booking/cab")
+    @PostMapping("booking/cab")
     public ResponseEntity<?> saveBooking(@RequestBody CabModel cabModel) {
         try
         {
@@ -72,7 +70,7 @@ public class BookingController {
     {
         try
         {
-           responseEntity=new ResponseEntity(cabBookingService.getAllCabBooking(userEmailId),HttpStatus.OK);
+            responseEntity=new ResponseEntity(cabBookingService.getAllCabBooking(userEmailId),HttpStatus.OK);
         }
         catch (Exception e)
         {
@@ -142,8 +140,21 @@ public class BookingController {
         }
         return responseEntity;
     }
-
-
+    @GetMapping("getallbookings/room")
+    public ResponseEntity<?> getAllBookings()
+    {
+        return  new ResponseEntity<>(roomBookingService.getallBookings(),HttpStatus.OK);
+    }
+    @GetMapping("getallbookings/cab")
+    public ResponseEntity<?> getAllBookingsCab()
+    {
+        return  new ResponseEntity<>(cabBookingService.getallBookings(),HttpStatus.OK);
+    }
+    @GetMapping("getallbookings/package")
+    public ResponseEntity<?> getAllBookingsPackage()
+    {
+        return  new ResponseEntity<>(packageBookingService.getallBookings(),HttpStatus.OK);
+    }
 
 
 }

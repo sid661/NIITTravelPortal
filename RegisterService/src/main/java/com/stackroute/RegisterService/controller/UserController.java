@@ -60,7 +60,35 @@ public class UserController {
         }
         return responseEntity;
     }
+    @GetMapping("getuserdetails/{email}")
+    public ResponseEntity<?> getUser(@PathVariable String email) throws UserNotFoundException
+    {
+        try
+        {
+            responseEntity=new ResponseEntity(userService.getUserDetails(email),HttpStatus.OK);
+        }
+        catch (UserNotFoundException userNotFoundException) {
+            responseEntity = new ResponseEntity<>(userNotFoundException, HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @GetMapping("getserviceproviderdetails/{email}")
+    public ResponseEntity<?> getServieProvider(@PathVariable String email) throws ServiceProviderNotFoundException
+    {
+        try
+        {
+            responseEntity=new ResponseEntity<>(serviceProviderServie.getServiceProviderDetails(email),HttpStatus.OK);
+        }
+        catch (ServiceProviderNotFoundException serviceProviderNotFoundException) {
+            responseEntity = new ResponseEntity<>(serviceProviderNotFoundException, HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
 
+    }
     @PutMapping("updateuser/{email}")
     public ResponseEntity<?> updateuser(@RequestBody User user, @PathVariable String email) throws UserNotFoundException {
         try {

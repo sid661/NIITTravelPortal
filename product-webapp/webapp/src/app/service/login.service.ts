@@ -10,9 +10,9 @@ export class LoginService {
 
   constructor(private http:HttpClient,private router:Router) { }
 
-  loginUrl="http://localhost:9000/user/login";
+  loginUrl="http://localhost:8080/user/login";
 
-  
+  baseUrl="http://localhost:8080";
 
   generateToken(credentials:User){
     console.log("credentials",credentials);
@@ -21,10 +21,19 @@ export class LoginService {
   
   }
 
+  getUser(email:any)
+  {
+    return this.http.get<User>(this.baseUrl+"/register/getuserdetails/"+email)
+  }
+  getProvider(email:any)
+  {
+    return this.http.get<User>(this.baseUrl+"/register/getserviceproviderdetails/"+email)
+  }
+
   forgot(data:any)
   {
     console.log(data)
-    return this.http.post("http://localhost:9000/register/forgot-password",data);
+    return this.http.post(this.baseUrl+"/register/forgot-password",data);
   }
 
   otp(email:any)

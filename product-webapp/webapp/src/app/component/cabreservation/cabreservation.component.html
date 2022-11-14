@@ -1,4 +1,4 @@
-<mat-card [formGroup]="userForm">
+<mat-card [formGroup]="userForm" class="card">
     <h1>Please Provide Your Details</h1>
     <div fxLayout="column" fxLayoutGap="3%">
         <div fxLayout="row" fxLayoutGap="3%">
@@ -17,7 +17,7 @@
         
         
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Enter EndingDate</mat-label>
+            <mat-label>Enter Ending Date</mat-label>
             <input type="date" matInput formControlName="endDate">
             <mat-error *ngIf="userForm.controls['endDate'].hasError('required')">
                 EndDate is Required
@@ -28,13 +28,23 @@
         
         </mat-form-field>
         <mat-form-field>
-            <input type="time" formControlName="time" placeholder="Enter pickuptime">
+            <input matInput type="time"  formControlName="time" placeholder="Enter pickuptime">
         </mat-form-field>
     </div>
-        
     <div fxLayout="row" fxLayoutGap="2%">
-    <mat-form-field appearance="outline" style="width:100px">
-    <mat-select value="Mr"  formControlName="title">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter Pickup Point</mat-label>
+        <input matInput placeholder="Enter pick point" formControlName="pickupPoint">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter Drop Point</mat-label>
+        <input matInput placeholder="Enter Drop point" formControlName="dropPoint">
+    </mat-form-field>
+</div>
+    <div fxLayout="row" fxLayoutGap="2%">
+
+    <mat-form-field appearance="fill" style="width:100px" >
+    <mat-select formControlName="title"   placeholder="Choose Title" >
         <mat-label>Choose Title</mat-label>
         <mat-option value="Mr.">Mr</mat-option>
         <mat-option value="Mrs">Mrs</mat-option>

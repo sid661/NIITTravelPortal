@@ -76,6 +76,23 @@ public class UserServiceImpl implements UserService
         return true;
 
     }
+    @Override
+    public User getUserDetails(String email) throws UserNotFoundException
+    {
+        if(userRepository.findById(email).isEmpty())
+        {
+            throw new UserNotFoundException();
+        }
+        else
+        {
+            return userRepository.findByEmail(email);
+        }
+
+    }
+    @Override
+    public User getUser1(String email) {
+        return userRepository.findById(email).get();
+    }
 
     @Override
     public boolean getProvider(String email) {

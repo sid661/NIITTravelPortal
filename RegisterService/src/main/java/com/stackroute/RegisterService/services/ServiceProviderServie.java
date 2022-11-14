@@ -12,4 +12,8 @@ public ServiceProvider registerServiceProvider(ServiceProvider serviceProvider) 
 public ServiceProvider updateserviceprovider(ServiceProvider serviceProvider,String email) throws ServiceProviderNotFoundException;
 
 ServiceProvider updateProvider(UserDTO userDTO);
+
+ServiceProvider getProvider(String email);
+
+    ServiceProvider getServiceProviderDetails(String email) throws ServiceProviderNotFoundException;
 }

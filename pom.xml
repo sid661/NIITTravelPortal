@@ -157,7 +157,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <skip>true</skip>
+                    <skipTests>true</skipTests>
                 </configuration>
 
             </plugin>

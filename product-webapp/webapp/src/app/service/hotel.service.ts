@@ -1,77 +1,70 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Bookhotel } from '../model/bookhotel';
 import { Hotel } from '../model/hotel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HotelService 
-{
+export class HotelService {
 
-  constructor(private http:HttpClient) { }
- 
+  constructor(private http: HttpClient) { }
 
-    username="harry";
-  
-
-
-  bookhotel:boolean=false;
-
- hotelName:any;
- roomid=0;
+  baseUrl = "http://localhost:8080";
+  username = "harry";
 
 
 
-    saveREview(data:any)
-    {
-      console.log(data);
-      return this.http.post("http://localhost:9000/hotel/addreview/"+this.hotelName,data);
-  ​
-    }
-  ​
+  bookhotel: boolean = false;
 
-  saveHotel(data: any,email:any)
-  {
+  hotelName: any;
+  roomid = 0;
+
+
+
+  saveREview(data: any) {
+    console.log(data);
+    return this.http.post(this.baseUrl + "/hotel/addreview/" + this.hotelName, data);
+
+  }
+
+
+  saveHotel(data: any, email: any) {
     console.log(data);
     console.log(email);
-    
-    return this.http.post("http://localhost:9000/hotel/registerhotel/"+email,data);
+
+    return this.http.post(this.baseUrl + "/hotel/registerhotel/" + email, data);
   }
-  getHotelByCity(city:any)
-  {
-    return this.http.get<Hotel[]>("http://localhost:9000/hotel/hotelbycity/"+city)
+  getHotelByCity(city: any) {
+    return this.http.get<Hotel[]>(this.baseUrl + "/hotel/hotelbycity/" + city)
   }
-  saveRoom(room:any)
-  {
-    return this.http.post("http://localhost:9000/hotel/addroom/"+this.hotelName,room)
+  saveRoom(room: any) {
+    return this.http.post(this.baseUrl + "/hotel/addroom/" + this.hotelName, room)
   }
-  updateHotel(data:any)
-  {
-    return this.http.put("http://localhost:9000/hotel/updatehoteldetails/"+this.hotelName,data)
+  updateHotel(data: any) {
+    return this.http.put(this.baseUrl + "/hotel/updatehoteldetails/" + this.hotelName, data)
   }
-  getHotel(name:any)
-  {
-    return this.http.get<Hotel>("http://localhost:9000/hotel/gethotelbyname/"+name)
+  getHotel(name: any) {
+    return this.http.get<Hotel>(this.baseUrl + "/hotel/gethotelbyname/" + name)
   }
-  getAllRooms(name:any)
-  {
-    return this.http.get("http://localhost:9000/hotel/getallrooms/"+name)
+  getAllRooms(name: any) {
+    return this.http.get(this.baseUrl + "/hotel/getallrooms/" + name)
   }
-  bookroom(data:any)
-  {
-   return this.http.post("http://localhost:9000/hotel/makereservation/"+this.hotelName+"/"+this.roomid,data)
+  bookroom(data: any) {
+    return this.http.post(this.baseUrl + "/hotel/makereservation/" + this.hotelName + "/" + this.roomid, data)
   }
 
-  viewHotelByemail(email:any)
-  {
-    return this.http.get<Hotel[]>("http://localhost:9000/hotel/gethotels/"+email)
+  viewHotelByemail(email: any) {
+    return this.http.get<Hotel[]>(this.baseUrl + "/hotel/gethotels/" + email)
 
   }
-  hotelValue:Hotel=new Hotel();
-  getValueOfHotel(name:any)
-  {
-    return this.http.get<Hotel>("http://localhost:9000/hotel/gethotelbyname/"+name)
+  hotelValue: Hotel = new Hotel();
+  getValueOfHotel(name: any) {
+    return this.http.get<Hotel>(this.baseUrl + "/hotel/gethotelbyname/" + name);
   }
-  
-  
+
+  getBook(email:any)
+  {
+    return this.http.get<Bookhotel[]>(this.baseUrl + "/book/getroombookings/" + email);
+  }
 }

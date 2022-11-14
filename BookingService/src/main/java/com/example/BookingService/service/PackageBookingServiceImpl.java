@@ -11,8 +11,8 @@ import java.util.List;
 public class PackageBookingServiceImpl implements PackageBookingService
 {
 
-private PackageRepository packageRepository;
-@Autowired
+    private PackageRepository packageRepository;
+    @Autowired
     public PackageBookingServiceImpl(PackageRepository packageRepository) {
         this.packageRepository = packageRepository;
     }
@@ -34,4 +34,10 @@ private PackageRepository packageRepository;
         packageRepository.delete(packageModel);
         return packageModel;
     }
+
+    @Override
+    public List<PackageModel> getallBookings() {
+        return packageRepository.findAll();
+    }
+
 }

@@ -6,15 +6,15 @@
           <nav>
        
             <ul class="nav-type">
-            <li> <img src="../assets/2022-10-33.png" height="77px" style="margin-left: -1040px;" ></li> 
-              <li><h1 style="margin-left: -940px;margin-top: 15px; color: black; font-weight: 600;" onclick="FBlogin()">Niit Travel Portal</h1></li>
+            <li> <img src="../assets/kkkk.png" height="77px" style="margin-left: -1050px;" ></li> 
+             
               <li><button mat-button routerLink="/home" style="background-color: transparent;">
                 <mat-icon style="color: yellow;">where_to_vote</mat-icon><br><h3>Super Offers</h3> </button></li>
               <li *ngIf="!loggedIn"><button mat-button  routerLink="/login" style="background-color: transparent;">
                 <mat-icon  style="color: yellow;">profile</mat-icon><br><h3>Sign In</h3> </button></li>
                 <button mat-button  style="background-color: transparent;" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                       <li  *ngIf="loggedIn">
-                  <mat-icon  style="color: yellow;"> person_pin</mat-icon><br><h3> Welcome</h3></li>
+                  <mat-icon  style="color: yellow;"> person_pin</mat-icon><br><h3>{{name}}</h3></li>
                 </button>
                   <mat-menu #menu="matMenu"> 
                   <button mat-menu-item *ngIf="userRole=='USER'">

@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface RoomBookingService
 {
-RoomModel bookRoom(RoomModel roomModel);
-List<RoomModel> getAllRoomBooking(String userEmailId);
-RoomModel cancelBooking(String bookingId);
+    RoomModel bookRoom(RoomModel roomModel);
+    List<RoomModel> getAllRoomBooking(String userEmailId);
+    RoomModel cancelBooking(String bookingId);
+    List<RoomModel> getallBookings();
 }

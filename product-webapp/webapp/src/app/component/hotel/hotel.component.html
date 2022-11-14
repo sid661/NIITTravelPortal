@@ -1,10 +1,19 @@
 
 <div class="hotelcontainer">
   
-    <div fxFlex="40%" class="hotel"> </div>
+    <div fxFlex="40%" > 
+        <div class="right" >
+            <div class="right-text">
+                <h2>NIIT</h2>
+                <h4>TRAVEL PORTAL</h4>
+            </div>
+            <div class="right-inductor"><img
+                    src="../assets/Black & White Minimalist Business Logo (2).png"
+                    alt=""></div>
+        </div>
     <mat-card fxFlex="60%" [formGroup]="registerformHotel" fxLayout="column">
         <h1 style="font-size: 30px;font-weight: 700;">  HOTEL REGISTRATION FORM </h1>
-        <mat-stepper orientation="horizontal" fxFlex="100" fxLayoutAlign=" stretch" #stepper>
+        <mat-stepper orientation="horizontal" fxFlex="100" >
             <mat-step  fxFlexFill>
                 <ng-template matStepLabel>Basic registration</ng-template>
                 <ng-template matStepContent>

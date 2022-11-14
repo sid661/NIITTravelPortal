@@ -9,13 +9,13 @@ import { Resturant } from '../model/resturant';
 export class PlaceService {
 
   constructor(private http:HttpClient) { }
-
+  baseUrl="http://localhost:8080";
   getPlacesByCity(city:any)
   {
-    return this.http.get<Place[]>("http://localhost:9000/information/findPlaces/"+city)
+    return this.http.get<Place[]>(+this.baseUrl+"/information/findPlaces/"+city)
   }
   getResturantByCity(city:any)
   {
-    return this.http.get<Resturant[]>("http://localhost:9000/information/findRestaurants/"+city)
+    return this.http.get<Resturant[]>(this.baseUrl+"/information/findRestaurants/"+city)
   }
 }

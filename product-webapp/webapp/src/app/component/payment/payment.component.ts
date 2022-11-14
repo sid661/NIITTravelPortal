@@ -13,30 +13,30 @@ declare var Razorpay: any;
 })
 
 export class PaymentComponent implements OnInit {
-payment=new FormGroup({
-  customerName:new FormControl(""),
-  email:new FormControl(""),
-  phoneNumber:new FormControl(0),
-  amount:new FormControl(0)
-})
- 
-  title = 'paymentRazorPay';
- 
+  payment = new FormGroup({
+    customerName: new FormControl(""),
+    email: new FormControl(""),
+    phoneNumber: new FormControl(0),
+    amount: new FormControl(0)
+  })
 
-  form: any = {}; 
+  title = 'paymentRazorPay';
+
+
+  form: any = {};
   constructor(private http: HttpClient,
-    private orderService:OrderService,private r:Router) {
-}
-b:Bookhotel=new Bookhotel()
+    private orderService: OrderService, private r: Router) {
+  }
+  b: Bookhotel = new Bookhotel()
   ngOnInit() {
-      
-      this.b=this.orderService.book;
-      console.log(this.b)
-      this.payment.get("customerName")?.setValue(this.b.firstName);
-      this.payment.get("email")?.setValue(this.b.userEmailId);
-      this.payment.get("phoneNumber")?.setValue(this.b.phoneNumber);
-      this.payment.get("amount")?.setValue(this.b.price)
-     }
+
+    this.b = this.orderService.book;
+    console.log(this.b)
+    this.payment.get("customerName")?.setValue(this.b.firstName);
+    this.payment.get("email")?.setValue(this.b.userEmailId);
+    this.payment.get("phoneNumber")?.setValue(this.b.phoneNumber);
+    this.payment.get("amount")?.setValue(this.b.price)
+  }
 
   sayHello() {
     alert("Hello DK");
@@ -44,80 +44,75 @@ b:Bookhotel=new Bookhotel()
 
   paymentId: string | undefined;
   error: string | undefined;
-  
+
   options = {
     "key": "",
-    "amount": "", 
+    "amount": "",
     "name": "NIIT Travell Portal",
     "description": "Web Development",
     "image": "./assets/niit.png",
-    "order_id":"",
-    "handler": function (response: any){
-      var event = new CustomEvent("payment.success", 
+    "order_id": "",
+    "handler": function (response: any) {
+      var event = new CustomEvent("payment.success",
         {
           detail: response,
           bubbles: true,
           cancelable: true
         }
-      );	  
+      );
       window.dispatchEvent(event);
     }
     ,
     "prefill": {
-    "name": "",
-    "email": "",
-    "contact": ""
+      "name": "",
+      "email": "",
+      "contact": ""
     },
     "notes": {
-    "address": ""
+      "address": ""
     },
     "theme": {
-    "color": "#3399cc"
+      "color": "#3399cc"
     }
-    };
-  order:Order=new Order();
-    pay() {
-      this.paymentId = ''; 
-      this.error = ''; 
-      this.order.customerName=this.payment.value.customerName!;
-      this.order.email=this.payment.value.email!;
-      this.order.phoneNumber=this.payment.value.phoneNumber!;
-      this.order.amount=this.payment.value.amount!;
-      this.orderService.createOrder(this.order).subscribe(
+  };
+  order: Order = new Order();
+  pay() {
+    this.paymentId = '';
+    this.error = '';
+    this.order.customerName = this.payment.value.customerName!;
+    this.order.email = this.payment.value.email!;
+    this.order.phoneNumber = this.payment.value.phoneNumber!;
+    this.order.amount = this.payment.value.amount!;
+    this.orderService.createOrder(this.order).subscribe(
       data => {
         console.log(data)
         this.b.razorpayOrderId=data.razorpayOrderId;
-        this.b.bookingId="1";
-        this.orderService.saveorder(this.b).subscribe(x=>{
-         alert("order success")
-         this.r.navigate([''])
-        })
         this.options.key = data.secretId;
         this.options.order_id = data.razorpayOrderId;
         this.options.amount = data.applicationFee; //paise
         this.options.prefill.name = "NIIT Travel Portal";
         this.options.prefill.email = "niittravelportel@gmail.com";
         this.options.prefill.contact = "9106198825";
-        
-        if(data.pgName ==='razor2') {
-          this.options.image="";
+
+        if (data.pgName === 'razor2') {
+          this.options.image = "";
           var rzp1 = new Razorpay(this.options);
           rzp1.open();
         } else {
           var rzp2 = new Razorpay(this.options);
           rzp2.open();
         }
-       
-                
-        rzp1.on('payment.failed',  (response: { error: { code: any; description: any; source: any; step: any; reason: any; metadata: { order_id: any; payment_id: any; }; }; }) =>{    
+
+
+        rzp1.on('payment.failed', (response: { error: { code: any; description: any; source: any; step: any; reason: any; metadata: { order_id: any; payment_id: any; }; }; }) => {
           // Todo - store this information in the server
           console.log(response);
-          console.log(response.error.code);    
-          console.log(response.error.description);    
-          console.log(response.error.source);    
-          console.log(response.error.step);    
-          console.log(response.error.reason);    
-          console.log(response.error.metadata.order_id);    
+          console.log(response.error.code);
+          console.log(response.error.description);
+          console.log(response.error.source);
+          console.log(response.error.step);
+          console.log(response.error.reason);
+          console.log(response.error.metadata.order_id);
           console.log(response.error.metadata.payment_id);
           this.error = response.error.reason;
         }
@@ -127,14 +122,20 @@ b:Bookhotel=new Bookhotel()
       err => {
         this.error = err.error.message;
       }
-      );
-    }
+    );
+  }
 
-    @HostListener('window:payment.success', ['$event']) 
-    onPaymentSuccess(event: { detail: any; }): void {
-       console.log(event.detail);
-      
-    }
+  @HostListener('window:payment.success', ['$event'])
+  onPaymentSuccess(event: { detail: any; }): void {
+    console.log(event.detail);
+    //this.b.razorpayOrderId = event.detail.razorpayOrderId;
+    this.b.bookingId = "1";
+    this.orderService.saveorder(this.b).subscribe(x => {
+      alert("order success")
+      this.r.navigate([''])
+    })
+
+  }
 }
 
 

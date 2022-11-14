@@ -6,7 +6,7 @@ spring:
       database: PaymentDetail
       uri: mongodb://localhost:27017/
   application:
-    name: PAYMENT-SERVICE
+    name: payment-service
 razorpay1:
   secretid: rzp_test_wKyyI6ojoZoeMM
   secretkey: bfYgOf6JA1FIW6ERheXix0JI

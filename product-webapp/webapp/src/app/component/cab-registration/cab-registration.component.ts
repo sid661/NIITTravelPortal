@@ -15,7 +15,7 @@ cabForm=new FormGroup({
   fuelType:new FormControl(""),
   cabType:new FormControl(""),
   permit:new FormControl(""),
-  pricePerKm:new FormControl(""),
+  pricePerKm:new FormControl(0),
   model:new FormControl("")
 
 })

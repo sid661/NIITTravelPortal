@@ -11,12 +11,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@NonNull
+
 public class PackageModel
 {
     @Id
     private String bookingId;
-    private String transactionid;
+    private String razorpayOrderId;
     private String userEmailId;
     private String firstName;
     private String lastName;
