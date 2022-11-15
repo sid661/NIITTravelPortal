@@ -1,20 +1,25 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Amenties } from 'src/app/model/amenties';
 import { Bookhotel } from 'src/app/model/bookhotel';
 import { HotelService } from 'src/app/service/hotel.service';
 import { OrderService } from 'src/app/service/order.service';
-import { UserformComponent } from '../userform/userform.component';
+import { MY_DATE_FORMATS, UserformComponent } from '../userform/userform.component';
 
 @Component({
   selector: 'app-makereservationhotel',
   templateUrl: './makereservationhotel.component.html',
-  styleUrls: ['./makereservationhotel.component.css']
+  styleUrls: ['./makereservationhotel.component.css'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class MakereservationhotelComponent implements OnInit {
 
-  constructor(private service:OrderService,private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute,private d:MatDialog ) { }
+  constructor(private service:OrderService,private hotelservice:HotelService,private router:Router,private activate:ActivatedRoute,private d:MatDialog,private datepipe:DatePipe ) { }
 result=0;
 Rooms:any;
 isvalid:boolean=false;
@@ -62,6 +67,7 @@ bookRoom(room:any)
 // book:Bookhotel=new Bookhotel();
   ngOnInit(): void 
   {
+   
     this.hotelName=this.activate.snapshot.paramMap.get('name')
     let today : Date = new Date();
   this.hotelservice.getAllRooms(this.hotelName).subscribe((subscriber)=>{
@@ -75,9 +81,13 @@ bookRoom(room:any)
       {
         let newDate=new Date(this.Rooms[i].reservation.endDate);
         console.log(newDate);
+        console.log(today);
         
+        const converteddate=this.datepipe.transform(newDate,'MM-dd-yyyy')
         if(newDate<=today)
       {
+        console.log("pushed by checking");
+        
         
         this.availablerooms.push(this.Rooms[i])
       }
@@ -87,6 +97,7 @@ bookRoom(room:any)
       if(this.Rooms[i].reservation==null)
       {
         this.availablerooms.push(this.Rooms[i])
+        console.log("pushed");
       }
        
     }

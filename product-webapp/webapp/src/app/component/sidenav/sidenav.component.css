@@ -1,0 +1,17 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    font-family: Montserrat;
+    
+    
+  }
+  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    font-size: 30px!important;
+    
+   
+    font-weight: 700!important;
+    color:#0C507C!important;
+   }

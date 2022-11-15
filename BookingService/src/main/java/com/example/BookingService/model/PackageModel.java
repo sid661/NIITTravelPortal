@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
+@NonNull
 public class PackageModel
 {
     @Id
@@ -20,7 +20,7 @@ public class PackageModel
     private String userEmailId;
     private String firstName;
     private String lastName;
-    private int phoneNumber;
+    private long phoneNumber;
     private String serviceProviderEmailId;
     private String tourGuide;
     private String agencyName;

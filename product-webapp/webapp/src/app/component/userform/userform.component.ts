@@ -35,8 +35,8 @@ export class UserformComponent implements OnInit {
     lastName:new FormControl(""),
     email:new FormControl(""),
     phoneNo:new FormControl(""),
-    startDate:new FormControl(new Date("01/01/2022"),[Validators.required,startdatevalidator,Validators.nullValidator]),
-      endDate:new FormControl(new Date("01/01/2022"),[Validators.required,startdatevalidator,enddatevalidator]),
+    startDate:new FormControl('',[Validators.required,startdatevalidator,Validators.nullValidator]),
+      endDate:new FormControl('',[Validators.required,startdatevalidator,enddatevalidator]),
      
   })
   ngOnInit(): void {
@@ -57,9 +57,13 @@ da:any;
   //   this.time=this.date2!.getTime()-this.date1!.getTime()?
     
   //  this.da=Math.round(this.time/(1000*3600*24))
-    console.log(this.datepipe.transform(this.userForm.value.startDate,'MM-dd-yyyy'))
+    console.log(this.userForm.value.startDate)
     console.log(this.date1)
-    console.log(this.datepipe.transform(this.date2),'MM/dd/yyyy');
+    console.log(this.userForm.value.endDate);
+    this.time=new Date(this.userForm.value.endDate!).getTime()-new Date(this.userForm.value.startDate!).getTime()
+    this.da=Math.round(this.time/(1000*3600*24))
+    console.log("days" + this.da);
+    
     
     console.log("days",this.da)
     //console.log(this.userForm.value)
@@ -70,7 +74,7 @@ da:any;
     // this.data.title=this.userForm.value.title;
     this.data.firstName=this.userForm.value.firstName;
     this.data.lastName=this.userForm.value.lastName;
-   //this.data.price=this.data.price*this.da
+   this.data.price=this.data.price*this.da
 
     console.log(this.data)
     this.service.getData(this.data);

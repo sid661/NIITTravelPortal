@@ -13,19 +13,18 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/book/")
-@CrossOrigin
 public class BookingController {
     private ResponseEntity responseEntity;
     private CabBookingService cabBookingService;
     private PackageBookingService packageBookingService;
     private RoomBookingService roomBookingService;
-    @Autowired
+@Autowired
     public BookingController(CabBookingService cabBookingService, PackageBookingService packageBookingService, RoomBookingService roomBookingService) {
         this.cabBookingService = cabBookingService;
         this.packageBookingService = packageBookingService;
         this.roomBookingService = roomBookingService;
     }
-    @PostMapping("booking/hotel")
+   @PostMapping("booking/hotel")
     public ResponseEntity<?> saveBooking(@RequestBody RoomModel roomModel)
     {
         try
@@ -37,12 +36,13 @@ public class BookingController {
             System.out.println(e);
             responseEntity=new ResponseEntity(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return responseEntity;
+      return responseEntity;
     }
-    @PostMapping("booking/cab")
+  @PostMapping("booking/cab")
     public ResponseEntity<?> saveBooking(@RequestBody CabModel cabModel) {
         try
         {
+            System.out.println(cabModel);
             responseEntity=new ResponseEntity(cabBookingService.bookCab(cabModel),HttpStatus.OK);
         }
         catch (Exception e)
@@ -70,7 +70,7 @@ public class BookingController {
     {
         try
         {
-            responseEntity=new ResponseEntity(cabBookingService.getAllCabBooking(userEmailId),HttpStatus.OK);
+           responseEntity=new ResponseEntity(cabBookingService.getAllCabBooking(userEmailId),HttpStatus.OK);
         }
         catch (Exception e)
         {
@@ -155,6 +155,9 @@ public class BookingController {
     {
         return  new ResponseEntity<>(packageBookingService.getallBookings(),HttpStatus.OK);
     }
+
+
+
 
 
 }

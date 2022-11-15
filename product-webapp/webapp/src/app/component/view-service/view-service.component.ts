@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Cab } from 'src/app/model/cab';
 
@@ -8,6 +9,7 @@ import { TourPackage } from 'src/app/model/tour-package';
 import { CabService } from 'src/app/service/cab.service';
 import { HotelService } from 'src/app/service/hotel.service';
 import { PackageService } from 'src/app/service/package.service';
+import { RoomComponent } from '../room/room.component';
 
 @Component({
   selector: 'app-view-service',
@@ -15,7 +17,7 @@ import { PackageService } from 'src/app/service/package.service';
   styleUrls: ['./view-service.component.css']
 })
 export class ViewServiceComponent implements OnInit {
-  constructor(private hotelservice: HotelService,private cabService:CabService,private pService:PackageService,private router:Router) { }
+  constructor(private hotelservice: HotelService,private cabService:CabService,private pService:PackageService,private router:Router,private d:MatDialog) { }
   hotelArray: Hotel[] = [];
   retrieveImage: any;
   getRating: any;
@@ -45,7 +47,13 @@ export class ViewServiceComponent implements OnInit {
       this.cabArray = x;
   })
 }
-
+addroom(hotelName:any)
+{
+  this.hotelservice.hotelName=hotelName;
+this.d.open(RoomComponent,{
+  data:hotelName
+})
+}
 
   update(hotelName:any)
   {

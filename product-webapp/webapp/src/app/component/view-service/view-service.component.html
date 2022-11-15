@@ -50,9 +50,12 @@
           </div>
           <div fxLayout="row">
             <hr style="height: 110%;margin-top:-14px;width: 1px;line-gap-override: 20;">
-            <div fxLayout="column">
+            <div fxLayout="row" fxLayoutGap="3%">
               <!-- <span class="price">
                  <app-rating [rating]="hotel"></app-rating></span> -->
+                 <mat-card-actions class="update">
+                  <button class="button1" (click)="addroom(hotel.hotelName)">Add Room</button>
+                </mat-card-actions>
              
                 <mat-card-actions class="update">
                   <button class="button1" (click)="update(hotel.hotelName)">Update Hotel</button>

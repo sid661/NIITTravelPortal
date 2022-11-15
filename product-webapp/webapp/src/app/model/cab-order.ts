@@ -15,6 +15,6 @@ export class CabOrder {
      startDate:string="";
      endDate:string="";
      tourType:string="";
-     pickupTime:string="";
+     pickUpTime:string="";
      pricePerKm:number=0;
 }

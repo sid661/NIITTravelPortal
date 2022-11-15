@@ -27,14 +27,29 @@ export class CabpaymentComponent implements OnInit {
     private orderService: OrderService, private r: Router) {
   }
   b: CabOrder = new CabOrder()
-  ngOnInit() {
+  allbookingdata:any;
+  bookingid=0;
+  ngOnInit() 
+  {
 
     this.b = this.orderService.caborder;
     console.log(this.b)
     this.payment.get("customerName")?.setValue(this.b.firstName);
     this.payment.get("email")?.setValue(this.b.userEmailId);
     this.payment.get("phoneNumber")?.setValue(this.b.phoneNumber);
-     this.payment.get("amount")?.setValue(this.b.pricePerKm*200);
+     this.payment.get("amount")?.setValue(this.b.pricePerKm*20);
+     this.orderService.getallbookingsRoom().subscribe((x)=>{
+      this.allbookingdata=x;
+      if(this.allbookingdata==null)
+      {
+        this.bookingid=1;
+      }
+      else
+      {
+        this.bookingid=this.allbookingdata.length+1;
+      }
+    })
+     
   }
 
   sayHello() {
@@ -85,7 +100,7 @@ export class CabpaymentComponent implements OnInit {
     this.orderService.createOrder(this.order).subscribe(
       data => {
         console.log(data)
-       
+        this.b.razorpayOrderId = data.razorpayOrderId;
         this.options.key = data.secretId;
         this.options.order_id = data.razorpayOrderId;
         this.options.amount = data.applicationFee; //paise
@@ -127,11 +142,11 @@ export class CabpaymentComponent implements OnInit {
   @HostListener('window:payment.success', ['$event'])
   onPaymentSuccess(event: { detail: any; }): void {
     console.log(event.detail);
-    this.b.razorpayOrderId = event.detail.razorpayOrderId;
-    this.b.bookingId = "1";
+   
+    this.b.bookingId = "BC"+this.bookingid;
     this.orderService.savecaborder(this.b).subscribe(x => {
       alert("order success")
-      this.r.navigate([''])
+      this.r.navigate(['allbookings'])
     })
 
   }

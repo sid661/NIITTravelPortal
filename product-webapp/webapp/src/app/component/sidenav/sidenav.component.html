@@ -1,0 +1,59 @@
+
+<body>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Hotel Booking">
+    <mat-card>
+<div class="ab" style="width:1000px">
+    <table class="table-bordered" style="width:1000px">
+      <thead>
+        <tr>
+          <th>Booking Id</th>
+          <th>HoteL Name</th>
+          <th>Address</th>
+          <th>Amount</th>
+          <th>Cancel Booking</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let x of dataSource">
+          <td>{{x.bookingId}}</td>
+          <td>{{x.hotelName}}</td>
+          <td>{{x.hotelAddress}}</td>
+          <td>{{x.price}}</td>
+          <td><button type="button" class="btn btn-danger" (click)="cancel(x.bookingId)">Cancel</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-card>
+</mat-tab>
+<mat-tab label="Cab Booking">
+    <mat-card>
+        <div class="ab" style="width:1000px">
+            <table class="table-bordered" style="width:1000px">
+              <thead>
+                <tr>
+                  <th>Booking Id</th>
+                  <th>Cab Name</th>
+                  <th>Start Point</th>
+                  <th>End Point</th>
+                  <th>Amount</th>
+                  <th>Cancel Booking</th>
+                </tr>
+              </thead>
+              <tbody class="tbody">
+                <tr *ngFor="let x of data">
+                  <td>{{x.bookingId}}</td>
+                  <td>{{x.cabType}}</td>
+                  <td>{{x.startPoint}}</td>
+                  <td>{{x.endPoint}}</td>
+                  <td>{{x.pricePerKm}}</td>
+                  <td><button type="button" class="btn btn-danger" (click)="cancel(x.bookingId)">Cancel</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card>
+</mat-tab>
+</mat-tab-group>
+</body>

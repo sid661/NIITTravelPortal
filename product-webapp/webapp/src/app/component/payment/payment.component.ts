@@ -24,6 +24,8 @@ export class PaymentComponent implements OnInit {
 
 
   form: any = {};
+  bookingid=0;
+  allbookingdata:any;
   constructor(private http: HttpClient,
     private orderService: OrderService, private r: Router) {
   }
@@ -36,6 +38,18 @@ export class PaymentComponent implements OnInit {
     this.payment.get("email")?.setValue(this.b.userEmailId);
     this.payment.get("phoneNumber")?.setValue(this.b.phoneNumber);
     this.payment.get("amount")?.setValue(this.b.price)
+    this.orderService.getallbookingsRoom().subscribe((x)=>{
+      this.allbookingdata=x;
+      if(this.allbookingdata==null)
+      {
+        this.bookingid=1;
+      }
+      else
+      {
+        this.bookingid=this.allbookingdata.length+1;
+      }
+    })
+
   }
 
   sayHello() {
@@ -129,10 +143,10 @@ export class PaymentComponent implements OnInit {
   onPaymentSuccess(event: { detail: any; }): void {
     console.log(event.detail);
     //this.b.razorpayOrderId = event.detail.razorpayOrderId;
-    this.b.bookingId = "1";
+    this.b.bookingId = "BR"+this.bookingid;
     this.orderService.saveorder(this.b).subscribe(x => {
       alert("order success")
-      this.r.navigate([''])
+      this.r.navigate(['allbookings'])
     })
 
   }

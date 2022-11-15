@@ -26,6 +26,12 @@ public class PlaceServiceImpl implements PlaceService{
     }
 
     @Override
+    public List<Place> getAllplaces()
+    {
+        return placeRepository.findAll();
+    }
+
+    @Override
     public List<Place> findAllPlacesInCity(String city) {
         return placeRepository.findByCity(city);
     }

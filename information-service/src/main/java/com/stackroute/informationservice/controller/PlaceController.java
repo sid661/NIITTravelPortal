@@ -102,5 +102,10 @@ public class PlaceController {
 //        }
 //        return responseEntity;
 //    }
+    @GetMapping("/allplaces")
+    public ResponseEntity<?> getallplaces()
+    {
+       return new ResponseEntity(placeService.getAllplaces(),HttpStatus.OK);
+    }
 
 }

@@ -320,7 +320,7 @@ cabuser:CabOrder=new CabOrder();
     this.cabuser.cabType=cab.cabType;
     this.cabuser.cabmodel=cab.model;
     this.cabuser.registrationNo=cab.registrationNo;
-    this.cabuser.pricePerKm=cab.pricePerKm;
+    this.cabuser.pricePerKm=cab.pricePerKm*200;
     //this.service.getCab(this.cabuser);
     this.d.open(CabreservationComponent,{
       height:'700px',

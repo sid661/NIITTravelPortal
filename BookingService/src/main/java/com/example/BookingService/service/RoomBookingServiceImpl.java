@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class RoomBookingServiceImpl implements RoomBookingService
 {
-    private RoomRepository roomRepository;
-    private RoomProxy roomProxy;
+private RoomRepository roomRepository;
+private RoomProxy roomProxy;
 
     @Autowired
     public RoomBookingServiceImpl(RoomRepository roomRepository, RoomProxy roomProxy) {
@@ -31,7 +31,7 @@ public class RoomBookingServiceImpl implements RoomBookingService
         System.out.println(reservation);
 
         ResponseEntity<?> response=roomProxy.saveReservation(reservation,roomModel.getHotelName(),roomModel.getRoomid());
-        if(response.getStatusCodeValue()==201)
+        if(response.getStatusCodeValue()==200)
         {
             return roomRepository.save(roomModel);
         }
@@ -55,10 +55,10 @@ public class RoomBookingServiceImpl implements RoomBookingService
         RoomModel roomModel=roomRepository.findByBookingId(bookingId);
         Reservation reservation=new Reservation();
         ResponseEntity<?> response=roomProxy.saveReservation(reservation,roomModel.getHotelName(),roomModel.getRoomid());
-        if(response.getStatusCodeValue()==201)
+        if(response.getStatusCodeValue()==200)
         {
-            roomRepository.delete(roomModel);
-            return roomModel;
+           roomRepository.delete(roomModel);
+           return roomModel;
         }
         else
         {
@@ -72,5 +72,4 @@ public class RoomBookingServiceImpl implements RoomBookingService
     public List<RoomModel> getallBookings() {
         return roomRepository.findAll();
     }
-
 }

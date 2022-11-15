@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 public class CabModel
 {
     @Id
@@ -18,7 +19,7 @@ public class CabModel
     private String userEmailId;
     private String firstName;
     private String lastName;
-    private int phoneNumber;
+    private long phoneNumber;
     private String serviceProviderEmailId;
     private String cabType;
     private String cabmodel;

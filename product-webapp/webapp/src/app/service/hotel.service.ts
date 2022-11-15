@@ -39,6 +39,10 @@ export class HotelService {
     return this.http.get<Hotel[]>(this.baseUrl + "/hotel/hotelbycity/" + city)
   }
   saveRoom(room: any) {
+    console.log("dhjfgjhsdgfhjdsg");
+    
+    console.log("hotel name "+ this.hotelName);
+    
     return this.http.post(this.baseUrl + "/hotel/addroom/" + this.hotelName, room)
   }
   updateHotel(data: any) {

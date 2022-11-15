@@ -97,6 +97,7 @@ import { DatePipe } from '@angular/common';
 import { CabpaymentComponent } from './component/cabpayment/cabpayment.component';
 import { PackageformComponent } from './component/packageform/packageform.component';
 import { BookingComponent } from './component/booking/booking.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -189,7 +190,8 @@ import { BookingComponent } from './component/booking/booking.component';
     FlexLayoutModule,
     MatMenuModule,
     LayoutModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatTableModule
   
 
    

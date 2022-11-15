@@ -67,7 +67,7 @@ export class CabsComponent implements OnInit {
     this.cab.startDate=this.pickUpDate.value?.toISOString()!;
     this.cab.startPoint=this.cabsearch.value.start!;
     this.cab.endPoint=this.cabsearch.value.destination!;
-    this.cab.pickupTime=this.cabsearch.value.time!;
+    this.cab.pickUpTime=this.cabsearch.value.time!;
     this.service.getCab(this.cab);
     console.log(this.dropDate.value?.toLocaleDateString())
 

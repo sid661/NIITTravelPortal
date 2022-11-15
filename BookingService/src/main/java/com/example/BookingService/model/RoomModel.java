@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
+@NonNull
 public class RoomModel
 
 {
@@ -31,5 +31,6 @@ public class RoomModel
     private String startDate;
     private String endDate;
     private String razorpayOrderId;
+
 
 }

@@ -12,7 +12,7 @@ export class PlaceService {
   baseUrl="http://localhost:8080";
   getPlacesByCity(city:any)
   {
-    return this.http.get<Place[]>(+this.baseUrl+"/information/findPlaces/"+city)
+    return this.http.get<Place[]>(this.baseUrl+"/information/findPlaces/"+city)
   }
   getResturantByCity(city:any)
   {

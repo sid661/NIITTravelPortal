@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Cab } from 'src/app/model/cab';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map, shareReplay } from 'rxjs/operators';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { CabService } from 'src/app/service/cab.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { OrderService } from 'src/app/service/order.service';
+export interface Booking {
+  bookingId: string;
+  hotelName: number;
+  hotelAddress: number;
+  
+}
+
+
+
 
 @Component({
   selector: 'app-sidenav',
@@ -12,39 +18,44 @@ import { CabService } from 'src/app/service/cab.service';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-  filterCabArray:Cab[]=[];
-  cabArray:any=[]
-  ;
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
-  constructor(private breakpointObserver: BreakpointObserver,private cabService:CabService) {
-    const checked = false;
-  const indeterminate = false;
-  const align = 'start';
-  const disabled = false;
-   }
+ 
+ 
+  dataSource:any;
 
-   cabFilterForm=new  UntypedFormGroup({
-    hatchback: new UntypedFormControl(false),
-    suv:new UntypedFormControl(false),
-    sedan: new UntypedFormControl(false)
-  });
-
-  ngOnInit(): void {
-    // this.cabService.findCab().subscribe(x => {
-    //   this.cabArray = x;
-    //   console.log(x);
-    // })
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  filterCab()
+  email:any;
+  cancel(Bookingid:any)
   {
-
+   this.orderservice.cancelroom(Bookingid).subscribe((x)=>{
+    //this.router.navigateByUrl('allbookings')
+    alert("Cancelled")
+    location.reload();
+   })
   }
-  reset()
+
+  constructor(private orderservice:OrderService,private router:Router) {
+ 
+
+  
+ 
+}
+data:any
+  ngOnInit(): void 
   {
+  this.email= localStorage.getItem("email");
+  console.log(this.email);
+  this.orderservice.getbookedhotels(this.email).subscribe((x)=>{
+    this.dataSource=x;
+    console.log(this.dataSource);
     
+  })
+  this.orderservice.getbookedCabs(localStorage.getItem("email")).subscribe(x=>{
+    this.data=x;
+    console.log(this.data);
+    
+  })
   }
 }

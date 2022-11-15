@@ -28,6 +28,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { RollerComponent } from './component/roller/roller.component';
 import { Roller2Component } from './component/roller2/roller2.component';
 import { RoomRegistrationComponent } from './component/room-registration/room-registration.component';
+import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { ViewServiceComponent } from './component/view-service/view-service.component';
 import { ViewhotelComponent } from './component/viewhotel/viewhotel.component';
 import { LoginGuard } from './guard/login.guard';
@@ -100,9 +101,14 @@ const routes: Routes = [
         component:CabComponent
       },
       {
+        path:"allbookings",
+        component:SidenavComponent
+      },
+      {
         path:'explore',
         component:ExploreComponent
       },
+     
       {
         path:'holidaypackage',
         component:HolidaypackagesComponent
@@ -141,7 +147,11 @@ const routes: Routes = [
    {path:'cabreg',component:CabRegistrationComponent},
   
    
-  {path:'edit/:hotelName',component:EdithotelComponent}
+  {path:'edit/:hotelName',component:EdithotelComponent},
+  {path:"reg",component:PackageRegistrationComponent,canActivate:[LoginGuard]},
+  {path:'cabreg',component:CabRegistrationComponent,canActivate:[LoginGuard]},
+  
+ {path:'regHotel',component:HotelComponent,canActivate:[LoginGuard]}
 ]},
 
 {path:'header',component:PaymentComponent},
@@ -154,11 +164,8 @@ const routes: Routes = [
   {
     path:"register",
     component:RegisterComponent
-  },
-  {path:"reg",component:PackageRegistrationComponent,canActivate:[LoginGuard]},
-  {path:'cabreg',component:CabRegistrationComponent,canActivate:[LoginGuard]},
-  
- {path:'regHotel',component:HotelComponent,canActivate:[LoginGuard]},
+  }
+ 
 
   
 ];

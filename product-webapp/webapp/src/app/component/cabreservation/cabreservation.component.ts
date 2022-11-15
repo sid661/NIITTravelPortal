@@ -19,7 +19,7 @@ export class CabreservationComponent implements OnInit {
     firstName:new FormControl(""),
     lastName:new FormControl(""),
     email:new FormControl(""),
-    phoneNo:new FormControl(""),
+    phoneNo:new FormControl(0),
     startDate:new FormControl(new Date(),[Validators.required,startdatevalidator]),
       endDate:new FormControl(new Date(),[Validators.required,startdatevalidator,enddatevalidator]),
       time:new FormControl(""),

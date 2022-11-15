@@ -13,7 +13,7 @@ import java.util.List;
 public interface PlaceService {
 
     Place savePlace(Place place,byte[] bytes)throws PlaceAlreadyExists;
-
+List<Place> getAllplaces();
     List<Place> findAllPlacesInCity(String city);
 //    public Place deletePlace(String place) throws PlaceNotFoundException;
 //    public Place getPlaceByPlace(String place) throws PlaceNotFoundException ;
