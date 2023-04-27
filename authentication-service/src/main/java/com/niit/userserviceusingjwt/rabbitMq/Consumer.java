@@ -1,5 +1,6 @@
 package com.niit.userserviceusingjwt.rabbitMq;
 
+import com.niit.userserviceusingjwt.changed_Service.AuthrizationService;
 import com.niit.userserviceusingjwt.exception.ServiceProviderAlreadyExist;
 import com.niit.userserviceusingjwt.exception.UserAlreadyExistException;
 import com.niit.userserviceusingjwt.model.ServiceProvider;
@@ -13,12 +14,8 @@ import org.springframework.stereotype.Component;
 public class Consumer {
 
 
-
-    private UserService userService;
-    @Autowired
-    public Consumer(UserService userService) {
-        this.userService = userService;
-    }
+   @Autowired
+   private AuthrizationService userService;
 
     @RabbitListener(queues = "userqueue")
     public void getDtoAndAddToDbOfGuestUser(UserDto userDto) throws UserAlreadyExistException, ServiceProviderAlreadyExist {
@@ -30,7 +27,7 @@ public class Consumer {
         }else if(userDto.getRole().toString().equals("SERVICEPROVIDER")) {
             ServiceProvider serviceProvider=new ServiceProvider(userDto.getEmail(), userDto.getPassword());
         // String status= service.sendSimpleEmail(user);
-            userService.saveServiceProvider(serviceProvider);
+           // userService.saveServiceProvider(serviceProvider);
         }
 
 

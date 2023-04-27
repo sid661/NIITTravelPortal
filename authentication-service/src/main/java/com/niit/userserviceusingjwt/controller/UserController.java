@@ -1,5 +1,6 @@
 package com.niit.userserviceusingjwt.controller;
 
+import com.niit.userserviceusingjwt.changed_Service.AuthrizationService;
 import com.niit.userserviceusingjwt.exception.ServiceProviderAlreadyExist;
 import com.niit.userserviceusingjwt.exception.UserNotFoundException;
 import com.niit.userserviceusingjwt.model.ServiceProvider;
@@ -9,61 +10,55 @@ import com.niit.userserviceusingjwt.rabbitMq.UserDto;
 import com.niit.userserviceusingjwt.service.SecurityTokenGenerator;
 import com.niit.userserviceusingjwt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     private ResponseEntity responseEntity;
     private UserService userService;
+
+    private AuthenticationManager authenticationManager;
     private SecurityTokenGenerator securityTokenGenerator;
 
-//    @Autowired
-//    Producer producer;
-
+    private AuthrizationService authrizationService;
     @Autowired
-    public UserController(UserService userService, SecurityTokenGenerator securityTokenGenerator) {
+    public UserController( UserService userService, AuthenticationManager authenticationManager, SecurityTokenGenerator securityTokenGenerator, AuthrizationService authrizationService) {
+
         this.userService = userService;
+        this.authenticationManager = authenticationManager;
         this.securityTokenGenerator = securityTokenGenerator;
+        this.authrizationService = authrizationService;
     }
+
     @PostMapping("/login")
-    public ResponseEntity loginUser(@RequestBody UserDto userDto) throws UserNotFoundException, ServiceProviderAlreadyExist {
-        try{
-            System.out.println("called");
-        Map<String,String> map=null;
-        if(userDto.getRole().toString().equals("USER")) {
-            User user1=userService.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
-            if(user1.getEmail().equals(userDto.getEmail())){
-                map=securityTokenGenerator.generateToken(userDto);
-            }
+    public String loginUser(@RequestBody UserDto userDto) {
 
-        }else if(userDto.getRole().toString().equals("SERVICEPROVIDER")) {
-            ServiceProvider serviceProvider=userService.findByServiceEmailAndPassword(userDto.getEmail(), userDto.getPassword());
-            if (serviceProvider.getEmail().equals(serviceProvider.getEmail())) {
-                map=securityTokenGenerator.generateToken(userDto);
-            }
+        Authentication authentication = authenticationManager.
+                authenticate(new UsernamePasswordAuthenticationToken
+                        (userDto.getEmail(), userDto.getPassword()));
+        if (authentication.isAuthenticated()) {
+           return authrizationService.generateToken(userDto.getEmail());
+        }else{
+            throw new RuntimeException("invalid acess");
         }
 
-            responseEntity=new ResponseEntity<>(map, HttpStatus.OK);
-        } catch (Exception e)
-        {
-            responseEntity=new ResponseEntity<>("Try after Sometime!!",HttpStatus.NOT_FOUND);
-        }
-        return responseEntity;
+
     }
-//    @PostMapping("/register")
-//    public ResponseEntity saveUser(@RequestBody User user) throws UserAlreadyExistException {
-//        User userCreated=userService.saveUser(user);
-//       String status= service.sendSimpleEmail(user);
-//        return responseEntity=new ResponseEntity<>(status,HttpStatus.CREATED);
-//    }
-    @GetMapping("/api/v1/userService/users")
+
+    @GetMapping("/validate")
+    public String validateToken(@RequestParam("token") String token) {
+        /*   service.validateToken(token);*/
+        return "Token is valid";
+    }
+
+    /*@GetMapping("/api/v1/userService/users")
     public ResponseEntity getAllUser(HttpServletRequest request)
     {
         List<User> list=userService.getAllUsers();
@@ -106,5 +101,5 @@ public class UserController {
 
         }
         return responseEntity;
-    }
+    }*/
 }
