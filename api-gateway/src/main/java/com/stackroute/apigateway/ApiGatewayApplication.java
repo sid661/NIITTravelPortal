@@ -20,15 +20,15 @@ public class ApiGatewayApplication {
 	}
 
 
-	@Bean
-	public FilterRegistrationBean jwtFilter()
-	{
-		System.out.println("hi");
-		FilterRegistrationBean filterRegistrationBean=new FilterRegistrationBean<>();
-		filterRegistrationBean.setFilter( new JwtFilter());
-		filterRegistrationBean.addUrlPatterns("/hotel/*");
-		return filterRegistrationBean;
+    /*@Bean
+    public FilterRegistrationBean jwtFilter()
+    {
+        System.out.println("hi");
+        FilterRegistrationBean filterRegistrationBean=new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter( new JwtFilter());
+        filterRegistrationBean.addUrlPatterns("/hotel/*");
+        return filterRegistrationBean;
 
-	}
+    }*/
 
 }

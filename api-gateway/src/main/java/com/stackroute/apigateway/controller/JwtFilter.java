@@ -15,9 +15,9 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
 
-public class JwtFilter extends GenericFilterBean {
+public class JwtFilter  {
 
-    @Override
+   /* @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         final HttpServletRequest request=(HttpServletRequest) servletRequest;
         final HttpServletResponse response=(HttpServletResponse) servletResponse;
@@ -34,5 +34,5 @@ public class JwtFilter extends GenericFilterBean {
         final Claims claims= Jwts.parser().setSigningKey("secretKey").parseClaimsJws(token).getBody();
         request.setAttribute("claims",claims);
         filterChain.doFilter(request,response);
-    }
+    }*/
 }

@@ -6,6 +6,82 @@ spring:
     web-application-type: reactive
   cloud:
     gateway:
+      routes:
+        - id: authentication-service
+          uri: lb://authentication-service
+          predicates:
+              - Path=/user/**
+
+
+        - id: register-service
+          uri: lb://register-service
+          predicates:
+            - Path=/register/**
+
+
+        - id: cab-service
+          uri: lb://cab-service
+          predicates:
+            - Path=/cab/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: hotel-service
+          uri: lb://hotel-service
+          predicates:
+            - Path=/hotel/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: package-service
+          uri: lb://package-service
+          predicates:
+            - Path=/package/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: information-service
+          uri: lb://information-service
+          predicates:
+            - Path=/information/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: booking-service
+          uri: lb://booking-service
+          predicates:
+            - Path=/booking/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/payment/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: config-service
+          uri: lb://config-service
+          predicates:
+            - Path=/config/**
+          filters:
+            - AuthenticationFilter
+
+
+        - id: email-service
+          uri: lb://email-service
+          predicates:
+            - Path=/email/**
+          filters:
+            - AuthenticationFilter
+
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
